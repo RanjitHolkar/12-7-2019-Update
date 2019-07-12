@@ -1,0 +1,28 @@
+Landlord actions: 
+1) Signup
+2) Login
+3) Add property 
+4) add unit
+5) add lease
+6) edit lease / remove lease
+7) add tenant from landlord side
+8) link tenant to perticular unit
+9) add Manual transaction
+10) add files for unit
+11) add files for property
+12) Send Notice to Perticular property's tenants
+13) accpert, decline, delete request of tenants and can see for which unit and for which property he raise a request
+14) chat with single tenant and chat in one property
+15) Should get notification for perticular actions like message from tenant, request from tenant
+16) active and deactive the units for searching by tenants
+17) 
+
+
+Tenant actions
+1) Signup
+2) Login
+3) seach property or landlord and send request for perticular unit
+4) after accepting the request the tenant should show in perticular unit
+5) he can chat with landord and with all tenants from his property
+6) pay expenses from payment getway
+7) after vacanting from landlord he can again send request to diffrent diffrent landlord

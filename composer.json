@@ -1,0 +1,14 @@
+{
+    "name": "amol/property_testing",
+    "require": {
+        "pusher/pusher-php-server": "^3.4",
+        "safaricom/mpesa": "^1.0",
+		"pusher/pusher-chatkit-server": "^1.0.0",
+        "vlucas/phpdotenv": "^3.3"
+    },
+	
+	
+    "license": "MIT"
+	
+    
+}
