@@ -1,0 +1,73 @@
+<div class="wrapper">
+    <app-tenant-sidebar></app-tenant-sidebar>
+    <!--  Mid section  -->
+    <div class="main-panel">
+       <!-- Navbar -->
+    <app-tenant-nav></app-tenant-nav>
+    <div class="content whiteBg">
+          
+<app-my-house-nav></app-my-house-nav>
+<div class="addReqHead">
+    <h3>Notice</h3>
+ </div>
+
+    <div class="noticMain">
+      <div class="noticeLeft "> 
+          <div class=" row"> 
+        <!-- notice single div -->
+        <!-- <div class="noticeSingle" *ngFor="let notice of noticeData">
+          <div class="noticeImg">
+            <img src="../../../assets/img/message (1).png" class="NoticeLeftImg" *ngIf="notice.img == ''">
+            <img src="{{url}}{{notice.img}}" class="NoticeLeftImg" *ngIf="notice.img != ''">
+          </div>
+          <div class="noticeText">
+            <div class="topicHead">
+              <h3>{{notice.title}}</h3>
+              <h5>{{notice.date | date}}</h5>
+            </div>
+            <h4>{{notice.propertyName }}</h4>
+            <p>{{notice.description }}</p>
+          </div>
+        </div> -->
+        <!-- notice single div -->
+        <div class="col-sm-12 col-md-6" *ngFor="let notice of noticeData">
+        <div class="noticeSingle">
+          <div class="noticeImg">
+            <img src="../../../assets/img/message (1).png" class="NoticeLeftImg" *ngIf="notice.img ==''">
+            <img src="{{url}}{{notice.img}}" class="NoticeLeftImg"  *ngIf="notice.img !=''">
+
+          </div>
+          <div class="noticeText">
+            <div class="topicHead">
+              <h3>{{notice.title}}</h3>
+              <h5>{{notice.date | date}}</h5>
+            </div>
+            <h4>{{notice.propertyName}}</h4>
+            <p>{{notice.description}}</p>
+          </div>
+        </div>
+      </div>
+        <!-- notice single div -->
+           <!-- notice single div -->
+           <!-- <div class="col-sm-12 col-md-6">
+              <div class="noticeSingle">
+                <div class="noticeImg">
+                  <img src="../../../assets/img/message (1).png" class="NoticeLeftImg">
+                </div>
+                <div class="noticeText">
+                  <div class="topicHead">
+                    <h3>New year celebration</h3>
+                    <h5>23.5.2019</h5>
+                  </div>
+                  <h4>geanwood Appartment</h4>
+                  <p>demo demo text v demo textdemo textdemo textdemo text demo textdemo textdemo textdemo text demo textdemo texttext</p>
+                </div>
+              </div>
+            </div> -->
+              <!-- notice single div -->
+      </div>
+  
+    </div>
+  </div>
+  
+</div>

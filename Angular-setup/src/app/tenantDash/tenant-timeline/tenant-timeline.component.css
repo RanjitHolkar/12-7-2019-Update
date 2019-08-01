@@ -1,0 +1,12 @@
+.replyComment label{
+    color: #1f88f8 !important;
+}
+.replyComment .form-control, .replyComment .is-focused .form-control {
+    background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #1f88f8 1px, rgba(210, 210, 210, 0) 1px);
+}
+.commentTextDiv {
+    padding: 0px 0 0 20px;
+}
+.commentTextDiv.NotificationInner {
+    padding: 10px 20px !important;
+}

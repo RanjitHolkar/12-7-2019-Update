@@ -1,0 +1,98 @@
+<div class="wrapper ">
+	<app-land-sidebar></app-land-sidebar>
+  <!--  Mid section  -->
+	<div class="main-panel">
+     <!-- Navbar -->
+		<app-land-nav></app-land-nav>
+		<div class="content">
+			<div class="messageSectiobn container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="tenentList">
+							<h4 class="tenaHead">Tenant List</h4>
+							<div class="listTenant">
+								<h5 class="" [ngClass]="{'activeText': activeRoute == tenant.tenant_id }" *ngFor="let tenant of tenantDetails" (click)="listClick($event,tenant.tenant_id)">{{tenant.userName}}</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="tenentList">
+							<h4 class="tenaHead">Subject</h4>
+							<div class="listTenant">
+								<div class="radio radioDiv" *ngFor="let sub of tenantSubject">
+									<label (click)="showLandlordMsg(sub.id,sub.subject)"> {{sub.subject}} <span class="unreadCount" *ngIf="sub.messagecount>0">( {{sub.messagecount}} )</span></label>
+								</div> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--landlord Message:START  -->
+
+				<div class="modal fade" id="landlordMessage" >
+					<div class="modal-dialog modal-lg"> 
+					   <div class="modal-content" *ngIf="tenant_details">
+						  <!-- Modal Header  -->
+						  <div class="modal-header modalHead" >
+							 <!-- <h4 class="modal-title">Message</h4> -->
+							 <h4 class="modal-title2">Subject :{{subject_name}}</h4>
+							  <div class="leftImgDiv modal-title3"><img src="{{url}}{{tenant_details.profilephoto}}" class="img-fluid "> 
+							 <h4 class="">{{tenant_details?.userName |titlecase}}</h4></div>
+							 <button type="button"  (click)="StopInterval()"class="close" data-dismiss="modal">&times;</button>
+						  </div>
+						  <!-- Modal body  -->
+						  <div class="modal-body modalBody modalPadd">
+							 <div class="row">
+							   <div class="fullwidth">
+							 <!-- 	<h4 class="secheading">Comments :</h4> -->
+								 <div class="singleCommentDivMain" id="singleCommentDivMain"> 
+									<div class="singleCommentDivMainInner"  *ngFor="let message of chat_msg">
+									 <div class="comment" *ngIf="message.sender_status == 0">
+										<div class="commentInner" >
+											<div class="commentImgDiv">
+											<img src="{{url}}{{tenant_details.profilephoto}}" class="img-fluid ">
+											</div>
+											<div class="commentTextDiv">
+											<h4> {{unitData?.userName |titlecase}} </h4>
+											<p>{{message.message}}</p>
+											</div>
+										</div>
+									 </div>
+									 <!-- <div class="paddL80"> -->
+										<div class="paddL80" *ngIf="message.sender_status == 1">
+										 <div class="comment commentReply">
+											<div class="commentInner">
+												<div class="commentImgDiv">
+													<img src="{{url}}{{landlord_details.profilephoto}}" class="img-fluid ">
+												</div>
+												<div class="commentTextDiv">
+													<h4> {{landlord_details.userName |titlecase}}</h4>
+													<p>{{message.message}}</p>
+												</div>
+											</div>
+										 </div>
+									 </div>
+									</div>
+								 </div>
+								 <div class="fullwidth replyComment">
+									 <div class="">
+										 <div  class="form-group bmd-form-group is-filled">
+											 <label class="bmd-label-floating">comment</label>
+											 <input class="form-control ng-valid ng-touched ng-dirty" (input)="sendComment($event)" [(ngModel)]="msg" type="text" >
+										  <i *ngIf="sendbutton"  (click)="sendLandTenantMsg(msg)" class="fa fa-paper-plane-o sendIcon" aria-hidden="true"></i>
+										 </div>
+									 </div>
+								 </div> 
+							   </div>
+							 </div>
+						  </div>
+						  <!-- Modal footer -->
+						 
+					   </div>
+					   
+					</div>
+				 </div>
+						 <!-- Tenant Message :END -->
+	</div>
+</div>

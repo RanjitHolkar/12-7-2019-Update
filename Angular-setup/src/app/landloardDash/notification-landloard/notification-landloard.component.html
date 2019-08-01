@@ -1,0 +1,80 @@
+<div class="wrapper ">
+  <app-land-sidebar></app-land-sidebar>
+  <!--  Mid section  -->
+  <div class="main-panel">
+     <!-- Navbar -->
+     <app-land-nav></app-land-nav>
+		<div class="content">
+			<div class="container-fluid">
+				<div class="NotificationPage">
+					<h4 class="pageHead">NOTIFICATIONS</h4>
+					<div class="NotificationMain">
+						<div class="NotificationInner">
+							<ul>
+								<li  *ngFor="let notfication of notification">
+									<div class="notifiactionDiv" routerLink="{{notfication.redirect_url}}">
+										<div class="notificationText">
+											<h4 class="listHead green">{{notfication.title}}</h4>
+											<h5> {{notfication.description}}</h5>
+											<!-- <p> This is dummy text for message display</p>
+											<a> some text</a> -->
+										</div>
+										 <div class="notificationTime">
+											<!-- <i class="fa fa-window-close" aria-hidden="true"></i> -->
+											<p class="NotiTime"><i class="fa fa-clock-o" aria-hidden="true"></i>{{notfication.date }}</p>
+										 </div>
+									</div>
+								</li>
+								<!-- <li>
+									Not Any Notification
+								</li> -->
+								<!-- <li>
+									<div class="notifiactionDiv">
+										<div class="notificationText">
+											<h4 class="listHead Orange">Message</h4>
+											<h5> New Resistraton : some new Resistrations here</h5>
+											<p> This is dummy text for message display</p>
+											<a> some text</a>
+										</div>
+										<div class="notificationTime">
+											<i class="fa fa-window-close" aria-hidden="true"></i>
+											<p class="NotiTime"><i class="fa fa-clock-o" aria-hidden="true"></i>24 Nov 2018 at 9:30 AM</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="notifiactionDiv">
+										<div class="notificationText">
+											<h4 class="listHead blue">Correct</h4>
+											<h5> New Resistraton : some new Resistrations here</h5>
+											<p> This is dummy text for message display</p>
+											<a> some text</a>
+										</div>
+										<div class="notificationTime">
+											<i class="fa fa-window-close" aria-hidden="true"></i>
+											<p class="NotiTime"><i class="fa fa-clock-o" aria-hidden="true"></i>24 Nov 2018 at 9:30 AM</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="notifiactionDiv">
+										<div class="notificationText">
+											<h4 class="listHead voilet">Comment</h4>
+											<h5> New Resistraton : some new Resistrations here</h5>
+											<p> This is dummy text for message display</p>
+											<a> some text</a>
+										</div>
+										<div class="notificationTime">
+											<i class="fa fa-window-close" aria-hidden="true"></i>
+											<p class="NotiTime"><i class="fa fa-clock-o" aria-hidden="true"></i>24 Nov 2018 at 9:30 AM</p>
+										</div>
+									</div>
+								</li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>

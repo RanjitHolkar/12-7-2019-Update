@@ -1,0 +1,32 @@
+.searchDiv {
+    display: flex;
+    align-items: center;
+}
+.searchDiv .form-group{
+margin-right: 10px;
+}
+.searchDiv  select{
+    min-width: 200px;
+    height: 39px;
+    margin: 0 15px;
+    border-radius: 5px;
+    color: #000;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #d2d2d2;
+    position: relative;
+    z-index: 9;
+}
+.selectDiv {
+    position: relative;
+}
+.selectDiv .fa {
+    position: absolute;
+    top: 0;
+    right: 23px;
+    font-size: 20px;
+    z-index: 0;
+}
+thead.bg-gray {
+    background-color: #eee;
+}

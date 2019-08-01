@@ -1,0 +1,158 @@
+.heading h3{
+	font-size: 20px;
+	font-weight: 500;
+}
+.document-body{
+	 box-shadow:5px 5px 35px #cccccc;
+}
+.card-body .documents-details{
+	border:1px #ccc solid;
+	border-radius: 5px;
+	/*max-height: 223px;*/
+}
+.form-content{
+	/*margin-bottom: 20px;*/
+}
+.form-content .input-text{
+ max-height: 70px!important;
+ min-height: 70px;
+}
+.input-text{
+	padding: 0 20px;
+	position: relative;
+}
+.input-text label{
+	color: #666666;
+}
+.input-btn{
+	margin-left: 10px;
+}
+.input-text button ,.input-btn button{
+	/*margin-left: 20px;*/
+	margin-top: 25px;
+	max-height: 36px;
+}
+
+.input-btn button i{
+	margin-right: 10px;
+}
+.btn.btn-primary {
+	background-color: #21BACF!important;
+	border-color: #21BACF!important;
+}
+
+.form-control{
+	background: no-repeat center bottom, center calc(100% - 1px); 
+    background-size: 0 100%, 100% 100%;
+    height: 36px !important;
+    border:1px solid #ff8c1e !important;
+    font-size: 14px;
+    padding: 0 12px;
+	/*width: 80%;*/
+}
+input.choose-flie {
+	opacity: 0;
+	z-index: 999;
+	position: relative;
+	width: 100%;
+	max-height: 36px;
+}
+button.browse_btn {
+    opacity: 1;
+    z-index: 0;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    text-align: left;
+    color: #ff8c1e;
+    background-color: transparent;
+    border: 1px solid #ff8c1e !important;
+}
+.btnGroupDIv input{
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+    opacity: 0;
+    height: 36px;
+}
+.dropdown{
+	color: #a1a1a1;
+    position: absolute;
+    bottom: 16px;
+    text-align: right;
+    right: 30px;
+
+}
+.docType{
+	position: relative;
+}
+
+.docType .dropdown{
+	color: #a1a1a1;
+    position: absolute;
+    bottom: 16px;
+    text-align: right;
+    right: 63px;
+}
+.btn-add{
+	    position: absolute;
+    right: 21px;
+    bottom: 6px;
+    color: white;
+    font-size: 20px;
+    text-shadow: none;
+    background-color: #ff8c1e;
+    padding: 5px 9px;
+}
+
+.main-table{
+	padding-top: 30px;
+}
+.table-heading th{
+	color: #21BACF;
+	/*color: #2D64F4;*/
+	/*border-bottom: 1px solid #21BACF;*/
+	font-weight: 400;
+	font-size: 16px;
+}
+.table-content td{
+	font-size: 14px;
+}
+.errors{
+	color:red;
+}
+.btnGroupDIv {
+    position: relative;
+	    height: 36px;
+}
+/* .browseBtn{ */
+	/* position:unset !important; */
+	/* margin: 0 !important; */
+/* } */
+.flexEnd {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.divHedheading{
+    background-color: #1e8af8;
+    padding: 7px 15px;
+}
+.divHedheading h3{
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px 0;
+}
+.allDoc td{
+position: relative;
+}
+.allDoc .dropdown {
+    color: #a1a1a1;
+    position: absolute;
+    bottom: -2px;
+    text-align: right;
+    right: 15px;
+}

@@ -1,0 +1,122 @@
+
+<div class="wrapper">
+    <app-tenant-sidebar></app-tenant-sidebar>
+    <!--  Mid section  -->
+  <div class="main-panel">
+
+   <app-tenant-nav></app-tenant-nav>
+
+    <div class="content whiteBg">       
+  <app-my-house-nav></app-my-house-nav>
+
+      <div class="AddRequestMainInner" *ngIf="!tenantDocument">
+          <div class="addReqHead">
+            <h3>Document</h3>
+            <div class="addReqDIv">
+                <button class="btn EditProperty" (click)="addTenantDocumentPopup()"> Add </button>
+            </div>
+          </div>
+          <div class="requestTable">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                      <th>Document Name</th>
+                      <th>Type</th>
+                      <th>File Format</th>
+                      <th>Added Date</th>
+                      <th>File</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let files of files_data;let i=index">
+                      <td>{{files.document_name}}</td>
+                      <td>{{files.type}}</td>
+                      <td>{{files.file_format}}</td>
+                      <td>{{files.date}}</td>
+                      <td ><a href="{{url}}{{files.file}}" download="myimage" target="_blank"><i class="fa fa-file-text-o fileIcon" aria-hidden="true"></i></a></td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+      </div>
+
+       <!-- Add Tenant Document:START -->
+       <div class="content"  *ngIf="tenantDocument">
+          <div class="container-fluid">
+             <div class="transactionPage">
+                <div class="card">
+                   <div class="card-body document-body">
+                      <div class="addReqHead">
+                         <h3>Add Documents</h3>
+                      </div>
+                      <div class="tableDIv">
+                         <div class="card">
+                            <div class="card-body documents-details">
+                               <form [formGroup]='addTenantDocumentForm' (ngSubmit)="addTenantDocument()" autocomplete="off" >
+                               <div class="row ">
+                                  <div class="col-md-12 ">
+                                     <div class="form-row form-content">
+                                        <div class="col-md-4 docType input-text mb-3">
+                                           <label for="validationCustom01">Document Name</label>
+                                           <input type="text" class="form-control" formControlName='document_name'>
+                                           <div *ngIf="addFilesSubmit && addDocTenantForm.document_name.errors" class="errors">
+                                              <div *ngIf="addDocTenantForm.document_name.errors.required"> Document name required </div>
+                                           </div>
+                                        </div>
+                                        <div class="col-md-4 docType input-text">
+                                           <!-- <label for="validationCustom02">Document Type</label>
+                                              <input type="text" class="form-control" id="validationCustom04"  required> -->
+                                           <label for="validationCustom02">Document Type</label>
+                                           <select id="validationCustom02" class="form-control" formControlName='document_type'>
+                                              <option value=""> Please Select</option>
+                                              <option  [value]="document.id" *ngFor="let document of documentType" >{{document.type}}</option>
+                                           </select>
+                                           <div *ngIf="addFilesSubmit && addDocTenantForm.document_type.errors" class="errors">
+                                              <div *ngIf="addDocTenantForm.document_type.errors.required">Document type required </div>
+                                           </div>
+                                           <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                           <!-- <a (click)="showaddDocumentTypePropPop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
+                                        </div>
+                                        <div class="col-md-4 input-text ">
+                                           <!-- <div class="custom-file"> -->
+                                           <label  for="validationCustom04">Choose file</label>
+                                           <input type="file" class="choose-flie" id="validationCustom04" (change)="detectDocumentFile($event)" formControlName='document_file'>
+                                           <button type="button" class="browse_btn" id="validationCustom04">Browse</button>
+                                           <div *ngIf="addFilesSubmit && addDocTenantForm.document_file.errors" class="errors" id="fileError">
+                                              <div *ngIf="addDocTenantForm.document_file.errors.required"> Document file required </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                     <!-- </div> -->
+                                     <div class="form-row form-content">
+                                     </div>
+                                  </div>
+                                  <!-- </div> -->
+                                  <div class="col-md-12">
+                                     <div class=" input-btn text-right mb-3">
+                                        <button class=" btn btn-primary" type="submit" style="background-color: #21BACF!important; border-color: #21BACF!important;"><i class="fa fa-check" aria-hidden="true"></i>SAVE</button>
+                                        <button class="btn btn-primary" (click)="cancelTenantDocumentPopup()" type="button" style="background-color: #ff8c1e!important; border-color:#ff8c1e!important"><i class="fa fa-times" aria-hidden="true"></i>CANCEL</button>
+                                     </div>
+                                  </div>
+                               </div>
+                               </form>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <!-- Add Tenant Document:End -->
+<footer class="footer">
+  <div class="container-fluid">
+   
+  </div>
+</footer>
+</div>
+</div>
+
+
+
+

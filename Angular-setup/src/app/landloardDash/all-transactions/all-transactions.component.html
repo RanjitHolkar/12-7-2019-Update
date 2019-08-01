@@ -1,0 +1,884 @@
+
+
+
+<!-- <scrolltop></scrolltop> -->
+<div class="wrapper ">
+    <app-land-sidebar></app-land-sidebar>
+     
+    <!--  Mid section  -->
+  
+    <div class="main-panel">
+    <!-- Navbar -->
+    
+       <app-land-nav></app-land-nav> 
+    
+    <!-- End Navbar -->
+  
+    <!-- End Navbar -->
+    <div class="content" *ngIf="addTransaction ==  false && !editTransaction">
+      <div class="container-fluid">
+    <div class="transactionPage">
+      <div class="heading">
+        <h3>Transaction List</h3>
+        
+      </div>
+      <div class="tenantListBtn">
+        <div class="searchDiv pull-left">
+          <form class="navbar-form">
+            <div class="input-group no-border">
+            <input type="text" value="" class="form-control" placeholder="Search...">
+            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+              <i class="material-icons">search</i>
+              <div class="ripple-container"></div>
+            </button>
+            </div>
+          </form>
+        </div>
+        <div class="pull-right ListTenantbtnDiv">
+          <button type="button" class="btn btn-primary pull-right" (click)="getAddTransaction()">Add New</button>
+          <!-- <button type="submit" class="btn btn-primary pull-right">Export</button>
+          <button type="submit" class="btn btn-primary pull-right">Import</button> -->
+        </div>
+      </div>
+      
+      <div class="tableDIv">
+        <div class="card">
+                <div class="card-header card-header-icon card-header-rose">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title "></h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <tr>
+            <th> Property name</th>
+            <th>Tenant</th>
+            <th>date</th>
+            <th>Types</th>
+            <th>Vender</th>
+            <th>Amount</th>
+            <th>Recipt</th>
+            <th>Action</th>
+           </tr>
+          </thead>
+                      <tbody>
+                        <tr *ngFor="let data of trnasactionData">
+                          <td>{{data.propertyName}}</td>
+                          <td>{{data.userName}}</td>
+                          <td>{{data.payment_date}}</td>
+                          <td>{{data.payment_status==0 ? 'Unpaid' : data.payment_status==1 ? 'Paid' : 'Partially Paid'}}  </td>
+                          <td>{{data.name}}</td>
+                          <td>{{data.totalAmount}}</td>
+                          <td><button class="btn commonBtnP" data-toggle="modal" (click)="gnerateRecipt(data.id)" data-target="#myModalRecipt">Receipt</button></td>
+                          <td><div class="Menudropdown" >
+                                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2"
+                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Action
+                                 </button>
+
+                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <button class="dropdown-item dropMenu" type="button" (click)="editTransactionData(data.id)">Edit</button>
+                                    <button class="dropdown-item dropMenu" (click)="deleteTransaction(data.id)" >Delete</button>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+      </div>
+    </div>
+      </div>
+    </div>
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title delete">Are you sure?</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+               <p>Do you really want to delete these Transaction</p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+               <button type="button" class="btn btn-danger" (click)="deleteconfirm_Transaction()">Delete</button>
+            </div>
+         </div>
+      </div>
+   </div>
+    
+    <footer class="footer">
+      <div class="container-fluid">
+       
+      </div>
+    </footer>
+	
+	<!-- popup receipt start-->
+<div class="modal commentReply" id="myModalRecipt">
+	<div class="modal-dialog">
+		<div class="modal-content fullWidth">
+			<div class="modal-text padd0" *ngFor="let transaction of transaction_data">
+			  <!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Receipt</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button> 
+				</div>
+			  <!-- Modal body -->
+				<div class="receiptDetail" id="PdfRecipt">
+					<div class="receiptDetailInner">
+						<h4 class="recHead">Rent Receipt</h4>
+						<div class="listReceipt">
+							<p>Date</p>
+							<p>	: {{transaction.payment_date | date}}</p>
+						</div>
+						<div class="listReceipt">
+							<p>Received From	</p>
+							<p>:{{transaction.tenant_name}}	</p>
+						</div>
+						<div class="listReceipt">
+							<p>Rental Property	</p>
+							<p>: {{transaction.flatHoseNo}}	</p>
+						</div>
+						<div class="listReceipt">
+							<p>Payment Received As</p>
+							<p>: Rent	</p>
+						</div>
+						<div class="listReceipt">
+							<p>Payment Method</p>
+							<p>	: {{transaction.payment_type == 1 ? 'Cash' :transaction.payment_type == 2 ? 'Check' : 'Other'}}</p>
+						</div>
+						<div class="listReceipt">
+							<p>For The Period	</p>
+							<p>: {{transaction.start_period | date}} To {{transaction.end_period | date}}	</p>
+						</div>
+						<div class="fullwidth DFlex noMar" >
+							<div class="text-left">
+								<h3>Charge Description</h3>
+								<p>Sub Total</p>
+							</div>
+							<div class="text-right">
+								<h3>Amount</h3>
+								<p>KSh {{transaction.amount}}</p>
+							</div>
+						</div>
+						<div class="description">
+							<div class="listReceipt" *ngFor="let dedution_data of deduction">
+								<p >{{dedution_data.remove_text}}	</p>
+								<p style="text-align:right;">(-) Ksh {{dedution_data.remove_digit }}	</p>
+							</div>
+							<div class="listReceipt" *ngFor="let addtional_data of addtional">
+								<p >{{addtional_data.add_text}}</p>
+								<p style="text-align:right;">(+)Ksh {{addtional_data.add_digit }}	</p>
+							</div>
+							<!-- <div class="listReceipt">
+								<p >For The Period	</p>
+								<p style="text-align:right;">: {{transaction.start_period | date}} To {{transaction.end_period | date}}	</p>
+							</div> -->
+						</div>
+						<div class="fullwidth DFlex">
+							<div class="text-left">
+								<p>Total Charges</p>
+								<p>Landlord:</p>
+							</div>
+							<div class="text-right">
+								<p>KSh  {{transaction.totalAmount}}</p>
+								<p>{{transaction.userName}}</p>
+							</div>
+						</div>
+						<div class="paidDiv">
+							<h4>{{transaction.payment_status == 0 ?'Unpaid' : transaction.payment_status == 1 ?'Paid' : 'Partially Paid'}}</h4>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button (click)="SendEmailRecipt(transaction.id)"class="btn commonBtnP">Email Receipt</button>
+					<button class="btn commonBtnP" (click)="genratePdf()">Save as PDF</button>
+					<button class="btn commonBtnC" (click)="hideRecipt()">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- popup receipt end -->
+	
+	
+     <!-- Add Transaction :START -->
+   <div class="container-fluid">
+    <div class="card transaction" *ngIf="addTransaction">
+       <div class="card-body">
+          <div class="row mainwrapper">
+             <div class="col-md-12 heading">
+                <h1><img src="assets/img/transaction.png" style="width: 3%; height: auto;"> Add Transaction</h1>
+                <div class="amountPage">
+                   <form [formGroup]="addtransactionForm" (ngSubmit)="saveTransaction()" ngxScrollToFirstInvalid>
+                   <div class="col-md-12 transactionPage">
+                      <div class="row">
+                         <div class="col-md-6 timeDetails">
+                            <h2>Timing Details</h2>
+                            <!-- <div class="form-row paymentDetails"> -->
+                            <div class="form-group payment">
+                               <label for="inputDate">Date</label>
+                               <input type="date" class="form-control" formControlName="payment_date"  id="inputDate"  [ngModel]="todayDate | date:'yyyy-MM-dd'">
+                               <div *ngIf="transactionSubmit && saveTransactionForm.payment_date.errors" class="errors">
+                                  <div *ngIf="saveTransactionForm.payment_date.errors.required">Date required </div>
+                               </div>
+                            </div>
+                            <!-- </div> -->
+                            <div class="bill">
+                               <label>Billing Period</label>
+                               <div class="form-row billingDetails">
+                                  <div class="form-group col-md-5 billDate">
+                                       <!-- <date-picker formControlName="start_period"></date-picker> -->
+                                     <input type="date" class="form-control"  formControlName="start_period"  id="inputBill" >
+                                     <div *ngIf="transactionSubmit && saveTransactionForm.start_period.errors" class="errors">
+                                        <div *ngIf="saveTransactionForm.start_period.errors.required">Start date required </div>
+                                     </div>
+                                  </div>
+                                  <p>To</p>
+                                  <div class="form-group col-md-5 billDate">
+                                     <input type="date"  class="form-control"  formControlName="end_period" id="inputBill">
+                                     <div *ngIf="transactionSubmit && saveTransactionForm.end_period.errors" class="errors">
+                                        <div *ngIf="saveTransactionForm.end_period.errors.required">End date required </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-md-6 transactionDetails Details">
+                            <h2>Transaction Details</h2>
+                            <div class="form-group col-md-12 transactionType transactionTypeNew">
+                               <label for="inputName">Transaction Type</label>
+                               
+                               <select id="inputName" class="form-control" formControlName="transaction_type">
+                                  <option value="" selected>------Select------</option>
+                                  <optgroup label="Income" value=""><option *ngFor="let income_data of income" [value]="income_data.id">{{income_data.type_name}}</option></optgroup>
+                                  <optgroup label="Expence" value=""><option *ngFor="let expence_data of expence" [value]="expence_data.id">{{expence_data.type_name}}</option></optgroup>
+                                 
+                               </select>
+                               <i class="fa fa-caret-down dropdown" aria-hidden="true"(click)="addTransactionType()"></i>
+                                <!-- <a (click)="showaddDocumentTypePop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
+                                <button type="button" class="addBtn" (click)="addTransactionType()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <div *ngIf="transactionSubmit && saveTransactionForm.transaction_type.errors" class="errors">
+                                 <div *ngIf="saveTransactionForm.transaction_type.errors.required">Transaction type required </div>
+                              </div>
+                              </div>
+                           
+                            <div class="form-group col-md-12 transactionType">
+                               <label for="inputName">Vender Name</label>
+                               <select  class="form-control" formControlName="vender_name" >
+                                 <option value=""selected>---Select---</option>
+                                 <option *ngFor="let vendar_name of vendor; let i=index" [value]="vendar_name.id">{{vendar_name.name}}</option>
+                              </select>
+                               <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                            </div>
+                            <div class="form-group col-md-12 transactionType">
+                               <label for="inputName">Property Name</label>
+                               <select id="inputName" class="form-control"  formControlName="property_document" (change)="getUnitDetails(1)">
+                                  <option value="" selected>---Select---</option>
+                                  <option *ngFor="let property of property_data" [value]="property.id">{{property.propertyName}}</option>
+                               </select>
+                               <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                               
+                                  <div *ngIf="transactionSubmit && saveTransactionForm.property_document.errors" class="errors">
+                                     <div *ngIf="saveTransactionForm.property_document.errors.required">Property Name required </div>
+                                  </div>
+                            </div>
+                            <div class="form-group col-md-12 transactionType">
+                               <label for="inputName">Unit Number</label>
+                               <select id="unit_number" class="form-control" formControlName="unit_number" (change)="getTenantDeatails(1)">
+                                  <option value=""selected>---Select---</option>
+                                  <option *ngFor="let unit of unitData; let i=index" [value]="unit.id">{{unit.flatHoseNo}}</option>
+                               </select>
+                               <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                               <div *ngIf="transactionSubmit && saveTransactionForm.unit_number.errors" class="errors">
+                                 <div *ngIf="saveTransactionForm.unit_number.errors.required">Unit Number required </div>
+                              </div>
+                            </div>
+                            <div class="form-group col-md-12 transactionType">
+                               <label for="inputName">Tenant Name {{tennatName}}</label>
+                               <select  class="form-control" formControlName="tenant_name">
+                                    <option value=""selected>---Select---</option>
+                                  <option [value]="tenant?.id" *ngFor="let tenant of tenant_data">{{tenant.userName}}</option>
+                               </select>
+                               <div *ngIf="transactionSubmit && saveTransactionForm.tenant_name.errors" class="errors">
+                                 <div *ngIf="saveTransactionForm.tenant_name.errors.required">Tenant Name required </div>
+                              </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-md-12 paymentDetails">
+                      <h2>Payment Details</h2>
+                      <div class="form-group row">
+                         <label for="inputAmount" class="col-sm-2 col-form-label">Amount</label>
+                         <div class="col-sm-10 address">
+                            <div class=" dolarAmount">
+                               <div class="dollarSymbol">
+                                  <img class="img-fluid dollar-img" src="assets/img/dollar-symbo.png">
+                               </div>
+                               <div class="col-md-8 amountInput ">
+                                  <input type="text" class="form-control" id="inputAmount" (keyup)="calculation(1)" (keypress)="numberOnly($event)"  formControlName="amount">
+                                  <div *ngIf="transactionSubmit && saveTransactionForm.amount.errors" class="errors">
+                                     <div *ngIf="saveTransactionForm.amount.errors.required">Amount  required </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div formArrayName="add">
+                      <div class="form-group row " *ngFor="let address of addtransactionForm.controls.add.controls; let i=index" [formGroupName]="i" >
+                         <label for="inputNote" class="col-sm-2 col-form-label">Addition(+) Type</label>
+                         <div class="col-sm-10"  >
+                            <div class="row">
+                               <div class="col-sm-3 pr-0">
+                                  <input type="text" class="form-control" id="inputNote" placeholder="Type" formControlName="add_text" >
+                               </div>
+                               <!-- <div *ngIf="transactionSubmit && saveTransactionForm.add_text.errors" class="errors">
+                                 <div *ngIf="saveTransactionForm.add_text.errors.required">Document type required </div>
+                              </div> -->
+                               <div class="col-sm-2 pr-0 selection-box" style="display:none">
+                                  <select id="inputName" class="form-control" formControlName="add_type" (click)=calculation(i)>
+                                     <option value="0" [selected]=true>Ksh</option>
+                                     <option value="1" >%</option>
+                                  </select>
+                                  <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                  
+                               </div>
+                               <!-- <div *ngIf="transactionSubmit && saveTransactionForm.add_type.errors" class="errors">
+                                 <div *ngIf="saveTransactionForm.add_type.errors.required">Document type required </div>
+                              </div> -->
+                               <div class="digital-amount col-sm-3 pr-0">
+                                  <div class="rupee-icon"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                                  <input type="text" class="digits form-control" (keypress)="numberOnly($event)" (keyup)="calculation(i)"id="inputNote" placeholder="Digits Only" style="text-align: right;" formControlName="add_digit">
+                                 
+                                 </div>
+                                 <div class="col-sm-2 addition_btn">
+                                    <button type="button" (click)="deductionForm(i,1)" class="cross" *ngIf="addtransactionForm.controls.add.controls.length > 1"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <button type="button" (click)="additonalForm(1)" class="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div>
+                            </div>
+                         
+
+                         </div>
+                      </div>
+                     </div>
+                     <div  formArrayName="remove">
+                      <div class="form-group row" *ngFor="let address of addtransactionForm.controls.remove.controls; let i=index" [formGroupName]="i">
+                         <label for="inputNote" class="col-sm-2 col-form-label">Deduction(-) Type</label>
+                         <div class="col-sm-10">
+                            <div class="row">
+                               <div class="col-sm-3 pr-0">
+                                  <input type="text" class="form-control" id="inputNote" placeholder="Type"  formControlName="remove_text">
+                               </div>
+                               <div class="col-sm-2 pr-0 selection-box" style="display:none">
+                                  <select id="inputName" class="form-control" formControlName="remove_type" (click)="calculation(i)">
+                                     <option value="0" [selected]=true>Ksh</option>
+                                     <option value="1">%</option>
+                                  </select>
+                                  <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                 
+                               </div>
+                               
+                               <!-- <div class="col-sm-2 pr-0 ">
+                                  <input type="text" class="form-control" id="inputNote" placeholder="0">
+                               </div> -->
+                               <div class="digital-amount col-sm-3 pr-0">
+                                  <div class="rupee-icon"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                                  <input type="text" class="digits form-control" id="inputNote" (keypress)="numberOnly($event)" placeholder="Digits Only" style="text-align: right;" formControlName="remove_digit" (keyup)="calculation(i)">
+                                 
+                               </div>
+                                 
+                                <div class="col-sm-2 addition_btn">
+                                  <button type="button" class="cross" *ngIf="addtransactionForm.controls.remove.controls.length > 1" (click)="deductionForm(i,0)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                  <button type="button" class="add" (click)="additonalForm(0)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                  </div>
+                            </div>
+                            
+                         </div>
+                      </div>
+                     </div>
+                      <div class="form-group row ">
+                        <label for="inputNote" class="col-sm-2 col-form-label">Total :</label>
+                        <div class="col-sm-4">
+                           <input type="text" class="digits form-control" formControlName="totalValue" id="inputNote" placeholder="Digits Only" [(ngModel)]="mainTotalValue" readonly>
+                        </div>
+                          
+                     </div>
+                      <div class="form-group row">
+                         <label for="inputNote" class="col-sm-2 col-form-label">Note</label>
+                         <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputNote" formControlName="note">
+                            <div *ngIf="transactionSubmit && saveTransactionForm.note.errors" class="errors">
+                              <div *ngIf="saveTransactionForm.note.errors.required">Note required </div>
+                           </div>
+                         </div>
+                      </div>
+                      <div class="form-group row input-text">
+                         <label  for="validationCustom04" class="col-sm-2 col-form-label">Attach file</label>
+                         <div class="col-sm-4">
+                            <input type="file" class="choose-flie" id="validationCustom04" formControlName="document_file" (change)="detectTransactionFile($event)" >
+                            <button type="button" class="browse_btn" id="validationCustom04">Browse
+                            <i class="fa fa-desktop" aria-hidden="true" style="padding-left: 10px;"></i>
+                            </button>
+                            <div *ngIf="transactionSubmit && saveTransactionForm.document_file.errors" class="errors">
+                              <div *ngIf="saveTransactionForm.document_file.errors.required">Transaction File required</div>
+                           </div>
+                            <!-- <div *ngIf="documentSubmit && documentsaveForm.document_file.errors" class="errors">
+                               <div *ngIf="documentsaveForm.document_file.errors.required"> Document file required </div>
+                            </div> -->
+                         </div>
+                      </div>
+                      <fieldset class="form-group radioBtn">
+                         <div class="form-row">
+                            <legend class="col-form-label col-sm-2 pt-0">Payment Status</legend>
+                            <div class="col-sm-10">
+                               <div class="form-check form-check-inline">
+                                  <label class="paymentStatus">Paid
+                                  <input type="radio"  class="form-control" formControlName="payment_status" value=1  >
+                                  <span class="checkmark"></span>
+                                  </label>
+                               </div>
+                               <div class="form-check form-check-inline">
+                                  <label class="paymentStatus">Unpaid
+                                  <input type="radio" class="form-control" formControlName="payment_status" value=0  >
+                                  <span class="checkmark"></span>
+                                  </label>
+                               </div>
+                               <div class="form-check form-check-inline">
+                                  <label class="paymentStatus">Partially Paid
+                                  <input type="radio" formControlName="payment_status" value=2 >
+                                  <span class="checkmark"></span>
+                                  </label>
+                               </div>
+                               <div *ngIf="transactionSubmit && saveTransactionForm.payment_status.errors" class="errors">
+                                  <div *ngIf="saveTransactionForm.payment_status.errors.required">Payment Status required </div>
+                               </div>
+                            </div>
+                         </div>
+                      </fieldset>
+                      <fieldset class="form-group radioBtn" *ngIf="payment_type">
+                         <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Payment Method</legend>
+                            <div class="col-sm-10">
+                               <div class="form-check form-check-inline">
+                                  <label class="paymentStatus">Cash
+                                  <input type="radio" class="form-control" formControlName="payment_method" value=1  >
+                                  <span class="checkmark"></span>
+                                  </label>
+                               </div>
+                               <div class="form-check form-check-inline">
+                                  <label class="paymentStatus">Check
+                                  <input type="radio" class="form-control" formControlName="payment_method" value=2  >
+                                  <span class="checkmark"></span>
+                                  </label>
+                               </div>
+                               <div class="form-check form-check-inline">
+                                  <label class="paymentStatus">Other
+                                  <input type="radio" formControlName="payment_method" value=3>
+                                  <span class="checkmark"></span>
+                                  </label>
+                               </div>
+                               <div *ngIf="transactionSubmit && saveTransactionForm.payment_method.errors" class="errors">
+                                  <div *ngIf="saveTransactionForm.payment_method.errors.required">Payment Method required </div>
+                               </div>
+                               
+                            </div>
+                         </div>
+                      </fieldset>
+					  <div class="text-center">
+						  <button class="btn commonBtn">Save</button>
+						  <button type="button" (click)="cancelAddTransaction()" class="btn commonBtnCancel">Cancel</button>
+					  </div>
+                   </div>
+                   </form>
+
+
+                   <!-- Add transaction popup :START-->
+<!-- <button type="button" class="addTransactionBtn" data-toggle="modal" data-target="#addTransactionModal">
+ADD TRANSACTION TYPE
+</button> -->
+
+
+<div class="modal" id="addTransactionModal">
+       <div class="modal-dialog max400">
+          <div class="modal-content">
+           <form [formGroup]="addtranscactiontype" (ngSubmit)="saveTransactionType()">
+             <div class="modal-text padd0">
+                <!-- Modal Header -->
+                <div class="modal-header popHeader">
+                   <h4 class="modal-title">Add Transaction Type </h4>
+                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                </div>
+                <!-- Modal body -->
+                <div class="addPayment paddA15">
+                   <label>Category:</label>
+                     <select  class="form-control" formControlName="type">
+                        <option value=""selected>---select---</option>
+                        <option value="0">Income</option>
+                        <option value="1">Expense</option>
+                        
+                     </select>
+
+                     <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                     <div *ngIf="transactionTypeSubmit && saveTransactionTypeForm.type.errors" class="errors">
+                           <div *ngIf="saveTransactionTypeForm.type.errors.required">Document type required </div>
+                     </div>
+                </div>
+               
+       
+                        
+                  <div class="form-check paddA15">
+                     <label class="">Name:</label>
+                     <input type="text"  class="form-control" formControlName="type_name">
+                     <div *ngIf="transactionTypeSubmit && saveTransactionTypeForm.type_name.errors" class="errors">
+                           <div *ngIf="saveTransactionTypeForm.type_name.errors.required">Document type required </div>
+                  </div>
+                     
+                  </div>
+                   
+                     <!-- <div class="form-check" style="margin-right: 10px;">
+                        <label class="paymentStatus">Expense
+                        <input type="radio" class="form-control"name="payment_status" value=0  >
+                        <span class="checkmark"></span>
+                        </label>
+                     </div> -->
+                  
+                     <!-- <div *ngIf="transactionSubmit && saveTransactionForm.payment_status.errors" class="errors">
+                        <div *ngIf="saveTransactionForm.payment_status.errors.required">Document type required </div>
+                     </div> -->
+                         
+                <div class="modal-footer footer-btn paddA15">
+                   <button type="submit" class="add-btn" >Add</button>
+                   <button type="button"  class="cancel-btn" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>Cancle</button>
+                </div>
+             </div>
+             </form>
+          </div>
+       </div>
+   
+    <!-- Add transaction popup : END-->
+  </div>
+    <!-- min end section -->        
+  
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+
+
+   
+     <!-- Edit Transaction :START -->
+     <div class="container-fluid"  *ngFor="let transaction_data of editTransaction_data">
+      
+      <div class="card transaction" *ngIf="editTransaction"  >
+         <div class="card-body">
+            <div class="row mainwrapper">
+               <div class="col-md-12 heading">
+                  <h1><img src="assets/img/transaction.png" style="width: 3%; height: auto;">Edit Transaction</h1>
+                 
+                  <div class="amountPage">
+                     <form [formGroup]="editTransactionForm" (ngSubmit)="saveEditTransaction()" ngxScrollToFirstInvalid>
+                     <div class="col-md-12 transactionPage">
+                        <div class="row">
+                           <div class="col-md-6 timeDetails">
+                              <h2>Timing Details</h2>
+                              <!-- <div class="form-row paymentDetails"> -->
+                              <div class="form-group payment">
+                                 <label for="inputDate">Date</label>
+                                 <input type="date" class="form-control" formControlName="payment_date"  id="inputDate"  [ngModel]="transaction_data.payment_date | date:'yyyy-MM-dd'">
+                                 <div *ngIf="transactionSubmit && editTranForm.payment_date.errors" class="errors">
+                                    <div *ngIf="editTranForm.payment_date.errors.required">Date required </div>
+                                 </div>
+                              </div>
+                              <!-- </div> -->
+                              <div class="bill">
+                                 <label>Billing Period</label>
+                                 <div class="form-row billingDetails">
+                                    <div class="form-group col-md-5 billDate">
+                                         <!-- <date-picker formControlName="start_period"></date-picker> -->
+                                       <input type="date" class="form-control"  formControlName="start_period" [ngModel]="transaction_data.start_period | date:'yyyy-MM-dd'" id="inputBill" >
+                                       <div *ngIf="transactionSubmit && editTranForm.start_period.errors" class="errors">
+                                          <div *ngIf="editTranForm.start_period.errors.required">Start date required </div>
+                                       </div>
+                                    </div>
+                                    <p>To</p>
+                                    <div class="form-group col-md-5 billDate">
+                                       <input type="date"  class="form-control"  formControlName="end_period" [ngModel]="transaction_data.end_period | date:'yyyy-MM-dd'" id="inputBill">
+                                       <div *ngIf="transactionSubmit && editTranForm.end_period.errors" class="errors">
+                                          <div *ngIf="editTranForm.end_period.errors.required">End date required </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 transactionDetails Details">
+                              <h2>Transaction Details</h2>
+                              <div class="form-group col-md-12 transactionType transactionTypeNew">
+                                 <label for="inputName">Transaction Type</label>
+                                 
+                                 <select id="inputName" class="form-control" formControlName="transaction_type" [ngModel]="transaction_data.transaction_type">
+                                    <option value="" selected>------Select------</option>
+                                    <optgroup label="Income" value=""><option *ngFor="let income_data of income" [value]="income_data.id">{{income_data.type_name}}</option></optgroup>
+                                    <optgroup label="Expence" value=""><option *ngFor="let expence_data of expence" [value]="expence_data.id">{{expence_data.type_name}}</option></optgroup>
+                                   
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"(click)="addTransactionType()"></i>
+                                  <!-- <a (click)="showaddDocumentTypePop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
+                                  <button type="button" class="addBtn" (click)="addTransactionType()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                  <div *ngIf="transactionSubmit && editTranForm.transaction_type.errors" class="errors">
+                                   <div *ngIf="editTranForm.transaction_type.errors.required">Transaction type required </div>
+                                </div>
+                                </div>
+                             
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Vender Name</label>
+                                 <select  class="form-control" formControlName="vender_name"  [ngModel]="transaction_data.vender_name">
+                                   <option value=""selected>---Select---</option>
+                                   <option *ngFor="let vendar_name of vendor; let i=index" [value]="vendar_name.id">{{vendar_name.name}}</option>
+                                </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Property Name</label>
+                                 <select id="inputName" class="form-control"  formControlName="property_document" (change)="getUnitDetails(0)"  [ngModel]="transaction_data.property_id">
+                                    <option value="" selected>---Select---</option>
+                                    <option *ngFor="let property of property_data" [value]="property.id">{{property.propertyName}}</option>
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                 
+                                    <div *ngIf="transactionSubmit && editTranForm.property_document.errors" class="errors">
+                                       <div *ngIf="editTranForm.property_document.errors.required">Property Name required </div>
+                                    </div>
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Unit Number</label>
+                                 <select id="unit_number" class="form-control" formControlName="unit_number" (change)="getTenantDeatails()" [ngModel]="transaction_data.unit_id">
+                                    <option value=""selected>---Select---</option>
+                                    <option *ngFor="let unit of unitData; let i=index" [value]="unit.id">{{unit.flatHoseNo}}</option>
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                 <div *ngIf="transactionSubmit && editTranForm.unit_number.errors" class="errors">
+                                   <div *ngIf="editTranForm.unit_number.errors.required">Unit Number required </div>
+                                </div>
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Tenant Name {{tennatName}}</label>
+                                 <select  class="form-control" formControlName="tenant_name" [ngModel]="transaction_data.tenant_id">
+                                      <option value=""selected>---Select---</option>
+                                    <option [value]="tenant?.id" *ngFor="let tenant of tenant_data">{{tenant.userName}}</option>
+                                 </select>
+                                 <div *ngIf="transactionSubmit && editTranForm.tenant_name.errors" class="errors">
+                                   <div *ngIf="editTranForm.tenant_name.errors.required">Tenant Name required </div>
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12 paymentDetails">
+                        <h2>Payment Details</h2>
+                        <div class="form-group row">
+                           <label for="inputAmount" class="col-sm-2 col-form-label">Amount</label>
+                           <div class="col-sm-10 address">
+                              <div class=" dolarAmount">
+                                 <div class="dollarSymbol">
+                                    <img class="img-fluid dollar-img" src="assets/img/dollar-symbo.png">
+                                 </div>
+                                 <div class="col-md-8 amountInput ">
+                                    <input type="text" class="form-control" id="inputAmount" (keyup)="editcalculation(1)" (keypress)="numberOnly($event)" [ngModel]="transaction_data.amount" formControlName="amount">
+                                    <div *ngIf="transactionSubmit && editTranForm.amount.errors" class="errors">
+                                       <div *ngIf="editTranForm.amount.errors.required">Amount  required </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     <div formArrayName="add">
+                        <div class="form-group row " *ngFor="let address of editTransactionForm.controls.add.controls; let i=index" [formGroupName]="i" >
+                           <label for="inputNote" class="col-sm-2 col-form-label">Addition(+) Type</label>
+                           <div class="col-sm-10"  >
+                              <div class="row">
+                                 <div class="col-sm-3 pr-0">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="Type" formControlName="add_text" >
+                                 </div>
+                                 <!-- <div *ngIf="transactionSubmit && editTranForm.add_text.errors" class="errors">
+                                   <div *ngIf="editTranForm.add_text.errors.required">Document type required </div>
+                                </div> -->
+                                 <div class="col-sm-2 pr-0 selection-box" style="display:none">
+                                    <select id="inputName" class="form-control" formControlName="add_type" (click)=editcalculation(i)>
+                                       <option value="0" [selected]=true>Ksh</option>
+                                       <option value="1" >%</option>
+                                    </select>
+                                    <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                    
+                                 </div>
+                                 <!-- <div *ngIf="transactionSubmit && editTranForm.add_type.errors" class="errors">
+                                   <div *ngIf="editTranForm.add_type.errors.required">Document type required </div>
+                                </div> -->
+                                 <div class="digital-amount col-sm-3 pr-0">
+                                    <div class="rupee-icon"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                                    <input type="text" class="digits form-control" (keypress)="numberOnly($event)" (keyup)="editcalculation(i)"id="inputNote" placeholder="Digits Only" style="text-align: right;" formControlName="add_digit">
+                                   
+                                   </div>
+                                   <div class="col-sm-2 addition_btn">
+                                      <button type="button" (click)="editDeductionForm(i,1)" class="cross" *ngIf="editTransactionForm.controls.add.controls.length > 1"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                      <button type="button" (click)="editAdditonalForm(1,'','')" class="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      </div>
+                              </div>
+                           
+  
+                           </div>
+                        </div>
+                       </div>
+                       <div  formArrayName="remove">
+                        <div class="form-group row" *ngFor="let address of editTransactionForm.controls.remove.controls; let i=index" [formGroupName]="i">
+                           <label for="inputNote" class="col-sm-2 col-form-label">Deduction(-) Type</label>
+                           <div class="col-sm-10">
+                              <div class="row">
+                                 <div class="col-sm-3 pr-0">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="Type"  formControlName="remove_text">
+                                 </div>
+                                 <div class="col-sm-2 pr-0 selection-box" style="display:none">
+                                    <select id="inputName" class="form-control" formControlName="remove_type" (click)="editcalculation(i)">
+                                       <option value="0" [selected]=true>Ksh</option>
+                                       <option value="1">%</option>
+                                    </select>
+                                    <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                   
+                                 </div>
+                                 
+                                 <!-- <div class="col-sm-2 pr-0 ">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="0">
+                                 </div> -->
+                                 <div class="digital-amount col-sm-3 pr-0">
+                                    <div class="rupee-icon"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                                    <input type="text" class="digits form-control" id="inputNote" (keypress)="numberOnly($event)" placeholder="Digits Only" style="text-align: right;" formControlName="remove_digit" (keyup)="editcalculation(i)">
+                                   
+                                 </div>
+                                   
+                                  <div class="col-sm-2 addition_btn">
+                                    <button type="button" class="cross" *ngIf="editTransactionForm.controls.remove.controls.length > 1" (click)="editDeductionForm(i,0)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <button type="button" class="add" (click)="editAdditonalForm(0,'','')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div>
+                              </div>
+                              
+                           </div>
+                        </div>
+                       </div>
+                        <div class="form-group row ">
+                          <label for="inputNote" class="col-sm-2 col-form-label">Total :</label>
+                          <div class="col-sm-4">
+                             <input type="text" class="digits form-control" formControlName="totalValue" id="inputNote" placeholder="Digits Only" [(ngModel)]="transaction_data.totalAmount" readonly>
+                          </div>
+                            
+                       </div>
+                        <div class="form-group row">
+                           <label for="inputNote" class="col-sm-2 col-form-label">Note</label>
+                           <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputNote" formControlName="note" [(ngModel)]="transaction_data.note">
+                              <div *ngIf="transactionSubmit && editTranForm.note.errors" class="errors">
+                                <div *ngIf="editTranForm.note.errors.required">Note required </div>
+                             </div>
+                           </div>
+                        </div>
+                        <div class="form-group row input-text">
+                           <label  for="validationCustom04" class="col-sm-2 col-form-label">Attach file</label>
+                           <div class="col-sm-4">
+                              <input type="file" class="choose-flie" id="validationCustom04" formControlName="document_file" (change)="detectTransactionFile($event)" >
+                              <button type="button" class="browse_btn" id="validationCustom04">Browse
+                              <i class="fa fa-desktop" aria-hidden="true" style="padding-left: 10px;"></i>
+                              </button>
+                              <div *ngIf="transactionSubmit && editTranForm.document_file.errors" class="errors">
+                                <div *ngIf="editTranForm.document_file.errors.required">Transaction File required</div>
+                             </div>
+                              <!-- <div *ngIf="documentSubmit && documentsaveForm.document_file.errors" class="errors">
+                                 <div *ngIf="documentsaveForm.document_file.errors.required"> Document file required </div>
+                              </div> -->
+                           </div>
+                        </div>
+                        <fieldset class="form-group radioBtn">
+                           <div class="form-row">
+                              <legend class="col-form-label col-sm-2 pt-0">Payment Status</legend>
+                              <div class="col-sm-10">
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Paid
+                                    <input type="radio"  class="form-control" formControlName="payment_status" value=1 [checked]="transaction_data.payment_status == 1 ? 'true':'' " [(ngModel)]="transaction_data.payment_status">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Unpaid
+                                    <input type="radio" class="form-control" formControlName="payment_status" value=0  [checked]="transaction_data.payment_status == 0 ? 'true':'' " [(ngModel)]="transaction_data.payment_status">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Partially Paid
+                                    <input type="radio" formControlName="payment_status" value=2 [checked]="transaction_data.payment_status == 2 ? 'true':'' " [(ngModel)]="transaction_data.payment_status">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div *ngIf="transactionSubmit && editTranForm.payment_status.errors" class="errors">
+                                    <div *ngIf="editTranForm.payment_status.errors.required">Payment Status required </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                        <fieldset class="form-group radioBtn" >
+                           <div class="row">
+                              <legend class="col-form-label col-sm-2 pt-0">Payment Method</legend>
+                              <div class="col-sm-10">
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Cash
+                                    <input type="radio" class="form-control" formControlName="payment_method" value=1  [checked]="transaction_data.payment_type == 1 ? 'true':'' " [(ngModel)]="transaction_data.payment_type">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Check
+                                    <input type="radio" class="form-control" formControlName="payment_method" value=2  [checked]="transaction_data.payment_type == 2 ? 'true':'' " [(ngModel)]="transaction_data.payment_type">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Other
+                                    <input type="radio" formControlName="payment_method" value=3 [checked]="transaction_data.payment_type == 3 ? 'true':'' " [(ngModel)]="transaction_data.payment_type">
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div *ngIf="transactionSubmit && editTranForm.payment_method.errors" class="errors">
+                                    <div *ngIf="editTranForm.payment_method.errors.required">Payment Method required </div>
+                                 </div>
+                                 
+                              </div>
+                           </div>
+                        </fieldset>
+                   <div class="text-center">
+                      <button class="btn commonBtn">Save</button>
+                      <button type="button" (click)="cancelAddTransaction()" class="btn commonBtnCancel">Cancel</button>
+                   </div>
+                     </div>
+                     </form>
+  
+  
+      
+     </div>
+     </div>
+     </div>
+     </div>
+     </div>
+     </div>
+
+
+   </div>
+   </div>
+  
+  

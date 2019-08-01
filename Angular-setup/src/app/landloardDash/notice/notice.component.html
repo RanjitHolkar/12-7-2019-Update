@@ -1,0 +1,88 @@
+<div class="wrapper ">
+  <app-land-sidebar></app-land-sidebar>
+  <!--  Mid section  -->
+  <div class="main-panel">
+     <!-- Navbar -->
+     <app-land-nav></app-land-nav>
+		<div class="content">
+			<div class="container-fluid">
+				<div class="noticMain">
+					<div class="noticeLeft">
+						<h4> Notice</h4>
+						<div class="noticeScroll">
+							<!-- notice single div -->
+							<div class="noticeSingle" *ngFor="let notice of noticeData">
+								<div class="noticeImg">
+									<img src="../../../assets/img/message (1).png" class="NoticeLeftImg" *ngIf="notice.img == ''">
+									<img src="{{url}}{{notice.img}}" class="NoticeLeftImg" *ngIf="notice.img != ''">
+								</div>
+								<div class="noticeText">
+									<div class="topicHead">
+										<h3>{{notice.title}}</h3>
+										<h5>{{notice.date | date}}</h5>
+									</div>
+									<h4>{{notice.propertyName }}</h4>
+									<p>{{notice.description }}</p>
+								</div>
+							</div>
+							<!-- notice single div -->
+							<!-- <div class="noticeSingle">
+								<div class="noticeImg">
+									<img src="../../../assets/img/message (1).png" class="NoticeLeftImg">
+								</div>
+								<div class="noticeText">
+									<div class="topicHead">
+										<h3>New year celebration</h3>
+										<h5>23.5.2019</h5>
+									</div>
+									<h4>geanwood Appartment</h4>
+									<p>demo demo text v demo textdemo textdemo textdemo text demo textdemo textdemo textdemo text demo textdemo texttext</p>
+								</div>
+							</div> -->
+							<!-- notice single div -->
+						</div>
+					</div>
+					<div class="noticeRight">
+						<h4 class="leftHead">Send New Notice</h4> 
+						<div class="uploadDivPic">
+								<div *ngIf="urls !='' && urls != undefined" >
+								<img [src]="urls" class="uploadBtn" >
+							    </div>
+							<div class="uploadBtnDiv">
+								<div class="uploadBtnDivInner">
+									<input type="file" class="inputFile" (change)="fileChangeEvent($event)">
+									<img src="../../../assets/img/picture.png" class="uploadBtn">
+								</div>
+							</div>
+						</div>
+						<form [formGroup]="addNoticeForm" (submit)="addNotice()">
+						<div class="formDiv">
+							<input type="text" class="commonFormInput" placeholder="Enter Title"  formControlName='title'>
+							<div *ngIf="submitted && f.title.errors" class="errors">
+							   <div *ngIf="f.title.errors.required">Title is required</div>
+							</div>
+							
+							<input type="text" class="commonFormInput" placeholder="Enter Description" formControlName="description">
+							<div *ngIf="submitted && f.description.errors" class="errors">
+									<div *ngIf="f.description.errors.required">Description is required</div>
+							</div>
+							<select  class="commonFormInput" formControlName="property_id">
+								<option value='' [selected]=true>Please Select Property</option>
+								<option [value]="property.id" *ngFor="let property of propertyList">{{property.propertyName}}</option>
+							</select>
+							<div *ngIf="submitted && f.property_id.errors" class="errors">
+								<div *ngIf="f.property_id.errors.required">Property Name is required</div>
+							</div>
+							<button class="btn btn-block sendOrangeBtn">SEND</button>
+						</div>
+					    </form>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</div>
+	</div>
+</div>

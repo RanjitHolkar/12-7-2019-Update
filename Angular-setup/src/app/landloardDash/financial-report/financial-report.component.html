@@ -1,0 +1,292 @@
+
+
+
+
+<div class="wrapper ">
+    <app-land-sidebar></app-land-sidebar>
+     
+    <!--  Mid section  -->
+  
+    <div class="main-panel">
+    <!-- Navbar -->
+    
+       <app-admin-nav></app-admin-nav> 
+    
+    <!-- End Navbar -->
+  
+    <div class="content">
+  
+        <div class="col-md-12">
+           
+           <button type="submit" class="btn btn-primary pull-right"  (click)="showAddpropertiesDiv()" >Add New Properties</button>
+            
+          </div>
+  
+    <div class="container-fluid" *ngIf="addPropertiesDiv == true" >
+      <div class="fullwidth">
+        <div class="loginInner">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title pull-left"> Add Properties   </h4>
+  
+               <button type="submit" class="btn btn-primary pull-right" (click)="hideAddpropertiesDiv()" >Back</button>
+              
+             
+             <!--  <p class="card-category">Complete your profile</p> -->
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                 
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Country</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+         <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Address Line 1</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+         <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Address Line 2</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+        
+        <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Suburb</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+        <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">City</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+        <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">State / Province</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+        <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Zip/Post Code</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+      
+        <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Multiunit/HMO Property</label>
+                       <input type="text" class="form-control">
+                    </div>
+                  </div>
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">No of Bedrooms</label>
+                       <input type="text" class="form-control">
+                    </div>
+                  </div>
+  
+  
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Total Area (sq ft/m)</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+  
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Purchase Date </label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+  
+  
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Purchase Price</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+  
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Purchase Tax </label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Net Gain/Loss</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+  
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Net Gain/Loss(%) </label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                 
+  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Note</label>
+                      <textarea type="text" class="form-control"></textarea>
+                    </div>
+                  </div>
+  
+  
+                  </div>
+        
+                  
+                
+                
+                
+                <div class="col-md-12 text-center">
+             <button type="submit" class="btn btn-primary pull-right">Save</button>
+      </div>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+         <!-- ###############  Properties list ######################-->
+  
+         <div class="container-fluid" *ngIf="addPropertiesDiv == false">
+         <div class="transactionPage">
+           <div class="heading">
+             <h3>Property List </h3>
+             
+           </div>
+           <div class="tenantListBtn">
+             <div class="searchDiv pull-left">
+  
+              
+               <form class="navbar-form">
+                 <div class="input-group no-border">
+                 <input type="text" value="" class="form-control" placeholder="Search...">
+                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                   <i class="material-icons">search</i>
+                   <div class="ripple-container"></div>
+                 </button>
+                 </div>
+               </form>
+             </div>
+             <div class="pull-right ListTenantbtnDiv">
+               <button type="submit" class="btn btn-primary pull-right">New</button>
+               <button type="submit" class="btn btn-primary pull-right">Export</button>
+               <button type="submit" class="btn btn-primary pull-right">Import</button>
+             </div>
+           </div>
+           
+           <div class="tableDIv">
+             <div class="card">
+                <table  class="row-border hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Foo</td>
+                        <td>Bar</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Someone</td>
+                        <td>Youknow</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Iamout</td>
+                        <td>Ofinspiration</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Yoda</td>
+                        <td>Skywalker</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Patrick</td>
+                        <td>Dupont</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>Barack</td>
+                        <td>Obama</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>François</td>
+                        <td>Holland</td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>Michel</td>
+                        <td>Popo</td>
+                      </tr>
+                      <tr>
+                        <td>9</td>
+                        <td>Chuck</td>
+                        <td>Norris</td>
+                      </tr>
+                      <tr>
+                        <td>10</td>
+                        <td>Simon</td>
+                        <td>Robin</td>
+                      </tr>
+                      <tr>
+                        <td>11</td>
+                        <td>Louis</td>
+                        <td>Lin</td>
+                      </tr>
+                      <tr>
+                        <td>12</td>
+                        <td>Zelda</td>
+                        <td>Link</td>
+                      </tr>
+                    </tbody>
+                  </table>    
+            </div>
+           </div>
+         </div>
+           </div>
+  
+  
+  </div>
+    
+    <footer class="footer">
+      <div class="container-fluid">
+       
+      </div>
+    </footer>
+  </div>
+     <!-- min end section -->        
+  
+   </div>
+  

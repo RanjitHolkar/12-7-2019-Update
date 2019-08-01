@@ -1,0 +1,585 @@
+
+/* Search Bar :Start */
+.serachscroll{
+  max-height: calc(100vh - 220px);
+  overflow-y: scroll;
+  padding: 0 15px;
+}
+
+
+.searchBarMain {
+  background-color: #1e8af8;
+  padding: 5px 5px;
+}
+.searchBar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 0;
+}
+.commonDivBar {
+  width: 100%;
+}
+.commonDivBar  input[type="text"] {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  width: 100%;
+  height: 50px;
+  border-right: 1px solid #000;
+  padding: 0 20px;
+}
+.commonDivBar .form-group {
+  padding-bottom: 0px;
+  position: relative;
+  margin: 0px 0 0;
+}
+.commonDivBar select.form-control {
+  border: none !important;
+  background-image: unset;
+  color: #000;
+  height: 50px;
+  border-right: 1px solid #000!important;
+  padding: 0 20px;
+  border-radius: 0;
+}
+.searchBtn{
+  height: 50px;
+  width: 100%;
+  background-color: #1e8af8;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+.min300{
+  min-width: 300px;
+}
+.commonDivBar input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000;
+  opacity: 1; /* Firefox */
+}
+
+.commonDivBar input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #000;
+}
+
+.commonDivBar input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #000;
+}
+.noRecordsDiv{
+  text-align: center;
+}
+
+/* Search Bar :End */
+
+
+
+.card{
+  border: none;
+}
+.card-body{
+  box-shadow: 0px 13px 63px #cccccc;
+  
+}
+/*heading Part Start*/
+.heading{
+      margin-bottom: 15px;
+    padding: 15px 15px
+}
+button.backspace {
+  background-color: transparent;
+  border:none;
+  color:#0075FF; 
+  font-weight: 600;
+}
+.mainwrapper h1{
+  font-size: 19px;
+  color: #0075ff;
+      margin-left: 29px;
+      font-weight: 400;
+}
+.mainwrapper h2{
+  font-size:21px;
+  color: #0075FF;
+  font-weight: 400;
+}
+.mainwrapper p{
+  color: #999999;
+  font-size: 11px;
+}
+ /*Heading Part Ends*/
+
+/*SLIDER Starts*/
+.body {
+  overflow: hidden;
+}
+
+*:focus {
+    outline: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.carousel-indicators .active {
+    opacity: 1;
+    }
+.carousel-indicators li {
+    box-sizing: content-box;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 10px!important;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #fff;
+    background-clip: padding-box;
+     border-top: none; 
+     border-bottom: none; 
+    /*opacity: .5;*/
+    transition: opacity .6s ease;
+}
+
+
+.carousel-container {
+  margin: 5px auto;
+  height: 100%;
+  /* padding-top: 50%; */
+  border: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  height: 100%;
+  margin: 0;
+  /* background-color: green; */
+  padding: 0;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.carousel li {
+  list-style-type: none;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel li img {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnails {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    padding: 0;
+    margin-top: 32px;
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+}
+
+.thumbnails li {
+    display: inline-block;
+    list-style-type: none;
+    width: 32%;
+    padding: 0;
+    border: none;
+    transition: 0.25s;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+  
+}
+
+.thumbnails li img {
+  height: 100%;
+  width: 100%;
+  vertical-align: text-bottom;
+  /*opacity: 0.8;*/
+    /*transition: all 0.5s linear;*/
+}
+
+.thumbnails li.active, .thumbnails li:hover {
+border: 2px #ff6b00 solid;
+
+}
+
+.arrow {
+  z-index: 10;
+  position: absolute;
+  padding: 0 5px;
+  top: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.arrow i:hover {
+  color: #fff;
+}
+
+.arrow i {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  opacity: 0.7;
+}
+
+.right-arrow {
+  right: 0;
+}
+
+div.ui-loader {
+  display: none;
+}
+
+
+/*SLIDER Ends*/
+
+/*Right Section CSS start*/
+
+
+p.location i{
+  margin-right: 10px;
+}
+.apartmentUnits{
+      position: relative;
+    /*padding-bottom: 13px;*/
+}
+
+ .apartmentUnits:after {
+       position: absolute;
+       content: "";
+       height: 1px;
+       background-color: #cccccc;
+       width: 90%;
+       margin-left: 15px;
+       top: 110%;
+       } 
+
+.totalUnit p span{
+  color: #ff6b00;
+}
+.vacantUnit p span{
+  color:#0075FF; 
+}
+.Greenwood{
+  margin: 27px 0;
+}
+
+
+p.Flat_No {
+  color:#0075FF!important; 
+  font-size: 13px!important;
+  font-weight: 500;
+}
+.apartmentDetails span{
+  color: #505050;
+  font-size: 17px;
+  font-weight: 400;
+}
+.apartmentDetails .Rent span{
+  color: #ff6b00;
+  font-size: 30px;
+  font-weight: bold;
+}
+.apartmentDetails .email span{
+  font-size: 12px;
+}
+
+.Amount_deposite p {
+  font-size: 12px;
+}
+.Amount_deposite p span {
+  font-size: 13px;
+  color: #505050;
+}
+button.request_btn{
+  width: 50%;
+  float: right;
+  /* background-color: #3ba585; */
+  border:none;
+  font-size: 15px;
+  border-radius: 2px;
+  color: #ffffff;
+   padding: 7px 0;
+}
+button.request_btn:hover{
+  opacity: .9;
+}
+/*Right Section CSS Ends */
+
+
+
+
+/* slider css */
+
+
+.product-slider { padding: 45px; }
+
+.product-slider #carousel { border: 1px solid #f76b00; margin: 0; }
+
+.product-slider #thumbcarousel { margin: 12px 0 0; padding: 0 45px; }
+
+.product-slider #thumbcarousel .item { text-align: center; }
+
+.product-slider #thumbcarousel .item .thumb { border: 2px solid #cecece; width: 20%; margin: 0 3%; display: inline-block; vertical-align: middle; cursor: pointer; max-width: 98px; }
+
+.product-slider #thumbcarousel .item .thumb:hover { border-color: #f76b00; }
+
+.product-slider .item img { width: 100%; height: auto; }
+
+.carousel-control { color: #0284b8; text-align: center; text-shadow: none; font-size: 30px; width: 30px; height: 30px; line-height: 20px; top: 23%; }
+
+.carousel-control:hover, .carousel-control:focus, .carousel-control:active { color: #333; }
+
+.carousel-caption, .carousel-control .fa { font: normal normal normal 30px/26px FontAwesome; }
+.carousel-control { background-color: rgba(0, 0, 0, 0); bottom: auto; font-size: 20px; left: 0; position: absolute; top: 30%; width: auto; }
+
+.carousel-control.right, .carousel-control.left { background-color: rgba(0, 0, 0, 0); background-image: none; }
+
+a.right.carousel-control {
+  left: unset;
+}
+.sliderImg img{
+  width:100% !important;
+  height: 250px !important;
+  object-fit: cover;
+}
+
+
+
+.searchPropertyMain {
+  margin: 10px 0;
+  
+}
+.searchSingleList {
+  display: flex;
+  box-shadow: 0 6px 22px #c7c7c759;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f4f4f4;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+}
+.searchDetail h3 {
+  color: #1f75ff;
+  font-size: 18px;
+  margin: 0px 0 10px;
+}
+.searchDetail {
+  cursor: pointer;
+  position: relative;
+  width: calc(100% - 300px);
+}
+.searchDetail p{
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+}
+.searchDetail h4 {
+  color: #fc6b00;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+}
+.searchDetail h4 span {
+  color: #999;
+margin:0 0 0 10px;
+}
+.searchProperty p{
+  margin: 0 0;
+  color: #999;
+  font-size: 14px;
+}
+.searchProperty h3{
+  margin: 6px 0;
+  font-size: 15px;
+  color: #3ba585;
+}
+.imgDivSearch {
+  width: 160px;
+  margin-right: 20px;
+  height: 130px;
+}
+.searchImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.searchProperty h4{
+  color: #1f75ff;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+    margin: 0;
+}
+.searchProperty h4 span{
+  color: #999;
+margin:0 0 0 10px;
+}
+.searchProperty{
+  min-width: 120px;
+  max-width: 120px;
+  position: relative;
+}
+.searchProperty.BottomSet {
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* search landlord and invite landlord css open */
+.Findlandlord {
+	height: 100vh;
+    background-color: #ffffffd4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 9999;
+}
+.cardMain {
+    max-width: 600px;
+    margin: 0 auto;
+	width: 100%;
+}
+.cardMain h2 {
+    font-size: 35px;
+    color: #009ae9;
+    font-weight: bold;
+}
+.cardMain span {
+    color: red;
+}
+.cardMain p {
+    margin: 35px 0 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #999;
+}
+.landloadrMain {
+    width: 40%;
+    float: left;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #9494948a;
+    box-shadow: 0px 5px 20px #9999998f;
+}
+.SearchPropertyMain {
+    width: 40%;
+    float: right;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+	border: 1px solid #9494948a;
+    box-shadow: 0px 5px 20px #9999998f;
+}
+.imgDivLand {
+    width: 150px;
+    height: 150px;
+    background-color: #7bc575;
+    padding: 30px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+.cardMain h4 {
+    font-size: 20px;
+    color: #666;
+    font-weight: bold;
+    margin: 30px 0 20px;
+}
+.imgDivLand.imgDivSearchLand {
+    background-color: #009ae9;
+}
+
+
+.inviteLandloardPop h4.modal-title {
+    color: #009ae9;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.btnSendInvitation {
+    background-color: #f55628;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 25px;
+    outline: none;
+	border: 1px solid #f55628;
+}
+.btnSendInvitation:hover {
+    background-color: #fff;
+    color: #f55628;
+}
+.padd3040{
+    padding: 30px 40px;
+}
+.noBorder{
+    border: none;
+}
+.inviteLandloardPop h5 {
+    color: #019ceb;
+    text-align: center;
+    font-size: 21px;
+    cursor: pointer;
+}
+/* search landlord and invite landlord css close */
+.autocomplete-container .suggestions-container.is-visible{
+  z-index: 9999;
+}
+.errors{
+  color: red;
+  font-family: auto;
+}
+.InvitaionMainBody input, .InvitaionMainBody textarea {
+    width: 100%;
+    float: left;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.InvitaionMainBody label {
+	width:100%;
+	float:left;
+}
+.InvitaionMainBody .form-group {
+    width: 100%;
+    float: left;
+}
+.btnCancel {
+    background-color: #1866b7;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 25px;
+    outline: none;
+    border: 1px solid #1866b7;
+    min-width: 150px;
+    margin: 0 5px;
+}
+.min150Btn{
+	min-width: 150px;
+    margin: 0 5px;
+}

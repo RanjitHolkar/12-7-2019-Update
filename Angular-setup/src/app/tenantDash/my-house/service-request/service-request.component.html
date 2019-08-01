@@ -1,0 +1,117 @@
+ 
+<div class="wrapper">
+    <app-tenant-sidebar></app-tenant-sidebar>
+    <!--  Mid section  -->
+  <div class="main-panel">
+
+   <app-tenant-nav></app-tenant-nav>
+
+    <div class="content whiteBg">       
+  <app-my-house-nav></app-my-house-nav>
+    <!-- Service Request :Start  -->
+    <div class="AddRequestMainInner" >
+        <div class="addReqHead">
+          <h3>Requests</h3>
+          <div class="addReqDIv">
+              <button class="btn EditProperty" (click)="SentServiceRequest()"> Add Request </button>
+          </div>
+        </div>
+        <div class="requestTable">
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                    <th>Unit Name</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Status</th>
+                    <!-- <th>Edit</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let requst of serviceRequstData;let i=index">
+                    <td>{{requst.flatHoseNo}}</td>
+                    <td>{{requst.title}}</td>
+                    <td>{{requst.start_date}}</td>
+                    <td>{{requst.description}}</td>
+                    <td>{{requst.status == 0 ?'pending':'Complete'}}</td>
+                    <!-- <td><button class="btn EditProperty" (click)="editServiceRequest(i)"> Edit </button></td> -->
+                </tr>
+              </tbody>
+          </table>
+        </div>
+    </div>
+    <!-- Service Request :Stop -->
+     
+        <div class="modal fade" id="ProfileUpdateModal">
+            <div class="modal-dialog">
+              <form [formGroup]="serviceAddForm" (ngSubmit)="sendRequest()">
+              <div class="modal-content">
+                  <!-- Modal Header  -->
+                  <div class="modal-header modalHead">
+                    <h4 class="modal-title">Requests Detail</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <!-- Modal body  -->
+                  <div class="modal-body modalBody">
+                    <div class="row">
+                        <div class="col-md-12" style="display:none">
+                          <div class="form-group">
+                              <label class="bmd-label-floating">unit*</label>
+                              <input type="text" class="form-control" formControlName="unit_id" [(ngModel)]="unitName" readonly>
+                              <div *ngIf="Submit && addServiceForm.unit_id.errors" class="errors">
+                                <div *ngIf="addServiceForm.unit_id.errors.required">Unit Name required </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                              <label class="bmd-label-floating">Title*</label>
+                              <input type="text" class="form-control" formControlName="title">
+                              <div *ngIf="Submit && addServiceForm.title.errors" class="errors">
+                                <div *ngIf="addServiceForm.title.errors.required">Title is required </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                              <label class="bmd-label-floating">Details*</label>
+                              <input type="text" class="form-control" formControlName="details">
+                              <div *ngIf="Submit && addServiceForm.details.errors" class="errors">
+                                <div *ngIf="addServiceForm.details.errors.required">Details required </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="">
+                              <input type="file" class="form-control"  formControlName="file"  (change)="detectTransactionFile($event)"/>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- Modal footer  -->
+                  <div class="modal-footer text-center">
+                    <button class="btn btn-info">Save</button>
+                    <button type="button" (click)="hideAddRequest()"class="btn btn-danger">Cancel</button>
+                  </div>
+              </div>
+              </form>
+            </div>
+        </div>
+        <!-- Requests Detail close  -->
+</div>
+           
+<footer class="footer">
+  <div class="container-fluid">
+   
+  </div>
+</footer>
+</div>
+</div>
+
+
+
+
+
+ 
+ 

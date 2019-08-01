@@ -1,0 +1,302 @@
+
+
+
+
+<div class="wrapper ">
+  <app-land-sidebar></app-land-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel">
+  <!-- Navbar -->
+  
+  <app-land-nav></app-land-nav> 
+  
+  <!-- End Navbar -->
+<!-- remove Confirmation modal :START -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header">
+      
+        <h4 class="modal-title delete">Are you sure?</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to Unlink these Tenant </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="removeConfiramtion()">Unlink</button>
+      </div>
+    </div>
+  </div>
+</div>  
+<!-- remove Confirmation modal :End -->
+
+<!-- Delete  Confirmation modal :START -->
+<div id="myDeleteModel" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title delete">Are you sure?</h4>	
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to Delete these Tenant</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteTeantsConfiramtion()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <!-- Delete  Confirmation modal :End -->
+
+  <!-- Add  Confirmation modal :START -->
+<div id="myAddModel" class="modal fade">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title delete">Are you sure?</h4>	
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to Link these Tenant Unit No: {{flatHouseNo}} </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="addTeantsConfiramtion()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>  
+<!-- Add  Confirmation modal :End -->
+
+  <div class="content">
+
+      <div class="col-md-12">
+
+          <button  *ngIf="showTenantForm==true || editTenantForm == true" type="button" class="btn btn-info pull-right" (click)="hideAddTenantDiv()" >Back</button>
+         
+          <button type="button" class="btn btn-info pull-right"  *ngIf="showTenantForm==false && editTenantForm== false" (click)="addTenantDiv()" >Add Tenant</button>
+           
+         </div>
+
+
+         <div class="content">
+            <div class="container-fluid" *ngIf="showTenantForm==true">
+              <div class="loginMainDiv">
+                <div class="loginInner">
+                  <div class="card">
+                    
+                    
+                    <div class="card-header card-header-info">
+                      
+                      <h4 class="card-title">Tenants</h4>
+                     <!--  <p class="card-category">Complete your profile</p> -->
+                     
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]='tenantform' (ngSubmit)='addTenant()'>
+                        <div class="row">
+                         
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Tenant Name</label>
+                              <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" >
+    
+                              <div *ngIf="tenantform.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+                              <div *ngIf="tenantform.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+                            </div>
+                          </div>
+                <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Mobile No</label>
+                              <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)">
+                              <div *ngIf="tenantform.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+                              <div *ngIf="tenantform.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+                              <div *ngIf="tenantform.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+                              <div *ngIf="tenantform.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+                    
+                            </div>
+                </div>
+                <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Email Id</label>
+                              <input type="text" class="form-control" name='email' formControlName='email'>
+                              <div *ngIf="tenantform.controls['email'].hasError('required')" class="error">Phone Number Required</div>	  
+                              <div *ngIf="tenantform.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+                              </div>
+                            </div>
+         
+              
+                
+                          <div class="col-md-12" >
+                            <!-- existEmailAndphone -->
+                            <div class="form-group" *ngIf="existEmailAndphone">
+                                    <div class="error">  This email id / phone already existe ...!  </div>
+                            </div>
+                            <div class="alert alert-success" *ngIf="accountCreated">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <i class="material-icons">close</i>
+                                    </button>
+                                    <span>
+                                      <b> Your account created  successfully </b> <a routerLink="/login"> Login</a>
+                                    </span>
+                            </div>
+                          </div>  
+                        </div>
+                        <button  [disabled]="formSubmit" type="submit" class="btn btn-info pull-right">Add Tenant</button>
+                        <div class="clearfix"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!--- ############ Show tenant List ####################-->
+             <div class="container-fluid" *ngIf="showTenantForm == false && editTenantForm == false">
+             <div class="transactionPage">
+               <div class="heading">
+                  <h4 *ngIf="onlink== true" style="color:#5877dc">Flat/House No:{{flatHouseNo}}</h4>
+                 <h3>Tenants List </h3>
+               </div>
+               <div class="tenantListBtn">
+                 <div class="searchDiv pull-left">
+                </div>
+                 <!-- <div class="pull-right ListTenantbtnDiv">
+                   <button type="submit" class="btn btn-info pull-right">New</button>
+                   <button type="submit" class="btn btn-info pull-right">Export</button>
+                   <button type="submit" class="btn btn-info pull-right">Import</button>
+                 </div> -->
+               </div>
+               <div class="tableDIv">
+                 <div class="card">
+                  <table class="table">
+                    <thead class="text-info">
+                      <tr>
+                        <th> Sr_No</th> 
+                        <th> Tenant Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Join Date</th>
+                        <th>On Rent</th>
+                        <th *ngIf="this.onlink == true">Link Tenant</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor='let tenant of tenantList; let inx = index'>
+                          <td>{{inx+1}}</td>
+                          <td>{{tenant.userName}}</td>
+                          <td>{{tenant.phone}}</td>
+                          <td>{{tenant.email}}</td>
+                          <td>{{tenant.regDate}}</td>
+                          <td *ngIf="tenant.onLease == 'No'" >No</td>
+                          <td *ngIf="tenant.onLease == 'Yes'">Yes</td>
+                          <td *ngIf="this.onlink == true"  >
+                            <button class="btn btn-info" *ngIf="tenant.onLease == 'No' && this.onlink == true" (click)="linkTenant(tenant.id)">
+                              Link
+                            </button>
+                            <button class="btn btn-danger" *ngIf="tenant.onLease == 'Yes' && this.onlink == true" (click)="removelinkTenant(tenant.id)">
+                              Unlink
+                            </button>
+                          </td>
+                          <td>
+                              <div class="dropdown">
+                                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Action
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <button class="dropdown-item dropMenu" type="button"  (click)="editTenant(tenant.id)"> <i class="fa fa-pencil"></i> Edit</button>
+                                    <button class="dropdown-item dropMenu" type="button" (click)="deleteTenant(tenant.id)"   > <i class="fa fa-trash"></i> Delete</button>
+                                    <!-- <button class="dropdown-item dropMenu"  type="button"(click)="add_unit(property.id)"><i class="fa fa-trash" aria-hidden="true"></i>Add Unit</button> -->
+                                    
+                                  </div>
+                              </div> 
+                            </td>
+                      </tr>
+                   </tbody>
+                     </table>
+                     <div class="noRecordsDiv" *ngIf="noRecordsPopup == true" >No Records</div>
+                </div>
+               </div>
+             </div>
+          </div>
+               <!-- Edit Tenant data:START -->
+               <div class="container-fluid" *ngIf="editTenantForm==true">
+                  <div class="loginMainDiv">
+                    <div class="loginInner">
+                      <div class="card"> 
+                        <div class="card-header card-header-info">
+                          <h4 class="card-title"> Edit Tenants</h4>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]='tenantform' (ngSubmit)='editTenantsave()'>
+                            <div class="row" *ngFor="let tenant of tenantData ; let i =index">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label class="bmd-label-floating">Tenant Name</label>
+                                  <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" [(ngModel)]="tenant.userName" >
+                                  <div *ngIf="tenantform.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+                                  <div *ngIf="tenantform.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+                                </div>
+                              </div>
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                  <label class="bmd-label-floating">Mobile No</label>
+                                  <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)" [(ngModel)]="tenant.phone">
+                                  <div *ngIf="tenantform.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+                                  <div *ngIf="tenantform.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+                                  <div *ngIf="tenantform.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+                                  <div *ngIf="tenantform.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+                                </div>
+                        </div>
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                  <label class="bmd-label-floating">Email Id</label>
+                                  <input type="text" class="form-control" name='email' formControlName='email' [(ngModel)]="tenant.email">
+                                  <div *ngIf="tenantform.controls['email'].hasError('required')" class="error">Phone Number Required</div>	  
+                                  <div *ngIf="tenantform.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+                                </div>
+                        </div>
+                        <div class="col-md-12" >
+                                <!-- existEmailAndphone -->
+                                <div class="form-group" *ngIf="existEmailAndphone">
+                                        <div class="error">  This email id / phone already existe ...!  </div>
+                                </div>
+                                <div class="alert alert-success" *ngIf="accountCreated">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <i class="material-icons">close</i>
+                                        </button>
+                                        <span>
+                                          <b> Your account created  successfully </b> <a routerLink="/login"> Login</a>
+                                        </span>
+                                   </div>
+                        </div> 
+                            </div>
+                            <button  [disabled]="formSubmit" type="submit" class="btn btn-info pull-right">Edit Tenant</button>
+                            <div class="clearfix"></div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                 <!-- Edit Tenant data:END -->
+
+          </div>
+        
+      </div>
+  
+  <footer class="footer">
+    <div class="container-fluid">
+     
+    </div>
+  </footer>
+</div>
+   <!-- min end section -->        
+
+ </div>

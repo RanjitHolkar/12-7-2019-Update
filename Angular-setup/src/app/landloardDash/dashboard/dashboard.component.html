@@ -1,0 +1,213 @@
+
+
+
+
+<div class="wrapper ">
+    <app-land-sidebar></app-land-sidebar>
+     
+    <!--  Mid section  -->
+  
+    <div class="main-panel">
+    <!-- Navbar -->
+    
+       <app-land-nav></app-land-nav> 
+    
+    <!-- End Navbar -->
+  
+    <div class="content">
+    <div class="container-fluid">
+      <div class="row" *ngFor="let unitDetails of unitDetails">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">account_balance_wallet</i>
+                </div>
+                <p class="card-category">Total Units</p>
+                <h3 class="card-title">{{unitDetails.totalUnits}}</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">done</i>
+                  </div>
+                  <p class="card-category">Occupied Units</p>
+                  <h3 class="card-title">{{unitDetails.occupiedUnits}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+                  </div>
+                </div>
+            </div>
+          <!-- <div class="card card-stats text-center min200">
+              <h3 class="card-category">Vacant Units</h3>
+              <h1 class="card-title">{{unitDetails.vaccntUnits}}</h1>
+          </div> -->
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">close</i>
+                  </div>
+                  <p class="card-category">Vacant Units</p>
+                  <h3 class="card-title">{{unitDetails.vaccntUnits}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+                  </div>
+                </div>
+            </div>
+          <!-- <div class="card card-stats text-center min200">
+              <h3 class="card-category">Occupied Units</h3>
+              <h1 class="card-title">{{unitDetails.occupiedUnits}}</h1>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Payment section :start -->
+      <div class="row" *ngFor="let paymentList of paymentList">
+        
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="card card-stats">
+              <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">account_balance_wallet</i>
+              </div>
+              <p class="card-category">Total Amount</p>
+              <h3 class="card-title">ksh{{paymentList.Amount}}</h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">done</i>
+                  </div>
+                  <p class="card-category">Paid Amount</p>
+                  <h3 class="card-title">ksh{{paymentList.paidAmount}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+                  </div>
+                </div>
+            </div>
+          <!-- <div class="card card-stats text-center min200">
+              <h3 class="card-category">Paid Amount</h3>
+              <h1 class="card-title">{{paymentList.paidAmount}}</h1>
+          </div> -->
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">close</i>
+                  </div>
+                  <p class="card-category">Unpaid Amount</p>
+                  <h3 class="card-title">ksh{{paymentList.unpaidAmount}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+                  </div>
+                </div>
+            </div>
+          <!-- <div class="card card-stats text-center min200">
+              <h3 class="card-category">Unpaid Amount</h3>
+              <h1 class="card-title">{{paymentList.unpaidAmount}}</h1>
+          </div> -->
+        </div>
+      </div>
+      <!-- Payment section :End -->
+
+      <div class="row">
+          <div class="col-md-12">
+             <div class="fullwidth">
+                <div class="card">
+                  <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                      <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title ">Late Payment</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <tr>
+                            <th> Name</th>
+                            <th> Property Name </th>
+                            <th> Unit No</th>
+                            <th> payment period</th>
+                            <th> Amount</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let latePayment of latePayment">
+                            <td>{{latePayment.userName}}</td>
+                            <td>{{latePayment.propertyName}}</td>
+                            <td>{{latePayment.flatHoseNo}}</td>
+                            <td>{{latePayment.start_period}} - {{latePayment.end_period}}</td>
+                            <td>{{latePayment.totalAmount}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+         </div>
+     </div>
+      <!-- <div class="row">
+        <div class="col-md-6">
+          <div class="card card-chart">
+            <div class="card-header card-header-success">
+              <div class="ct-chart" id="dailySalesChart"></div>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Daily Sales</h4>
+              <p class="card-category">
+                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-chart">
+            <div class="card-header card-header-warning">
+              <div class="ct-chart" id="websiteViewsChart"></div>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Email Subscriptions</h4>
+              <p class="card-category">Last Campaign Performance</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+    <footer class="footer">
+      <div class="container-fluid">
+      </div>
+    </footer>
+  </div>
+     <!-- min end section -->        
+  
+   </div>
+  

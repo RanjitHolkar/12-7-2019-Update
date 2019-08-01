@@ -1,0 +1,1227 @@
+.modal-confirm {		
+    color: #636363;
+    width: 400px;
+}
+.modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+}
+.modal-confirm .modal-header {
+    border-bottom: none;   
+    position: relative;
+}
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+}
+.modal-confirm .modal-body {
+    color: #999;
+}
+.modal-confirm .modal-footer {
+    border: none;
+    text-align: center;		
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+    color: #999;
+}		
+.modal-confirm .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+}
+.modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    min-width: 120px;
+    border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 5px;
+    outline: none !important;
+}
+.modal-confirm .btn-info {
+    background: #c1c1c1;
+}
+.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+    background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+    background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+    background: #ee3535;
+}
+.trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+}
+
+.errors {
+    color: red;
+    position: absolute;
+    bottom: -20px;
+    font-size: 12px;
+}
+.noRecordsDiv
+{
+    text-align: center;
+    color: black;
+}
+.main-box{
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 300px;
+    margin-bottom: 30px;    
+}
+.boxDiv {
+	background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+   /*box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);*/
+	min-height: 300px;
+	margin-bottom: 30px;	
+}
+.moreBtn {
+    float: right;
+    background-color: #1c89f8;
+    color: #fff;
+}
+.boxDivInner1 img{
+    border-radius: 5px;
+    width: 100%; 
+    max-height: 203px;
+}
+
+.blueBtn {
+    background-color: DodgerBlue;
+  }
+  .greenBtn {
+    background-color: #098e09;
+}
+.redBtn {
+    background-color: #ef0000;
+}
+.marR10{
+    margin-right: 10px !important;
+}
+/*On View css*/
+.property-details h4{
+font-size: 15px;
+font-weight: 500;
+}
+.property-details h4 span {
+    color: #333333;
+    font-weight: normal;
+}
+/*On View CSS ends*/
+.boxDivInner.btnDiv {
+    margin: 5px 0;
+    position: absolute;
+    top: -55px;
+    right: 25px;
+    
+}
+.boxDivInner.btnDiv.completedBtn {
+    margin: 25px 0;
+    
+}
+.boxDivInner {
+    margin: 5px 0;
+    
+}
+.EditProperty {
+    background-color: transparent;
+    color: #009aea;
+    border: 1px solid #009aea;
+    margin: 15px 0 0;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+.boxDivInner h4{
+    width: 100%;
+    color: #1f89f8 !important;
+    margin: 5px 0;
+    font-size: 19px;
+    font-weight: bold;
+}
+.boxDivInner h4 span{
+    color: #000;
+	font-weight: normal;
+}
+.loginInner{
+    margin-top: 50px;
+}
+/*.nav li.nav-item .nav-link a{
+    color: #57BCF0!important;
+}*/
+
+
+ .loginInner .nav li a{
+    /*color: #21BACF!important;*/
+    color:#000!important;
+    font-weight: 400;
+    /*font-size:18px;*/
+    margin-left: 10px;
+}
+a{
+  color: #21BACF!important;
+  /*font-weight: 500; */
+}
+a.nav-link.active ,.nav li a:hover{
+    /*font-weight: 600!important;*/
+    /*color:#1E8AF7!important;*/
+    border-bottom: 1px solid #1E8AF7;
+}
+.loginInner .nav li a:hover{
+    border-bottom: 1px solid #1E8AF7;
+    color: #1E8AF7!important;
+}
+.loginInner .nav li a.nav-link.active{
+    border-bottom: 1px solid #1E8AF7;
+    color: #1E8AF7!important;
+}
+.table thead tr th{
+    font-weight: 400!important;
+}
+.commonBoxText {
+    /*min-width: 150px;
+    max-width: 34%;*/
+    text-align: center;
+    padding: 5px 0;
+    /*box-shadow: 0 2px 4px #1d8af8ba;*/
+}
+.card{
+    box-shadow: none;
+}
+.locationIcon{
+    font-size: 26px;
+}
+.listPropertyImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+/* payment Section Lease start*/
+.leaseSection{
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px #0606063d;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.headerLease {
+    padding: 30px;
+    background-color: #1d8af8;
+    width: 100%;
+    float: left;
+}
+.headerLeaseInner2 {
+    float: right;
+}
+.headerLeaseInner2 .EditProperty {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    margin: 15px 0 0;
+    text-transform: capitalize;
+    font-size: 14px;
+    box-shadow: none;
+}
+.paymentSec {
+    width: 100%;
+    float: left;
+    display: flex;
+}
+.headerLeaseInner1 h4 {
+    color: #fff;
+    font-size: 24px;
+}
+.headerLeaseInner1 h5 {
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+.headerLeaseInner1 {
+    float: left;
+}
+
+
+.payText p {
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+}
+.payText h4 {
+    font-size: 18px;
+    color: #666;
+}
+.payText {
+    width: 100%;
+    text-align: center;
+}
+.paymentCommonLeft {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.paymentCommon {
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+}
+.tenantSingle{
+    border: 1px solid lightgrey;
+    padding: 15px 25px;
+	border-radius:10px;
+}
+.profleDiv {
+    display: flex;
+    margin: 10px 0;
+}
+.tenetProfile {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.profleDiv h3 {
+	color: #3aadee;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.mobileIcon {
+    font-size: 25px;
+    color: #0d9deb;
+}
+.eamilIcon {
+    font-size: 18px;
+    color: #0d9deb;
+}
+.profileDetail h4 {
+    font-size: 16px;
+    color: #000;
+}
+.padd30{
+    padding: 30px;
+}
+.tenantHeader {
+    border-bottom: 1px solid #ddd;
+	padding:20px 30px;
+	width: 100%;
+    float: left;
+}
+.tenantHeader h3 {
+    font-size: 24px;
+    margin: 5px 0;
+    color: #06a2ec;
+}
+.tenantHeader .EditProperty{
+	margin:0;
+}
+.borderR {
+    border-right: 1px solid #ddd;
+}
+.multiUnit {
+	display: flex;
+    position: relative;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 5px;
+    background-color: #16161645;
+	transition:0.5s;
+	
+}
+.multiUnit.multiUnitActive {
+	background-color: #000000bf;
+    box-shadow: -7px 7px 10px grey;
+}
+.multiUnit:hover {
+	background-color: #000000bf;
+    box-shadow: -7px 7px 10px grey;
+}
+.multiUnit h4 {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+
+.multiUnit p {
+    position: absolute;
+    bottom: 0px;
+    left: 12px;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+}
+/* payment Section Lease start*/
+.unitDetails1{
+    display: flex;
+}
+.unitDetails1 .boxDivInner1 {
+    width: 250px;
+    position: relative;
+    height: 170px;
+}
+.unitDetails1 .property-name{
+    padding-top: 0;
+    margin: 0 30px;
+}
+.unitDetails1 .boxDivInner1 .editIcon {
+    right: 10px;
+}
+.PropertyUnitDetails{
+    padding: 20px;
+    position: relative;
+}
+.badgesRound {
+    width: 50px;
+    height: 50px;
+    background-color: #1f89f8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0 auto;
+}
+.backBtnDiv {
+    position: absolute;
+    right: 0;
+}
+.padd0{
+    padding: 0px;
+}
+.borTpaddT30{
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+}
+.listDivSingle {
+    margin-bottom: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #2f3031;
+    position: relative;
+    height: 170px;
+}
+.listDivSingle:hover {
+    box-shadow: 0 5px 20px #040404;
+}
+.tableShadow{
+    box-shadow: 0 6px 20px #807e7e;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 16px 0 25px;
+}
+.tableShadow th{
+    color:#1f89f8;
+}
+i.fa.fa-times.closeIconImg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.PictureListUnit {
+    padding: 20px 0px 0;
+    position: relative;
+}
+button.btn.EditProperty.addPic {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.m-r-5 {
+    margin-right: 10px;
+}
+.unitBadge {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    text-align: center;
+    align-items: center;
+}
+ .unitBadge h4{
+    font-size: 20px;
+    font-weight: bold;
+}
+i.fa.fa-file-text-o.fileIcon {
+    font-size: 30px;
+    cursor: pointer;
+}
+.mar0{
+    margin:0;
+}
+.marTB20{
+    margin: 20px 0px;
+}
+.heading h3{
+	font-size: 20px;
+	font-weight: 500;
+}
+.document-body{
+	 box-shadow:5px 5px 35px #cccccc;
+}
+.card-body .documents-details{
+	border:1px #ccc solid;
+	border-radius: 5px;
+	/*max-height: 223px;*/
+}
+
+.form-content .input-text{
+ max-height: 70px!important;
+ min-height: 70px;
+}
+.documents-details .input-text{
+	padding: 0 20px;
+	position: relative;
+}
+.input-text label{
+	color: #666666;
+}
+.input-btn{
+	margin-left: 10px;
+}
+.input-text button ,.input-btn button{
+	/*margin-left: 20px;*/
+	margin-top: 25px;
+	max-height: 36px;
+}
+
+.input-btn button i{
+	margin-right: 10px;
+}
+.btn.btn-primary {
+	background-color: #21BACF!important;
+	border-color: #21BACF!important;
+}
+
+.docType .form-control{
+	background: no-repeat center bottom, center calc(100% - 1px); 
+    background-size: 0 100%, 100% 100%;
+    height: 36px !important;
+    border:1px solid #ff8c1e !important;
+    font-size: 14px;
+    padding: 0 12px;
+	/*width: 80%;*/
+}
+input.choose-flie {
+	opacity: 0;
+	z-index: 999;
+	position: relative;
+	width: 100%;
+	max-height: 36px;
+}
+button.browse_btn {
+	opacity: 1;
+	z-index: 0;
+	position: relative;
+	bottom: 55px;
+    width: 100%;
+	height: 36px;
+	padding: 0 12px;
+  /*font-size: 14px;*/
+    text-align: left;
+    color: #ff8c1e ;
+	background-color: transparent;
+	border:1px solid #ff8c1e !important;
+}
+.dropdown{
+	color: #a1a1a1;
+    position: absolute;
+    bottom: 20px;
+    text-align: right;
+    right: 30px;
+
+}
+.dropdown.actionBtn{
+	position:unset;
+}
+.docType{
+	position: relative;
+}
+
+.docType .dropdown{
+	color: #a1a1a1;
+    position: absolute;
+    bottom: 16px;
+    text-align: right;
+    right: 63px;
+}
+.btn-add{
+	    position: absolute;
+    right: 21px;
+    bottom: 6px;
+    color: white;
+    font-size: 20px;
+    text-shadow: none;
+    background-color: #ff8c1e;
+    padding: 5px 9px;
+}
+
+.main-table{
+	padding-top: 30px;
+}
+.table-heading th{
+	color: #21BACF;
+	/*color: #2D64F4;*/
+	/*border-bottom: 1px solid #21BACF;*/
+	font-weight: 400;
+	font-size: 16px;
+}
+.table-content td{
+	font-size: 14px;
+}
+.listDivSingle .img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.outerNoRecord{
+    border: 1px solid #1764d4;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+
+/* Add Transaction :Start */
+
+ /*SIDE BAR*/
+/*.sampleSidebar {
+    width: 300px;
+    float: left;
+    height: 100vh;
+    background-color: #4f75ff;
+}
+.PropertyMainPge {
+    width: calc(100% - 300px);
+    float: right;
+    }
+*/
+/*SIDE BAR ENDS*/
+
+.card{
+	border: none;
+}
+/* .card-body{ */
+	/* box-shadow: 0px 13px 63px #cccccc; */
+
+	
+/* } */
+/*heading Part Start*/
+.heading{
+	    margin-bottom: 15px;
+    padding: 15px 15px
+}
+button.backspace {
+	background-color: transparent;
+	border:none;
+	color:#0075FF; 
+	font-weight: 600;
+}
+.mainwrapper h1{
+	font-size: 20px;
+	color: #0075ff;
+  font-weight: 600;
+
+	margin-bottom: 20px;
+	/* margin-left: 0px; */
+}
+.amountPage{
+  border:1px solid #cccccc;
+  border-radius: 8px;
+      padding: 28px 0;
+
+}
+.amountPage h2{
+     color: #595959;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 50px;
+  }
+    .transactionPage{
+      position: relative;
+    }
+  .transactionPage:after{
+      position: absolute;
+    content: "";
+    width: 90%;
+    height: 1px;
+    right: 48px;
+    background-color: #ddd;
+  }
+.timeDetails, .transactionDetails, .paymentDetails{
+  padding: 40px;
+}
+.amountPage .form-control {
+    /*display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);*/
+    padding: .375rem .75rem;
+    font-size:13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #959595;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ff8a00;
+    background-image: none;
+    border-radius:0px;
+    /*transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+    }
+    .amountPage input, .amountPage select{
+      max-height: 36px;
+    }
+    .amountInput input{
+      padding: 20px 0!important;
+    }
+    .amountPage label{
+          font-size: 15px;
+    font-weight: 500;
+    /*margin-left: 4px;*/
+      color: #717171;
+      /*font-size: 13px;*/
+
+    }
+   .bill p{
+      color: #959595;
+      margin-top: 14px;
+
+    }
+.amountPage .form-group{
+margin-bottom: 30px;
+
+}
+.amountPage .form-group label{
+  position: relative;
+}
+.dolarAmount{
+  position: relative;
+}
+.dollarSymbol{
+  position: absolute;
+
+  
+}
+.dollar-img{
+  height: 42px;
+}
+.amountInput {
+     padding: 0 60px;
+}
+.amountInput input{
+  font-size: 20px!important;
+  color: #959595!important;
+}
+ .billingDetails{
+ display: flex;
+ justify-content: space-between;
+}
+.payment, .transactionType{
+ /*padding: 0 17px!important;*/
+  position: relative;
+}
+/*.bmd-form-group [class^='bmd-label'], .bmd-form-group [class*=' bmd-label']*/ 
+.payment label, .transactionType label{
+  position:relative;
+}
+
+.payment button {
+    padding: 5px 9px;
+    background-color: #ff8a00;
+    border: none;
+    position: absolute;
+    right: 6px;
+    bottom: 11px;
+  }
+  /*.payment i{
+    position: absolute;
+  }*/
+.payment button i{
+  color: #ffffff;
+  /*font-size: 15px;*/
+}
+/*.bill label{
+  font-size: 17px;
+  font-weight: 500;
+  margin-left: 4px;
+}*/
+
+
+
+legend{
+  /*margin-left: 16px;*/
+ /*font-size: 17px;*/
+  font-weight: 500;
+  color: #717171;
+  font-size: 14px;
+}
+.timeDetails{
+  position: relative;
+  padding: 40px 50px;
+}
+.timeDetails:after{
+  position: absolute;
+  content: "";
+  height: 79%;
+  width: 1px;
+  background-color: #ddd;
+  top:50px;
+  right:0;
+}
+.paymentDetails .input-text{
+  padding: none;
+  position: relative;
+}
+button.addBtn{
+  background-color: #ff8a00;
+  color: #ffffff;
+  border:none;
+  
+}
+
+.amount-btn{
+      margin: 0 16px;
+/*  display: flex;
+  justify-content: space-between;*/
+}
+button.btnSubmit {
+  background-color: #0075ff;
+  border:none;
+  color: #ffffff;
+      margin-right: 20px;
+             padding: 9px 33px;
+             font-weight: 500;
+
+}
+button.btnSubmit i, button.btnCancel i{
+  margin-right: 10px;
+}
+button.btnCancel {
+  background-color: #ff8a00;
+  border:none;
+  color: #ffffff;
+      margin-left: 20px;
+             padding: 9px 33px;
+             font-weight: 500;
+
+
+}
+
+
+
+/*Radio Btn CSS*/
+.radioBtn{
+  margin-left: 16px!important;
+}
+.radioBtn label{
+  font-size: 13px;
+}
+.paymentStatus {
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.paymentStatus input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 17px;
+  width: 17px;
+  border: 2px solid #ff8a00;
+  /* background-color: #ff8a00; */
+  border-radius: 50%;
+}
+/* On mouse-over, add a grey background color */
+
+
+/* When the radio button is checked, add a blue background */
+.paymentStatus input:checked ~ .checkmark {
+  background-color: #ff8a00;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.paymentStatus input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.paymentStatus .checkmark:after {
+  top: 0px;
+  left: 0px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ff8a00;
+  border: 3px solid #fff;
+}
+/*Radio Btn CSS ENDS*/
+
+/*Add Transaction btn CSS*/
+.addTransactionBtn{
+  background-color: #ff8a00;
+  border-radius: 5px;
+  border:none;
+  color: #ffffff;
+  padding: 10px 28px;
+  font-weight: 500;
+}
+/*Add Transaction btn CSS*/
+
+/* Add transaction MODAL CSS*/
+.modal-content{
+      max-width: 400px;
+    height: auto;
+}
+.modal-text{
+      padding: 20px 20px;
+    }
+    .modal-title{
+      color: #595959;
+      font-weight: 500;
+    }
+    .addPayment{
+      padding-bottom: 21px;
+
+    }
+    
+.addPayment input{
+  font-size: 22px;
+}
+.modal-header,.modal-footer{
+  border:none;
+}
+.footer-btn{
+  display: flex;
+  justify-content: space-between;
+}
+.footer-btn button{
+         padding: 10px 40px;
+font-size: 15px;
+/*border-radius: 5px;*/
+
+}
+
+.footer-btn button i{
+  margin-right: 15px;
+}
+.add-btn{
+background-color: #0075ff;
+border:none;
+color: #ffffff;
+
+}
+.cancel-btn{
+background-color: #ff8a00;
+border:none;
+color: #ffffff;
+}
+
+/*PAYMENT DETAILS STARTS*/
+.digital-amount {
+position: relative;
+}
+.rupee-icon{
+
+    position: absolute;
+    width: 20%;
+    height: 34px;
+    top: 1px;
+    left: 16px;
+    background-color: #d7d7d7;
+  }
+  .rupee-icon i{
+    text-align: center;
+    color: #717171;
+    font-size: 16px;
+    position: relative;
+    top: 7px;
+    left: 13px;
+
+  }
+  .addition_btn{
+    display: flex;
+    justify-content: space-between;
+  }
+  button.cross,  button.add{
+        padding: 4px 11px;
+    background: transparent;
+    border: 2px solid #ff8c1e;
+    border-radius: 20px;
+    color: #ff8c1e;
+    font-size: 15px;
+  }
+  .selection-box .dropdown{
+    top: 11px;
+    right: 14px;
+  }
+/*PAYMENT DETAILS ENDS*/
+/* Add Transaction:Stop */
+.transactionTypeNew button.addBtn {
+    background-color: #ff8a00;
+    color: #ffffff;
+    border: none;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    height: 35px;
+}
+.transactionTypeNew .dropdown {
+    right: 50px;
+}
+
+/* service request page css start */
+.serviceRequestMAin {
+    height: 100%;
+    padding: 100px 30px 0;
+}
+.serviceRequestInner {
+    background-color: #fff;
+    width: 100%;
+    float: left;
+	border-radius: 10px;
+}
+.commonBtnP {
+    color: #fff;
+    background-color: #1f87f8;
+    border: 1px solid #1f87f8;
+    font-size: 15px;
+    padding: 0 0;
+    min-width: 150px;
+    height: 40px;
+    margin: 0 5px;
+}
+.commonBtnC{
+	color: #1f87f8;
+    background-color: #fff;
+    border: 1px solid #1f87f8;
+    font-size: 15px;
+    padding: 0 0;
+    min-width: 150px;
+    height: 40px;
+    margin: 0 5px;
+}
+.serReqHead {
+    padding: 10px 20px;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ddd;
+}
+.serReqHead h3{
+	margin: 5px 0;
+    font-size: 22px;
+    color: #1d89f7;
+    font-weight: bold;
+}
+.serReqForm {
+    width: 100%;
+    float: left;
+    padding: 20px 20px;
+}
+.serReqForm label {
+    font-size: 16px;
+    color: #666;
+    width: 100%;
+	position: unset;
+}
+.serReqForm{
+	
+}
+.serReqForm .form-control, .serReqForm .is-focused .form-control {
+    background-image: unset;
+}
+.serReqForm input, .serReqForm select {
+    border: 1px solid #fd8c0c !important;
+    width: 100%;
+    height: 35px;
+    padding: 5px 10px !important;
+	
+}
+.serReqForm textarea {
+    border: 1px solid #fd8c0c !important;
+    width: 100%;
+    padding: 5px 10px !important;
+	
+}
+.serReqForm .browse_btn {
+    opacity: 1;
+    z-index: 0;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    text-align: left;
+    color: #ff8c1e;
+    background-color: transparent;
+    border: 1px solid #ff8c1e !important;
+    left: 0;
+}
+.commentBoxTextDiv p {
+    margin: 0 10px 0 0;
+    color: #333;
+    font-size: 17px;
+    padding: 0 10px 0 0px;
+    
+}
+.textFlex p{
+	border-right: 1px solid #000;
+}
+.textFlex p:last-child{
+	border-right: 0px solid #000;
+}
+.textFlex {
+    display: flex;
+}
+.commentBoxTextDiv h4 {
+    color: #000;
+    font-size: 20px;
+	margin: 5px 0;
+}
+.commentBoxTextDiv {
+    width: calc(100% - 100px);
+    float: left;
+    padding: 0 0 0 15px;
+}
+.commentBoxImgDiv {
+    height: 80px;
+    width: 80px;
+}
+.picImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.commentBoxTextDiv span{
+		color:#999;
+}
+.commentBox {
+    /* box-shadow: 0 0 10px #ddd; */
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+.commentBoxMain {
+    width: 100%;
+    float: left;
+    border-top: 1px solid #ddd;
+    padding: 20px;
+}
+.commentBox.subCommentBox {
+    padding-left: 110px;
+}
+.commentReply .modal-header {
+    background-color: #0175fe;
+}
+.commentReply .modal-title {
+    color: #fff;
+    font-weight: 500;
+    font-size: 20px;
+}
+.commentReply .close {
+    color: #ffffff;
+    opacity: 1;
+}
+.commentReply textarea.form-control {
+    border: 1px solid #ddd;
+    margin: 20px 0 0;
+	padding:10px;
+}
+.padd0{
+	padding:0px;
+}
+.fullWidth{
+	width:100%;
+	float:left;
+}
+.completedBtn {
+    left: 20px;
+    top: -45px;
+}
+.serviceButton{
+    height: 43px;
+    min-width: 115px;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: #e0e0e01c;
+    border: 1px solid;
+   
+}
+.activeBtn{
+    height: 43px;
+    min-width: 115px;
+    border-radius: 5px;
+    background-color: #297cf6;
+    margin: 4px;
+    border: 1px solid;
+    color: #fff;
+   
+}
+
+/* service request page css end */

@@ -1,0 +1,87 @@
+
+
+  <div class="wrapper ">
+  <!-- <app-sidebar></app-sidebar> -->
+    
+   <!--  Mid section  -->
+
+   
+   <!-- Navbar -->
+   
+      <!--   <app-nav></app-nav>  --> 
+   
+   <!-- End Navbar -->
+   <div class="content">
+     <div class="container-fluid">
+       <div class="loginMainDiv singlePage">
+         <div class="loginInner">
+           <div class="card">
+             <div class="card-header card-header-info">
+               <h4 class="card-title">LOGIN</h4>
+              <!--  <p class="card-category">Complete your profile</p> -->
+             </div>
+             <div class="card-body">
+              <form novalidate (ngSubmit)="formSubmit()" role="form" [formGroup]="signin" autocomplete="off">   
+                 <div class="row">
+                  
+                   <div class="col-md-12">
+                     <div class="form-group">
+                       <label class="bmd-label-floating">Enter Email Id</label>
+                       <input type="text" class="form-control" name="phoneOrEmail" formControlName="phoneOrEmail" >
+                       <div *ngIf="signin.controls['phoneOrEmail'].hasError('required')" class="error">Please Enter Email </div>
+                     </div>
+                   </div>
+                    <div class="col-md-12">
+                     <div class="form-group">
+                       <label class="bmd-label-floating">Password</label>
+                       <input type="password" class="form-control" name="password"  formControlName="pass">
+                       <div *ngIf="signin.controls['pass'].hasError('required')" class="error">Please Enter Password</div>
+
+                     </div>
+                   </div>
+                  
+                   <div class="col-md-12">
+                    <div class="form-group">
+                      <div *ngIf="invalidCredential" class="error">Please Enter valid credentials</div>
+                      <div *ngIf="deactive" class="error">User Not Active</div>
+                     
+                    </div>
+                  </div>
+                    <div class=" paddLR15 fullwidth alink">
+                  
+                      <div class="  pull-left">
+                     <div class="">
+                      <a routerLink="/signup-landloard">  You don't have Account ? Sign up as Landlord</a> or <a routerLink="/signup-tenant"> Tenant</a>
+                   </div>  
+                     <div class="">
+                        <!-- <a routerLink="/signup-tenant">  You don't have Account ? Sign up as Tenant</a> -->
+                     </div>
+                     
+                    </div>
+
+                    <div class=" pull-right btnDiv">
+                      <button type="submit" class="btn btn-info pull-right">Login </button>
+                      
+                       <a routerLink="/forgot-password">  Forgot you password?</a>
+                     </div> 
+                 </div>
+                </div>
+                 
+                
+                 <div class="clearfix"></div>
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <footer class="footer">
+     <div class="container-fluid">
+      
+     </div>
+   </footer>
+
+    <!-- min end section -->        
+
+  </div>

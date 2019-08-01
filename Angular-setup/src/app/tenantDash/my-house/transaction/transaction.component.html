@@ -1,0 +1,373 @@
+
+<div class="wrapper">
+    <app-tenant-sidebar></app-tenant-sidebar>
+    <!--  Mid section  -->
+    <div class="main-panel">
+       <!-- Navbar -->
+    <app-tenant-nav></app-tenant-nav>
+    <div class="content whiteBg">
+<app-my-house-nav></app-my-house-nav>
+  <div class="DueToday">
+     <div class="card">
+        <div class="card-body padd0 disF">
+           <div class="dueTodayDiv ">
+              <div class="dueInner">
+                 <h4 class="secHead">Due Today </h4>
+                 <div class="amountdiv">
+                    <h2 class="pull-left">$25.00 </h2>
+                    <button  class="btn EditProperty  pull-right mar0" (click)="getTransactionType()">Add Bill</button>
+                 </div>
+                 <div class="btn-group">
+                    <button type="button" class="btn btn-default">Bank</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#mPesa">MPESA</button>
+                    <button type="button" class="btn btn-default">Offline PAyment</button>
+                 </div>
+              </div>
+           </div>
+           <div class="leaseDiv">
+              <div class="leaseSingle">
+                 <h4>Lease</h4>
+                 <p>: Rangit Holkar</p>
+              </div>
+              <div class="leaseSingle">
+                 <h4>Recurring Rent</h4>
+                 <p>: Ksh. 50000</p>
+              </div>
+              <div class="leaseSingle">
+                 <h4>Due Date</h4>
+                 <p>: 5th Sep</p>
+              </div>
+              <div class="leaseSingle">
+                 <h4>Automatic Pay</h4>
+                 <label class="switch">
+                 <input type="checkbox">
+                 <span class="slider round"></span>
+                 </label>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="UpcomingDiv">
+     <div class="addReqHead">
+        <h3>In Progress & Upcoming</h3>
+     </div>
+     <!-- <h4 class="secHead"></h4> -->
+     <div class="card marB25">
+        <div class="card-body " >
+           <div class="tableShadow" >
+              <table class="table table-striped " >
+                 <thead>
+                    <tr>
+                       <th>Status</th>
+                       <th>Type </th>
+                       <th>Due</th>
+                       <th>Paid</th>
+                       <th>Balance</th>
+                       <th>Action</th>
+                    </tr>
+                 </thead>
+                 <tbody >
+                    <tr *ngFor="let InProgresstransaction of in_progress_payment">
+                       <td>
+                          <h4 class="orangeText" *ngIf="jstoday >= InProgresstransaction.end_period ">Due</h4>
+                          <h4 class="blueText" *ngIf="InProgresstransaction.end_period > jstoday">Shedule</h4>
+                          <h4 class="">{{InProgresstransaction.start_period}} to {{InProgresstransaction.end_period}}</h4>
+                       </td>
+                       <td>{{InProgresstransaction.type_name}}</td>
+                       <td>{{InProgresstransaction.totalAmount}}</td>
+                       <td>0</td>
+                       <td>
+                           {{InProgresstransaction.totalAmount}}
+                       </td>
+                       <td (click)="sendMonay(InProgresstransaction.totalAmount,InProgresstransaction.id)"><button class="btn btn-primary">Pay</button></td>
+                    </tr>
+                    <!-- <tr >
+                       <td>
+                          <h4 class="blueText">Shedule</h4>
+                          <h4 class="">Jan 5th</h4>
+                       </td>
+                       <td>Monthly Rent</td>
+                       <td>6000</td>
+                       <td>0</td>
+                       <td>
+                          6000
+                       </td>
+                    </tr> -->
+                 </tbody>
+              </table>
+              <div class="col-md-12 outerNoRecord" *ngIf="unit_data?.length ==0">
+                 <div >No Records</div>
+              </div>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+     </div>
+  </div>
+  <div class="Completed">
+     <div class="addReqHead">
+        <h3>Completed</h3>
+     </div>
+     <!-- <h4 class="secHead"></h4> -->
+     <div class="card marB25">
+        <div class="card-body" >
+           <div class="tableShadow" >
+              <table class="table table-striped " >
+                 <thead>
+                    <tr>
+                       <th>Date </th>
+                       <th>Type </th>
+                       <th>Amount</th>
+                       <th>Action</th>
+                       <!-- <th>Add Tenant</th> -->
+                    </tr>
+                 </thead>
+                 <tbody >
+                    <tr *ngFor="let transaction of transactionHistory">
+                       <td>
+                          <h4 class="">{{transaction.payment_date | date: 'MMM d, y'}}</h4>
+                       </td>
+                       <td>{{transaction.type_name}} </td>
+                       <td>{{transaction.totalAmount}}<span>{{transaction.payment_type == 1 ? 'Cash' : transaction.payment_type == 2 ? 'Check' : transaction.payment_type == 4 ? 'MPESA' : transaction.payment_type == 5 ? 'Card' : 'Other' }}</span></td>
+                       <td><button class="btn EditProperty mar0" (click)="showReciptPopup(transaction.id)"> Receipt </button></td>
+                    </tr>
+                    <!-- <tr >
+                       <td>
+                       <h4 class="">Jan 5th</h4>
+                       </td>
+                       <td>Monthly Rent</td>
+                       <td>6000 <span>Bank</span></td>
+                       <td><button class="btn EditProperty mar0"> Receipt </button></td>
+                       
+                       
+                       </tr> -->
+                    <!-- <tr >
+                       <td>
+                       <h4 class="">Jan 5th</h4>
+                       </td>
+                       <td>Monthly Rent</td>
+                       <td>6000 <span>Offline Payment</span></td>
+                       <td><button class="btn EditProperty mar0"> Receipt </button></td>
+                       
+                       
+                       </tr> -->
+                 </tbody>
+              </table>
+              <div class="col-md-12 outerNoRecord" *ngIf="transactionHistory?.length ==0">
+                 <div >No Records</div>
+              </div>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+     </div>
+  </div>
+  <!-- popup receipt start-->
+  <div class="modal commentReply" id="myModalRecipt">
+   <div class="modal-dialog">
+      <div class="modal-content fullWidth">
+         <div class="modal-text padd0" *ngFor="let transaction of transaction">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Receipt</h4>
+               <button type="button" class="close" data-dismiss="modal">&times;</button> 
+            </div>
+            <!-- Modal body -->
+            <div class="receiptDetail" id="PdfRecipt">
+               <div class="receiptDetailInner">
+                  <h4 class="recHead">Rent Receipt</h4>
+                  <div class="listReceipt">
+                     <p>Date</p>
+                     <p>: {{transaction.payment_date | date}}</p>
+                  </div>
+                  <div class="listReceipt">
+                     <p>Received From	</p>
+                     <p>:{{transaction.tenant_name}}	</p>
+                  </div>
+                  <div class="listReceipt">
+                     <p>Rental Property	</p>
+                     <p>: {{transaction.flatHoseNo}}	</p>
+                  </div>
+                  <div class="listReceipt">
+                     <p>Payment Received As</p>
+                     <p>: Rent	</p>
+                  </div>
+                  <div class="listReceipt">
+                     <p>Payment Method</p>
+                     <p>	: {{transaction.payment_type == 1 ? 'Cash' :transaction.payment_type == 2 ? 'Check' :transaction.payment_type == 4 ? 'MPESA' : transaction.payment_type == 5 ? 'Card' : 'Other'}}</p>
+                  </div>
+                  <div class="listReceipt">
+                     <p>For The Period	</p>
+                     <p>: {{transaction.start_period | date}} To {{transaction.end_period | date}}	</p>
+                  </div>
+                  <div class="fullwidth DFlex noMar" >
+                     <div class="text-left">
+                        <h3>Charge Description</h3>
+                        <p>Sub Total</p>
+                     </div>
+                     <div class="text-right">
+                        <h3>Amount</h3>
+                        <p>KSh {{transaction.amount}}</p>
+                     </div>
+                  </div>
+                  <div class="description">
+                     <div class="listReceipt" *ngFor="let dedution_data of deduction">
+                        <p >{{dedution_data.remove_text}}	</p>
+                        <p style="text-align:right;">(-) Ksh {{dedution_data.remove_digit }}	</p>
+                     </div>
+                     <div class="listReceipt" *ngFor="let addtional_data of additonal">
+                        <p >{{addtional_data.add_text}}</p>
+                        <p style="text-align:right;">(+)Ksh {{addtional_data.add_digit }}	</p>
+                     </div>
+                     <!-- <div class="listReceipt">
+                        <p >For The Period	</p>
+                        <p style="text-align:right;">: {{transaction.start_period | date}} To {{transaction.end_period | date}}	</p>
+                        </div> -->
+                  </div>
+                  <div class="fullwidth DFlex">
+                     <div class="text-left">
+                        <p>Total Charges</p>
+                        <p>Landlord:</p>
+                     </div>
+                     <div class="text-right">
+                        <p>KSh  {{transaction.totalAmount}}</p>
+                        <p>{{transaction.userName}}</p>
+                     </div>
+                  </div>
+                  <div class="paidDiv">
+                     <h4>{{transaction.payment_status == 0 ?'Unpaid' : transaction.payment_status == 1 ?'Paid' : 'Partially Paid'}}</h4>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <!-- <button (click)="SendEmailRecipt(transaction.id)"class="btn commonBtnP">Email Receipt</button> -->
+               <button class="btn commonBtnP" (click)="genratePdf()">Save as PDF</button>
+               <button class="btn commonBtnC" (click)="hideRecipt()">Cancel</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- popup receipt end -->
+
+<!--================ m pesa popup ============= -->
+
+<!-- Modal -->
+<div id="mPesa" class="modal fade" role="dialog">
+  <div class="modal-dialog MpesaModal">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+	<img src="assets/img/maxresdefault.jpg" class="pesaBg">
+      <div class="modal-header">
+	  <h4 class="modal-title">Total Amount :Ksh {{totalAmount}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+		<div class="text-center"><img src="assets/img/download.png" class="pesaLogo"></div>
+		<ul>
+			<li>Click on the <span>PAY NOW </span> button to generate a payment request on your phone</li>
+			<li>Enter your <span>MPESA PIN </span> on your phone to complete the payment</li>
+			<li>You will get your receipt from MPESA and an SMS confirmation from i pay </li>
+			<li>Didn't get the promp on your phone ? kindly dial <span>*234*1*6# </span> to force SIM update. For SIM  cards <span>more than 2 years old</span> a SIM swap may be necessary</li>
+		</ul>
+		<div class="pesaInput">
+			<input type="text" placeholder="Enter Mobile Number" [(ngModel)]="mobileNumber">
+			<button class="payBtn" (click)="sendPayementRequest()" [disabled]="confirmation == true">pay now</button>
+      </div>
+      <div class="confirmation" *ngIf="confirmation">Accept the service request successfully. Please Wait for confirmation.</div>
+      <div class="confirmation error" *ngIf="errorConfirmation">{{errorText}}</div>
+      </div>
+      <div class="modal-footer">
+      
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--================ m pesa popup ============= -->
+
+
+
+<!--================ Billing popup popup ============= -->
+<!-- Modal -->
+<div id="billingPeriod" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content billingPeriodMain">
+		<div class="modal-header bg-primary">
+			<h4 class="modal-title">BILLING</h4>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		</div>
+	  <form [formGroup]="addTransaction" (ngSubmit)="saveTransaction()">
+		<div class="modal-body ">
+			<div class="form-group">
+				<label class="control-label">Billing Period :</label>
+				<div class="commonTetxtFeild">
+                 <input type="date" class="form-control width50"  placeholder="Start Date" formControlName="startDate">
+                 <input type="date" class="form-control width50"  placeholder="End Date" formControlName="endDate">
+                 <div *ngIf="submitted && (f.endDate.errors || f.startDate.errors)" class="errors">
+                     <div *ngIf="f.endDate.errors.required || f.startDate.errors">Billing Period is required</div>
+                 </div>
+				  </div>
+         </div>
+        
+			<div class="form-group ">
+				<label class="control-label">Transaction Type:</label>
+				<div class="commonTetxtFeild">
+				  <select  class="form-control" formControlName="type">
+						<option *ngFor="let type of transactonType" [value]="type.id">{{type.type_name}}</option>
+                </select>
+                <div *ngIf="submitted && f.type.errors" class="errors">
+                     <div *ngIf="f.type.errors.required">Type is required</div>
+                 </div>
+				</div>
+			</div>
+         <div class="form-group ">
+               <label class="control-label">Amount:</label>
+               <div class="commonTetxtFeild">
+                 <input type="text" class="form-control width50" formControlName="amount">
+                 <div *ngIf="submitted && f.amount.errors" class="errors">
+                     <div *ngIf="f.amount.errors.required">Amount is required</div>
+                 </div>
+               </div>
+               
+         </div>
+			<div class="form-group ">
+				<label class="control-label">Note :</label>
+				<div class="commonTetxtFeild">
+               <textarea  class="form-control"  placeholder="Note" rows="4" formControlName="note"></textarea>
+               <div *ngIf="submitted && f.note.errors" class="errors">
+                     <div *ngIf="f.note.errors.required">Note is required</div>
+                 </div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="form-group text-center">
+				<button class="btn btn-primary DoneBtn">Done</button>
+			</div>
+      </div>
+   </form>
+	  
+    
+    </div>
+
+  </div>
+</div>
+
+<!--================ Billing popup popup close ============= -->
+
+<footer class="footer">
+  <div class="container-fluid">
+   
+  </div>
+</footer>
+</div>
+</div>
+
+
+
+

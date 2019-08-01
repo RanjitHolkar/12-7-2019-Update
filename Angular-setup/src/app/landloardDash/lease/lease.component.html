@@ -1,0 +1,148 @@
+
+
+
+
+<div class="wrapper ">
+  <app-land-sidebar></app-land-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel">
+  <!-- Navbar -->
+  
+     <app-land-nav></app-land-nav> 
+  
+  <!-- End Navbar -->
+
+ <div class="content">
+        <div class="container-fluid">
+			<div class="transactionPage">
+				<div class="heading">
+					<h3>Lease</h3>
+					
+				</div>
+				
+				<div class="tenantListBtn">
+				<form [formGroup]='searchLease' (ngSubmit)="getsearchLease()">
+					<div class="pull-left leasePage">
+              <div class="dropdown bootstrap-select commonDropDown">
+							<select (change)="getsearchLease()" class="selectpicker btn btn-primary btn-round dropdown-toggle" formControlName="property_id">
+								<option disabled="" [ngValue]="null" selected="">Propert</option>
+								<option [value]="lease.id" *ngFor="let lease of filte_data">{{lease.propertyName}}</option>
+							</select>
+						</div>
+						 <div class="dropdown bootstrap-select commonDropDown">
+							<select (change)="getsearchLease()"class="selectpicker btn btn-primary btn-round dropdown-toggle" formControlName="tenant_id" >
+								<option [ngValue]="null" selected="">Tenant</option>
+								<option [value]="lease.tenant_id" *ngFor="let lease of filte_data">{{lease.userName}}</option>
+							</select>
+						</div>
+						 <div class="dropdown bootstrap-select commonDropDown">
+							<select (change)="getsearchLease()" class="selectpicker btn btn-primary btn-round dropdown-toggle"  formControlName="status"  title="status" >
+								<option  [ngValue]="null"  selected="">Status</option>
+								<option value="Yes">Active</option>
+								<option value="No">Deactive</option>
+							</select>
+						</div>
+						<div class="dropdown bootstrap-select commonDropDown">
+							<select (change)="getsearchLease()" class="selectpicker btn btn-primary btn-round dropdown-toggle"   formControlName="start_date" title="Start Date" >
+								<option [ngValue]="null"  selected="">Start</option>
+								<option [value]="lease.startDate" *ngFor="let lease of filte_data">{{lease.startDate}}</option>
+							</select>
+						</div>
+						<div class="dropdown bootstrap-select commonDropDown">
+							<select (change)="getsearchLease()" class="selectpicker btn btn-primary btn-round dropdown-toggle"  formControlName="end_date"  title="End Date" >
+								<option [ngValue]="null" selected="">End</option>
+								<option [value]="lease.endDate" *ngFor="let lease of filte_data" >{{lease.endDate}}</option>
+							</select>
+						</div>
+					</div>
+				</form>
+					<div class="pull-right ListTenantbtnDiv">
+						<button type="submit" class="btn btn-primary pull-right">New</button>
+						<button type="submit" class="btn btn-primary pull-right">Export</button>
+					</div>
+				</div>
+				<div class="tableDIv">
+					<div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table" [mfData]="lease_data" #mf="mfDataTable" [mfRowsOnPage]="1">
+                        <thead class=" text-primary">
+                          <tr>
+							<th> Property name</th>
+							<th>Tenant</th>
+							<th>Phone</th>
+							<th>Lease Peroid</th>
+							<th>Rent</th>
+							<th>Email</th>
+							<th>Status</th>
+							<!-- <th>Action</th> -->
+						 </tr>
+						</thead>
+                        <tbody>
+              <tr *ngFor="let lease of lease_data">
+                            <td>{{lease.propertyName}}</td>
+                            <td>{{lease.userName}}</td>
+                            <td>{{lease.phone}}</td>
+                            <td>{{lease.startDate}} To {{lease.endDate}}</td>
+                            <td>{{lease.rentAmount}}</td>
+							              <td>{{lease.email}}</td>
+														<td>{{lease.onRent== "Yes"? 'Active':'Deactive'}}</td>
+													
+                            <!-- <td>Edit/Delete</td> -->
+              </tr>
+						
+												</tbody>
+												<!-- <tfoot>
+                          <tr>
+                              <td colspan="4">
+                                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                              </td>
+                          </tr>
+                          </tfoot> -->
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+					<!-- <nav aria-label="Page navigation example">
+                     
+                      <ul class="pagination pull-right">
+                        <li class="page-item">
+                          <a class="page-link" href="#link" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                          </a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#link">1</a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#link">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#link">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#link" aria-label="Next">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav> -->
+				</div>
+				</div>
+			</div>
+        </div>
+		
+      </div>
+  
+  <footer class="footer">
+    <div class="container-fluid">
+     
+    </div>
+  </footer>
+</div>
+   <!-- min end section -->        
+
+ </div>

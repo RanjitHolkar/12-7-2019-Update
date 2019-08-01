@@ -1,0 +1,116 @@
+<div class="wrapper ">
+  <app-tenant-sidebar></app-tenant-sidebar>
+  <!--  Mid section  -->
+  <div class="main-panel">
+	<!-- Navbar -->
+  <app-tenant-nav></app-tenant-nav> 
+	 <div class="content">
+		<div class="container-fluid">
+			<div class="chatPageMain">
+				<div class="chatPageInner">
+					<div class="chatLeft">	
+						<div class="searchDivChat">
+							<input type="text" placeholder="Search" (keyup)='search($event.target.value)'>
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</div>						
+						<ul>
+							<li class=""  [ngClass]="{'active': group.room_id == room_id}" *ngFor="let group of group" (click)="showMessage(group.room_id,group.propertyName,group.property_imges)">
+								<img src="{{url}}{{group.property_imges}}" class="addPropertyIcon" *ngIf="group.property_imges !=''">
+								<img src="assets/img/avatar.jpg" class="addPropertyIcon" *ngIf="group.property_imges =='' ">
+								<div class="listLeft">
+									<h4>{{group.propertyName}}</h4>
+									<!-- <p>Last chat Line</p> -->
+								</div>
+							</li>
+							<li  [ngClass]="{'active': personal.room_id == room_id}" *ngFor="let personal of personal" (click)="showMessage(personal.room_id,personal.userName,personal.profilephoto)">
+								<img src="assets/img/avatar.jpg" class="addPropertyIcon" alt="MS" *ngIf="personal.profilephoto !=''">
+								<img src="assets/img/avatar.jpg" class="addPropertyIcon" alt="MS" *ngIf="personal.profilephoto ==''">
+								<div class="listLeft">
+									<h4>{{personal.userName}}</h4>
+									<!-- <p>Last chat Line</p> -->
+								</div>
+							</li>
+							<!-- <li>
+								<img src="assets/img/avatar.jpg" class="">
+								<div class="listLeft">
+									<h4>Name Last</h4>
+									<p>Last chat Line</p>
+								</div>
+							</li> -->
+						</ul>
+					</div>
+					<div class="chatMiddle">	
+						<div class="chatMiddleHead" >
+							<img src="{{url}}{{property_imges}}" class="" *ngIf="property_imges !='' && property_imges !=null">
+							<img src="assets/img/avatar.jpg" class="" *ngIf="property_imges =='' || property_imges == null">
+							<h4 *ngIf="property_name !=''">{{property_name}}</h4>
+							<h4 *ngIf="property_name ==''" >Demo</h4>
+						</div>
+						<div class="chatMiddleInner">
+						<div *ngFor="let message of messages">
+							<div class="chatLeftText" *ngIf="UserId != message.senderId ">
+								<!-- <img src="assets/img/avatar.jpg" class=""> -->
+								<div class="chatLeftTextInner">
+									<h4 >{{ message.name }} <span>{{message.createdAt | date:'hh:mm:ss a':'+0530'}}</span></h4>
+									<p>{{message.text}}</p>
+								</div>
+							</div>
+							<!-- <div class="diveLineText"><h5>Today</h5></div> -->
+							<div class="chatRightText"  *ngIf="UserId == message.senderId">
+								<div class="chatLeftTextInner">
+									<h4 >{{ message.name }} <span>{{message.createdAt | date:'hh:mm:ss a':'+0530'}}</span></h4>
+									<p>{{message.text}}</p>
+								</div>
+							</div>
+						</div>
+							<!-- <div class="chatRightText">
+								<div class="chatLeftTextInner">
+									<h4>Name Last <span>3.23 PM</span></h4>
+									<p>some text demo text</p>
+								</div>
+							</div>
+							<div class="chatRightText">
+									<div class="chatLeftTextInner">
+										<h4>Name Last <span>3.23 PM</span></h4>
+										<p>some text demo text</p>
+									</div>
+								</div>
+								<div class="chatRightText">
+										<div class="chatLeftTextInner">
+											<h4>Name Last <span>3.23 PM</span></h4>
+											<p>some text demo text</p>
+										</div>
+									</div> -->
+						</div>
+						<div class="sendChatDiv">
+							<input type="text" placeholder="type here" [(ngModel)]="msg">
+							<i class="fa fa-paper-plane" aria-hidden="true" (click)="sendMessage()" *ngIf="this.msg !=''"></i>
+						</div>
+					</div>
+					<!-- <div class="chatRight">	
+						<div class="fileHead">
+							<h4>Files</h4>
+						</div>
+						
+						<div class="singleFileMain">
+							<div class="singleFile">
+								<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+								<h4>Document Name</h4>
+							</div>
+							<div class="singleFile">
+								<img src="assets/img/avatar.jpg" class="Imgdocument">
+								<h4>Document Name</h4>
+							</div>
+							<div class="singleFile">
+								<i class="fa fa-file-word-o" aria-hidden="true"></i>
+								<h4>Document Name</h4>
+							</div>
+						</div>
+						
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>

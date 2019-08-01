@@ -1,0 +1,230 @@
+
+
+
+
+<div class="wrapper ">
+    <app-admin-sidebar></app-admin-sidebar>
+     
+    <!--  Mid section  -->
+  
+    <div class="main-panel">
+    <!-- Navbar -->
+    
+       <app-admin-nav [childMessage]="parentMessage"></app-admin-nav> 
+    
+    <!-- End Navbar -->
+  
+  
+    <div class="content">
+          <div class="container-fluid">
+      
+            <div class="row">
+        
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header card-header-info">
+                    <h4 class="card-title">Profile Setting</h4>
+                  </div>
+                  <div class="card-body">
+                      <form [formGroup]='userProfile' (submit)="updateProfileInfo()" autocomplete="off">
+                      <div class="row">
+                       <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Name </label>
+                            <input type="text" class="form-control" formControlName="userName">
+                            <div *ngIf="userProfile.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+                              <div *ngIf="userProfile.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+                          </div>
+                        </div>
+                       
+                      
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Email id</label>
+                            <input type="text" class="form-control" name='email' formControlName='email'>
+                            <div *ngIf="userProfile.controls['email'].hasError('required')" class="error">Email id Required</div>	  
+                           <div *ngIf="userProfile.controls['email'].hasError('email')" class="error"> Email Not Valid</div>                          </div>
+                        </div>
+                      <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Mobile number</label>
+                                    <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)">
+                                    <div *ngIf="userProfile.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+                                    <div *ngIf="userProfile.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+                                    <div *ngIf="userProfile.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+                                    <div *ngIf="userProfile.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+                    
+                                  </div>
+                                </div>
+                      <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label class="bmd-label-floating">Country </label>
+                                      <input type="email" class="form-control" formControlName='country'>
+                                      <div *ngIf="userProfile.controls['country'].hasError('required')" class="error">Country  Required</div>	
+                                    </div>
+                      </div>         
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Address</label>
+                            <input type="text" class="form-control" formControlName="address">
+                            <div *ngIf="userProfile.controls['address'].hasError('required')" class="error">Country  Required</div>	
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>About Me</label>
+                            <div class="form-group">
+                              <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                              <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+                      <button type="submit" class="btn btn-info pull-right">Update Profile</button>
+                      <div class="clearfix"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+             <div class="col-md-4">
+                <div class="card card-profile">
+                  <div class="card-avatar">
+                    <a href="#pablo">
+                    <img class="img" [src]="profilephoto" />
+                    </a>
+                  </div>
+                  <div class="card-body">
+                           <h4 class="card-title">{{userInfo.userinfo.userName}}</h4>
+             <div class="uploadDiv">
+              <!-- <button class="btn btn-info btnUpload"></button>
+              <input type="file" class="inputupload"> -->
+
+            </div>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ProfileUpdateModal">Upload Profile pic</button>
+
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header card-header-info">
+                    <h4 class="card-title">Change Password</h4>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="forgotForm" (submit)="updatePass()">
+                      <div class="row">
+                       <div class="col-md-4">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">current password </label>
+                            <input type="password" class="form-control" formControlName="currentPass">
+                            <div *ngIf="forgotForm.controls['currentPass'].hasError('required')" class="error" > Enter current password </div>
+                          </div>
+                        </div>
+                       
+                      
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">New Password</label>
+                            <input type="password" class="form-control" formControlName="pass" (input)="checkNewPwd($event.target.value)" >
+                            <div *ngIf="forgotForm.controls['pass'].hasError('required')" class="error" > Enter new password </div>
+                            
+                          </div>
+                        </div>
+                      <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label class="bmd-label-floating">Confirm Password</label>
+                                   <input type="password" class="form-control" name="cpass"  (input)="checkConformPwd($event.target.value)"  formControlName="cpass" >
+                                    <div *ngIf="forgotForm.controls['cpass'].hasError('required')" class="error" > Enter confirm password </div>
+                                    <div *ngIf="conpass==false " class="error"> Password and Conform Password  must be same ...!  </div>
+                                  </div>
+                                </div>
+                       
+                      </div>
+                      <div class="col-md-12" >
+                          <!-- <div class="alert alert-success" *ngIf="passwordUpdated">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                              <span>Your password successfully  Updated ..! </span>
+                            </span>
+                        </div> -->
+
+                        <div class="alert alert-danger" *ngIf="currentPassNotCorrect">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                              <span>Please enter old password  correctly ..! </span>
+                            </span>
+                        </div>
+                     </div>
+
+                      <button type="submit" class="btn btn-info pull-right" >Update Password</button>
+                      <div class="clearfix"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+    
+    <footer class="footer">
+      <div class="container-fluid">
+       
+      </div>
+    </footer>
+  </div>
+     <!-- min end section -->        
+  
+   </div>
+  
+ 
+    <div class="modal fade" id="ProfileUpdateModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Select Profile Image</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form id="imgform">
+            <input type="file" class="btn btn-info " id="selectFile" name="selectFile"  (change)="fileChangeEvent($event)" />
+
+                  <div *ngIf="showCropImg">
+
+                        
+                          <image-cropper
+                          [imageChangedEvent]="imageChangedEvent"
+                          [maintainAspectRatio]="true"
+                          [aspectRatio]="4 / 3"
+                          [resizeToWidth]="128"
+                          format="png"
+                          (imageCropped)="imageCropped($event)"
+                          (imageLoaded)="imageLoaded()"
+                          (loadImageFailed)="loadImageFailed()"
+                      ></image-cropper>
+                          <img class="profile-img"  [src]="croppedImage" />
+                         
+                  </div>
+                </form>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn comn-btn-info"(click)="uploadProfileImage  ()">Upload</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,83 @@
+.pageHead {
+    color: #1e88f7;
+    font-size: 25px;
+    font-weight: bold;
+}
+.NotificationMain {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+.NotificationMain ul {
+    padding: 0;
+    list-style: none;
+}
+.notifiactionDiv {
+	display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 20px 10px;
+    border-bottom: 1px solid #ddd;
+}
+.notifiactionDiv:hover {
+   background-color: #d3d3d324;
+}
+.notificationText {
+    width: calc(100% - 200px);
+}
+.notificationText h5 {
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+.notificationText p {
+    font-size: 15px;
+    color: #999;
+    margin: 0 0 10px;
+}
+.notificationText a {
+    color: red !important;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+.notificationTime {
+    width: 200px;
+    text-align: right;
+}
+.notificationTime .NotiTime {
+    margin: 20px 0;
+    font-size: 15px;
+    color: #999;
+}
+.notificationTime .fa-window-close {
+    color: #1f87f8;
+    font-size: 25px;
+}
+h4.listHead {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    color: #ffff;
+	display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.green {
+    background-color: #269332;
+}
+
+.Orange {
+    background-color: #fd9908; 
+}
+.blue {
+    background-color: #0999d2; 
+}
+.voilet {
+    background-color: #5d17c9; 
+}
+.NotificationInner {
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+}

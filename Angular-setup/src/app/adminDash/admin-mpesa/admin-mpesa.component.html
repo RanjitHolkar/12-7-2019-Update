@@ -1,0 +1,92 @@
+
+
+
+
+<div class="wrapper ">
+  <app-admin-sidebar></app-admin-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel">
+  <!-- Navbar -->
+  
+     <app-admin-nav></app-admin-nav> 
+  
+  <!-- End Navbar -->
+
+
+  <div class="content">
+
+      <!-- <div class="col-md-12">
+
+          <button  *ngIf="showUserForm==true" type="button" class="btn btn-info pull-right" (click)="hideAddUsersDiv()" >Back</button>
+         
+          <button *ngIf="showUserForm==false" type="button" class="btn btn-info pull-right"  (click)="addUsersDiv()" >Add User</button>
+           
+         </div> -->
+
+
+         <div class="content">
+            
+             <!--- ############ Show Users List ####################-->
+             <div class="container-fluid" >
+             <div class="transactionPage">
+               <div class="heading">
+                 <h3>Mpesa Payment List </h3>
+                 
+               </div>
+               <div class="tenantListBtn">
+                 <div class="searchDiv pull-left">
+      
+                </div>
+                 <div class="pull-right ListTenantbtnDiv">
+                   <button type="submit" class="btn btn-info pull-right">Export</button>
+                   <!-- <button type="submit" class="btn btn-info pull-right">Import</button> -->
+                 </div>
+               </div>
+               
+               <div class="tableDIv">
+                 <div class="card">
+                  <table class="table">
+                  <thead class=" text-info">
+                    <tr>
+                      <th> Sr. No. </th> 
+                      <th> Landlord Name </th>
+                      <th> Tenant Name </th>
+                      <th> Payment Date </th>
+                      <th> Transaction Id </th>
+                      <th> MSISDN</th>
+                      <th> Amount </th>
+                      <th> Action </th>
+                    </tr>
+                  </thead>
+                    <tbody *ngFor="let payDetails of paymentDetails;let i=index">
+                       <td>{{i+1}}</td>
+                       <td>{{payDetails.landlord_name}}</td>
+                       <td>{{payDetails.tenant_name}}</td> 
+                       <td>{{payDetails.payment_date}}</td> 
+                       <td>{{payDetails.transactionId}}</td>
+                       <td>{{payDetails.MSISDN}}</td>
+                       <td>{{payDetails.totalAmount}}</td> 
+                       <td><button class="btn btn-info">Pay</button></td> 
+                    </tbody>
+                  </table>
+                </div>
+               </div>
+             </div>
+               </div>
+
+
+          </div>
+        
+      </div>
+
+  <footer class="footer">
+    <div class="container-fluid">
+     
+    </div>
+  </footer>
+</div>
+   <!-- min end section -->        
+
+ </div>

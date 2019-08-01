@@ -1,0 +1,257 @@
+<div class="wrapper ">
+   <app-land-sidebar></app-land-sidebar>
+   <!--  Mid section  -->
+   <div class="main-panel">
+      <!-- Navbar -->
+      <app-land-nav></app-land-nav>
+      <!-- End Navbar -->
+      <div class="content">
+         <div class="container-fluid">
+            <div class="transactionPage">
+               <div class="card">
+					<div class="heading divHedheading" >
+                        <h3 class="pull-left">Document Details</h3>
+						<button class=" btn btn-primary pull-right" (click)="addbt=1" type="button" style="background-color: #21BACF!important; border-color: #21BACF!important;">Add</button>
+                     </div>
+                  <div class="card-body document-body">
+                     
+                     <div class="tableDIv">
+                        <div class="card" *ngIf="addbt==1">
+                           <div class="card-body documents-details">
+                              <form [formGroup]="Documentform" (ngSubmit)="addDocument(Documentform.value)">
+                                 <div class="row ">
+                                    <div class="col-md-12 ">
+                                       <div class="form-row form-content">
+                                          <div class="col-md-4 input-text mb-3">
+                                             <label for="validationCustom01">Document Name</label>
+                                             <input formControlName="document_name" [ngClass]="{ 'is-invalid': submitted && f.document_name.errors }"  type="text" class="form-control"   >
+                                             <div *ngIf="submitted && f.document_name.errors" class="errors">
+                                                <div *ngIf="f.document_name.errors.required">Document Name required</div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 input-text mb-3">
+                                             <label for="validationCustom02">Select Property</label>
+                                             <select formControlName="property_id"  (change)="getUnit(Documentform.value.property_id)" class="form-control" id="validationCustom02">
+                                              <!---  <option value='' selected>Please Select</option>-->
+                                                <option [value]="property.id" *ngFor="let property of properties">{{property.propertyName}}</option>
+                                             </select>
+                                             <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                             <div *ngIf="submitted && f.property_id.errors" class="errors">
+                                                <div *ngIf="f.property_id.errors.required">Property Name required</div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 input-text mb-3">
+                                             <label for="validationCustom02">Select Unit</label>
+                                             <select formControlName="id" (change)="getTenant(Documentform.value.id)"  id="validationCustom02" class="form-control">
+                                                <option [value]="Unit.id" *ngFor="let Unit of unitdata" > {{Unit.flatHoseNo}}</option>
+                                             </select>
+                                             <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                             <div *ngIf="submitted && f.id.errors" class="errors">
+                                                <div *ngIf="f.id.errors.required">Unit No. required</div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 input-text mb-3">
+                                             <label for="validationCustom02">Select Tenant</label>
+                                             <select formControlName="tenant_id"  id="validationCustom02" class="form-control">
+                                                <option [value]="tenant.id" *ngFor="let tenant of tenantdata" > {{tenant.userName}}</option>
+                                             </select>
+                                             <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                             <div *ngIf="submitted && f.tenant_id.errors" class="errors">
+                                                <div *ngIf="f.tenant_id.errors.required">Tenant Name is required</div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 docType input-text">
+                                             <!-- <label for="validationCustom02">Document Type</label>
+                                                <input type="text" class="form-control" id="validationCustom04"  required> -->
+                                             <label for="validationCustom02">Document Type</label>
+                                             <select formControlName="type" id="validationCustom02" class="form-control">
+                                                <option [value]="doc.id" *ngFor="let doc of documenttype">{{doc.type}}</option>
+                                             </select>
+                                             <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                             <a data-toggle="modal"  data-target="#doctype"  title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                             <div *ngIf="submitted && f.type.errors" class="errors">
+                                                <div *ngIf="f.type.errors.required">Document Type is required</div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 input-text ">
+                                             <!-- <div class="custom-file"> -->
+                                             <label  for="validationCustom04">Choose file</label>
+                                             <div class="btnGroupDIv">
+												<button type="button" class="browse_btn browseBtn" id="validationCustom04">Browse</button>
+												<input (change)="uploadDFile($event.target.files)" type="file"  formControlName="file">
+											 </div>
+                                             <div *ngIf="submitted && f.file.errors" class="errors">
+                                                <div *ngIf="f.file.errors.required">File is required</div>
+                                            </div>
+                                          </div>
+                                          <!-- <label for="validationCustom02">Select Unit</label>
+                                             <input type="text" class="form-control" id="validationCustom03"  required> -->
+                                       </div>
+                                       </div>
+                                       <!-- <div class="form-row form-content"> -->
+											<!-- <div class="col-md-4 docType input-text"> -->
+												 <!-- <label for="validationCustom02">Document Type</label> -->
+													<!-- <input type="text" class="form-control" id="validationCustom04"  required> -->
+												 <!-- <label for="validationCustom02">Document Type</label> -->
+												 <!-- <select formControlName="type" id="validationCustom02" class="form-control"> -->
+													<!-- <option [value]="doc.id" *ngFor="let doc of documenttype">{{doc.type}}</option> -->
+												 <!-- </select> -->
+												 <!-- <i class="fa fa-caret-down dropdown" aria-hidden="true"></i> -->
+												 <!-- <a data-toggle="modal"  data-target="#doctype"  title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
+												<!-- <div *ngIf="submitted && f.type.errors" class="errors"> -->
+													<!-- <div *ngIf="f.type.errors.required">Name is required</div> -->
+												<!-- </div> -->
+											<!-- </div> -->
+											<!-- <div class="col-md-4 input-text "> -->
+                                             <!-- <div class="custom-file"> -->
+												 <!-- <label  for="validationCustom04">Choose file</label> -->
+												 
+												 <!-- <button type="button" class="browse_btn" id="validationCustom04">Browse</button> -->
+												 <!-- <input (change)="uploadDFile($event.target.files)" type="file"  formControlName="file"> -->
+												 <!-- <div *ngIf="submitted && f.file.errors" class="errors"> -->
+													<!-- <div *ngIf="f.file.errors.required">Name is required</div> -->
+												<!-- </div> -->
+											  <!-- </div> -->
+											<!-- </div> -->
+										<!-- </div> -->
+                                    <!-- </div> -->
+                                    <div class="col-md-12 flexEnd">
+                                       <div class=" input-btn text-center mb-3">
+                                          <button   class=" btn btn-primary" type="submit" style="background-color: #21BACF!important; border-color: #21BACF!important;"><i class="fa fa-check" aria-hidden="true"></i>SAVE</button>
+                                          <button  (click)="addbt=0;Documentform.reset()"  class="btn btn-primary" type="button" style="background-color: #ff8c1e!important; border-color:#ff8c1e!important"><i class="fa fa-times" aria-hidden="true"></i>CANCEL</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                        <div *ngIf="addbt==0">
+                        
+                    
+                        <div class="table-responsive main-table">
+                           <table class="table table-content allDoc">
+                              <thead class=" text-primary table-heading ">
+                                 <tr>
+                                    <th> Document Name</th>
+
+                                    <th> Format </th>
+                                    <th>Property Name(Units)</th>
+                                    <th>Tenant Name</th>
+                                    <th>Action</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr *ngFor="let docdetails of docdetails">
+                                    <td>{{docdetails.document_name}}</td>
+                                    <td>{{docdetails.file_format}} </td>
+                                    <td>{{docdetails.propertyName}} </td>
+                                    <td>{{docdetails.userName}} </td>
+                                    <td>
+                                          <div class="dropdown" >
+                                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2"
+                                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  Action
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                  <button class="dropdown-item dropMenu" type="button">
+                                                      <a href="{{Url}}{{docdetails.file}}" target="_blank">View</a></button>
+                                                  <button class="dropdown-item dropMenu" type="button">
+                                                      <a href="{{Url}}{{docdetails.file}}"  download > Download</a></button>
+                                                  <button class="dropdown-item dropMenu" type="button">
+                                                      <a (click)="deleteDoc(docdetails.id)" >Delete</a></button>
+                                                </div>
+                                              </div>
+                                    
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                        <!-- <div class="card-body">
+                           <nav aria-label="Page navigation example">
+                              <ul class="pagination pull-right">
+                                 <li class="page-item">
+                                    <a class="page-link" href="#link" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                                    </a>
+                                 </li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#link">1</a>
+                                 </li>
+                                 <li class="page-item active">
+                                    <a class="page-link" href="#link">2</a>
+                                 </li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#link">3</a>
+                                 </li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#link" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </nav>
+                           </div> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer class="footer">
+         <div class="container-fluid">
+         </div>
+      </footer>
+   </div>
+   <!-- min end section -->  
+   <!--  <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script> -->
+
+      <div class="modal fade" id="doctype" >
+         <div class="modal-dialog">
+            <form [formGroup]="doctype"  (ngSubmit)="addPropertyDocumentsave()">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Add Document Type</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label class="bmd-label-floating">Document Name</label>
+                     <input formControlName="documenttype" type="text"  class="form-control" >
+                   <div *ngIf="doctype.get('documenttype').invalid && doctype.get('documenttype').touched">
+                     <p class="errors" *ngIf="doctype.get('documenttype').errors.required">Name is required.</p>
+                   </div>
+                  </div>
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer">
+                  <button (click)="addDocType(doctype.value)"  class="close" data-dismiss="modal" [disabled]="doctype.get('documenttype').value=='' " type="button" class="btn btn-info">Add</button>
+               </div>
+            </div>
+            </form>
+         </div>
+      </div>
+</div>
+

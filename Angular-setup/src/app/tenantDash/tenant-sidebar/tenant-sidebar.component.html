@@ -1,0 +1,133 @@
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <a routerLink="/tenatDash" class="simple-text logo-normal">
+        Tenant Dashbord
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li *ngIf="status == 'No' "class="nav-item "  [ngClass]="{'active':activestate == '/tenant-search'}">
+              <a class="nav-link" routerLink="/tenant-search">
+              
+          <i class="fa fa-search" aria-hidden="true"></i>
+                <p>Search</p>
+              </a>
+           </li>
+       
+		  <li *ngIf="status == 'Yes'" class="nav-item "  [ngClass]="{'active':activestate == '/tenant-timeline'}">
+            <a class="nav-link" routerLink="/tenant-timeline">
+            
+			  <i class="fa fa-home" aria-hidden="true"></i>
+              <p>Timeline</p>
+            </a>
+     </li>
+		  <!-- <li *ngIf="status == 'Yes'"class="nav-item  "  [ngClass]="{'active':activestate == '/tenant-payment'}">
+            <a class="nav-link" routerLink="/tenant-payment">
+            
+              <i class="fa fa-credit-card" aria-hidden="true"></i>
+              <p>Payment details</p>
+            </a>
+          </li> -->
+      
+        <li *ngIf="status == 'Yes'" class="nav-item  "  [ngClass]="{'active':activestate == '/my-house'}">
+            <a class="nav-link" routerLink="/my-house">
+            
+              <i class="fa fa-credit-card" aria-hidden="true"></i>
+              <p>My House</p>
+            </a>
+          </li>
+          <li  class="nav-item  "  [ngClass]="{'active':activestate == '/tenant-chat'}">
+            <a class="nav-link" routerLink="/tenant-chat">
+            
+              <i class="fa fa-credit-card" aria-hidden="true"></i>
+              <p>Chat</p>
+            </a>
+          </li>
+		  <!-- <li class="nav-item ">
+            <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExampleshouse" aria-expanded="false">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <p> 
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="pagesExampleshouse" >
+              <ul class="nav">
+                <li class="nav-item " [ngClass]="{'active':activestate == '/tenant-pay-rent'}">
+                  <a class="nav-link" routerLink="/tenant-pay-rent">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Pay Rent </span>
+                  </a>
+                </li>
+               <li class="nav-item " [ngClass]="{'active':activestate == '/tenant-histroy'}">
+                  <a class="nav-link" routerLink="/tenant-histroy">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> History </span>
+                  </a>
+                </li>
+				<li class="nav-item ">
+                  <a class="nav-link" routerLink="/tenant-files" [ngClass]="{'active':activestate == '/tenant-files'}">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Files </span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" routerLink="/tenant-servies-req">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Service Request </span>
+                  </a>
+                </li>
+				<li class="nav-item " [ngClass]="{'active':activestate == '/tenant-landlord-contact'}">
+                  <a class="nav-link" routerLink="/tenant-landlord-contact">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Contact Landloard </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li> -->
+		  <li class="nav-item " >
+            <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamplessetting" aria-expanded="false">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+              <p> Setting
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="pagesExamplessetting" >
+              <ul class="nav">
+                <li class="nav-item "  [ngClass]="{'active':activestate == '/tenant-profile'}">
+                  <a class="nav-link" routerLink="/tenant-profile">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Profile </span>
+                  </a>
+                </li>
+               <li class="nav-item "  [ngClass]="{'active':activestate == '/tenant-notification'}">
+                  <a class="nav-link" routerLink="/tenant-notification">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Notification </span>
+                  </a>
+                </li>
+				<li class="nav-item "  [ngClass]="{'active':activestate == '/tenant-activestate'}">
+                  <a class="nav-link" routerLink="">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Rent </span>
+                  </a>
+                </li>
+                <li class="nav-item "  [ngClass]="{'active':activestate == '/tenant-security'}">
+                  <a class="nav-link" routerLink="/tenant-security">
+                    <span class="sidebar-mini">  </span>
+                    <span class="sidebar-normal"> Security settings </span>
+                  </a>
+                </li>
+				
+              </ul>
+            </div>
+          </li>
+		    
+        </ul>
+      </div>
+</div>

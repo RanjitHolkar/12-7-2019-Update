@@ -1,0 +1,380 @@
+
+
+
+
+<div class="wrapper ">
+  <app-tenant-sidebar></app-tenant-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel">
+  <!-- Navbar -->
+  
+     <app-tenant-nav></app-tenant-nav> 
+  
+  <!-- End Navbar -->
+
+
+  <div class="content bgWhite">
+        <div class="container-fluid">
+			<div class="AddRequestMain">
+				<div class="AddRequestMainInner">
+					<div class="addReqHead">
+						<h3>Requests</h3>
+						<div class="addReqDIv">
+							<button class="btn EditProperty" data-toggle="modal" data-target="#ProfileUpdateModal"> Add Request </button>
+						</div>
+					</div>
+					<div class="requestTable">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+								  <th>Unit Name</th>
+								  <th>Request</th>
+								  <th>Status</th>
+								  <th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Tanishq icon</td>
+									<td>Repaint Hall</td>
+									<td>Pending</td>
+									<td><button class="btn EditProperty"> Edit </button></td>
+								</tr>
+								<tr>
+									<td>Tanishq icon</td>
+									<td>Repaint Hall</td>
+									<td>Pending</td>
+									<td><button class="btn EditProperty"> Edit </button></td>
+								</tr>
+								<tr>
+									<td>Tanishq icon</td>
+									<td>Repaint Hall</td>
+									<td>Pending</td>
+									<td><button class="btn EditProperty"> Edit </button></td>
+								</tr>
+								<tr>
+									<td>Tanishq icon</td>
+									<td>Repaint Hall</td>
+									<td>Pending</td>
+									<td><button class="btn EditProperty"> Edit </button></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- Requests  close -->
+				<!-- Requests Detail start -->
+				<!-- <div class="AddRequestMainInner">
+					<div class="addReqHead">
+						<h3>Requests Detail</h3>
+						<div class="addReqDIv">
+							<button class="btn EditProperty"> Save </button>
+							<button class="btn EditProperty"> Cancel </button>
+						</div>
+					</div>
+					<div class="requestTable">
+						<div class="row">
+							<div class="col-sm-6">
+								
+							</div>
+						</div>
+					</div>
+				</div> -->
+				 <div class="modal fade" id="ProfileUpdateModal">
+					<div class="modal-dialog">
+					  <div class="modal-content">
+					  
+						<!-- Modal Header -->
+						<div class="modal-header modalHead">
+						  <h4 class="modal-title">Requests Detail</h4>
+						  <button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<!-- Modal body -->
+						<div class="modal-body modalBody">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="bmd-label-floating">Unit*</label>
+										<select type="text" class="form-control">
+											<option>sadsda</option>
+											<option>sadsda</option>
+											<option>sadsda</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="bmd-label-floating">Title*</label>
+										<input type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="bmd-label-floating">Details*</label>
+										<input type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="">
+										
+										<input type="file" class="form-control" />
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Modal footer -->
+						<div class="modal-footer text-center">
+						  <button class="btn btn-info">Save</button>
+						  <button class="btn btn-danger">Cancel</button>
+						</div>
+						
+					  </div>
+					</div>
+				  </div>
+				<!-- Requests Detail close -->
+			</div>
+			
+			
+			<!-- <div class="row">
+				<div class="payrentLeft">
+					<div class="requestDiv">
+						<img src="assets/img/customer-service.png" class="requestIcon">
+						<div class="requsetText">
+							<h4> Request </h4>
+							<p> Send Repair Request</p>
+						</div>					
+					</div>	
+					<div class="propertyDetailDiv">
+						<div class="PropertyHeadDetail">
+							<h4><i class="fa fa-building buildingIcon" aria-hidden="true"></i>  Property Details</h4>
+						</div>
+						<div class="PropertyHeadDetailText">
+							<h5>Tanishq icon</h5>
+							<p>Feb-01-2019 to Feb-08-2020</p>
+							<p>Status: Current</p>
+						</div>					
+					</div>	
+					<div class="propertyDetailDiv">
+						<div class="PropertyHeadDetail">
+							<h4><i class="fa fa-inr" aria-hidden="true"></i>  Rent Status</h4>
+						</div>
+						<div class="PropertyHeadDetailText">
+							<h5> Tanishq icon</h5>
+							<p>Unpaid Rent :  0.00 </p>
+							<p>₹ 15,000.00 every 1 month(s) </p>
+							<p> Rent Due : 5 </p>
+						</div>					
+					</div>	
+					
+					<div class="propertyDetailDiv">
+						<div class="PropertyHeadDetail">
+							<h4><i class="fa fa-user-circle-o" aria-hidden="true"></i>  Landlord Details</h4>
+						</div>
+						<div class="PropertyHeadDetailText">
+							<h5> abhishek kasbe</h5>
+							<p>the.axontech123@gmail.com</p>
+							<p>Phone : 72765 20906</p>
+						</div>					
+					</div>
+					<div class="propertyDetailDiv">
+						<div class="PropertyHeadDetail">
+							<h4><i class="fa fa-file-text" aria-hidden="true"></i>  Documents</h4>
+						</div>
+						<div class="PropertyHeadDetailText">
+							<h5>No Document available.</h5>
+							
+						</div>					
+					</div>	
+				</div>
+				<div class="payrentRight">
+					<div class="row">
+						<!-- edit lease start --
+						<div class=" col-md-12" >
+						  <div class=" leaseSection">
+							<div class="headerLease">
+								<div class="headerLeaseInner1">
+									<h4>Due in 49 days</h4>
+									<h5>01 Apr 2019</h5>
+								</div>
+								
+							</div>
+							<div class="paymentSec">
+								<div class="paymentCommon borderR">
+									<div class="paymentCommonLeft">
+										<div class="payText borderR">
+											<h4>RENT REMAINING DUE</h4>
+											<p>Rent Due £15,000.00</p>
+										</div>
+										<div class="payText">
+											<h4>START DATE</h4>
+											<p>Friday, February 8, 2019</p>
+										</div>
+									</div>
+									<div class="PaymentHisBtnDiv">
+										<button class="btn EditProperty"> View Payment History	</button>
+									</div>
+								</div>
+								<div class="paymentCommon">
+									<div class="paymentCommonLeft">
+										<div class="payText borderR">
+											<h4>RENT REMAINING DUE</h4>
+											<p>Rent Due £15,000.00</p>
+										</div>
+										<div class="payText">
+											<h4>START DATE</h4>
+											<p>Friday, February 8, 2019</p>
+										</div>
+									</div>
+									<div class="PaymentHisBtnDiv">
+										<button class="btn EditProperty"> Pay Rent	</button>
+									</div>
+								</div>
+							</div>
+						  </div>
+					  </div>
+					  <!-- edit lease close --
+					  
+					  
+					  <!-- Add tenant start --
+					  <div class=" col-md-12" >
+							<div class=" leaseSection ">
+								<div class="tenantHeader ">
+									<div class="pull-left">
+										<h3> Tenant</h3>
+									</div>
+									
+								</div>
+								<div class="padd30 row">
+									<div class=" col-md-3">
+										<div class="tenantSingle">
+											<div class="profleDiv">
+												<div class="profileDetail">
+													<h3>Abhijit Sawant</h3>
+													<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+													<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+													<button class="btn EditProperty"> View / Edit	</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class=" col-md-3">
+										<div class="tenantSingle">
+											<div class="profleDiv">
+												<div class="profileDetail">
+													<h3>Ranjit Zolkar</h3>
+													<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+													<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+													<button class="btn EditProperty"> View / Edit	</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class=" col-md-3">
+										<div class="tenantSingle">
+											<div class="profleDiv">
+												
+												<div class="profileDetail">
+													<h3>Rajani Rao</h3>
+													<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+													<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+													<button class="btn EditProperty"> View / Edit	</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class=" col-md-3">
+										<div class="tenantSingle">
+											<div class="profleDiv">
+												<div class="profileDetail">
+													<h3>Abhijit Sawant</h3>
+													<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+													<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+													<button class="btn EditProperty"> View / Edit	</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					  </div>
+					  <!-- Add tenant close --
+					</div>
+				</div>
+			</div> -->
+		  
+		  
+		  <!-- <div class="loginMainDiv">
+            <div class="loginInner">
+              <div class="card">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title pull-left">Rent Due</h4>
+				 
+                 <!--  <p class="card-category">Complete your profile</p> --
+                </div>
+                <div class="card-body">
+					<div class="full-width text-right">
+						<button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Bill</button>
+					</div>
+					<div class="full-width paymentDetail">
+						
+						 <div class="card-body">
+							<div class="table-responsive text-center">
+							  <table class="table">
+								<thead class=" text-info">
+								  <tr>
+									<th> Month</th>
+									<th> Amount</th>
+									
+								 </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td>Nov - 2013</td>
+									<td>2000 </td>
+								  </tr>
+								 <tr>
+									<td>Dec - 2013</td>
+									<td>2000 </td>
+								  </tr>
+								  <tr>
+									<th> Bill</th>
+									<th> 40000</th>
+									
+								 </tr>
+								
+								</tbody>
+							  </table>
+							</div>
+							<div class="fullwidth text-center">
+								<button class="btn btn-info">Pay</button>
+							</div>
+							
+							
+						  </div>
+						
+					</div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+		
+		
+		
+		
+        </div>
+		
+      </div>
+  <footer class="footer">
+    <div class="container-fluid">
+     
+    </div>
+  </footer>
+</div>
+   <!-- min end section -->        
+
+ </div>

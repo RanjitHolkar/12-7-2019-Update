@@ -1,0 +1,41 @@
+.noRecordsDiv
+{
+    text-align: center;
+    color: black;
+}
+.adddPropertyDrop{
+    border-radius: 5px;
+    padding: 0;
+}
+.adddPropertyDrop li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 15px;
+    font-size: 14px;
+}
+.image_data{
+    height: 202px;
+    width: 500px;
+}
+.propertyIcon {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid gray;
+    border-radius: 5px;
+	transition:.5s;
+	transition: transform .2s; /* Animation */
+}
+.propertyIcon:hover {
+    transform: scale(1.2); 
+}
+.bmd-form-group label {
+    color: #000000 !important;
+}
+[class^='bmd-label'], [class*=' bmd-label'] {
+    color: #000 !important;
+}
+.outerNoRecord{
+    border: 1px solid #1764d4;
+    padding: 10px;
+    text-align: center;
+}

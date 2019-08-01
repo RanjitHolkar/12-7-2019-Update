@@ -1,0 +1,144 @@
+.noticeLeft {
+    width: calc(100% - 420px);
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+	    float: left;
+}
+.noticeLeft h4 {
+    font-size: 30px;
+    color: #1f85f7;
+    margin: 0 0 20px 0;
+}
+.noticeSingle {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 100%;
+    float: left;
+	    margin: 10px 0;
+}
+.noticeImg {
+    width: 130px;
+    float: left;
+    height: 130px;
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+.noticeText {
+    width: calc(100% - 145px);
+    float: left;
+}
+.topicHead {
+    display: flex;
+    justify-content: space-between;
+	    min-height: 50px;
+}
+.topicHead h3 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #2085f8;
+    margin: 0 0;
+}
+.topicHead h5 {
+    color: #f17802;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+}
+.noticeText h4 {
+    font-size: 25px;
+    color: #1fb3c8;
+    margin: 0 0 0px 0;
+}
+.noticeText p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.3;
+    margin: 0 0;
+}
+.NoticeLeftImg {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+.noticeRight {
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    float: right;
+}
+h4.leftHead {
+    color: #247af6;
+    font-size: 25px;
+}
+.uploadDivPic {
+    width: 100%;
+    float: left;
+    height: 160px;
+    background-color: #c4c4c4;
+    margin: 10px 0 40px;
+    border-radius: 5px;
+    position: relative;
+
+}
+.uploadBtnDiv {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    bottom: -25px;
+    right: 40px;
+}
+input.inputFile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 99;
+}
+img.uploadBtn {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+.uploadBtnDivInner {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.commonFormInput {
+    width: 100%;
+    margin: 0px 0;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background-color: transparent;
+    padding: 5px 10px;
+    line-height: 3;
+}
+.sendOrangeBtn {
+    border-radius: 25px;
+    background-color: #f17802;
+    font-size: 16px;
+    margin: 30px 0 0;
+    font-weight: normal;
+}
+.errors{
+    font-size: initial;
+    color: red;
+    font-style: italic;
+}
+.noticeScroll {
+    max-height: calc(100vh - 210px);
+    overflow-x: auto;
+    height: 100%;
+}

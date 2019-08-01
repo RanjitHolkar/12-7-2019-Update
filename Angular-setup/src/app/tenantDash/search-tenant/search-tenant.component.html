@@ -1,0 +1,425 @@
+<!-- <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script src=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<div class="wrapper ">
+    <app-tenant-sidebar></app-tenant-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel ps-container ps-theme-default">
+    <div class="content bgWhite">
+  <!-- Navbar -->
+  
+  <app-tenant-nav></app-tenant-nav>
+  <form  [formGroup]='searchForm' (submit)="searchProperties()"> 
+      <div class="searchBarMain">
+          <div class="searchBar">
+     
+          <div class="commonDivBar min300">
+            <input type="text" formControlName='propertyName' placeholder="search property List">
+          </div>
+          <div class="commonDivBar">
+            <input type="text" placeholder="Unit Number" formControlName='unit_no'>
+          </div>
+          <div class="commonDivBar">
+            <div class="form-group">
+              <select class="form-control" name="user_type" formControlName='propertyType' >
+                <option  value=""[selected]=true> Property Type </option>
+                <option value="singleunit"> Single unit </option>
+                <option value="Multiunit"> Multi unit </option>
+                <!-- <option  value="service_providers"> service providers </option> -->
+              </select>
+            </div>
+        </div>
+
+         
+          <div class="commonDivBar">
+            <input type="text" placeholder="city" formControlName='city'>
+          </div> 
+         <div class="commonDivBar">
+              <div class="form-group">
+                 
+                  <select   class="form-control" name="unit_type" formControlName='unit_type' >
+                    <option value=""[selected]=true>---select---</option>
+                    <option [value]="0"> Vaccant </option>
+                    <option [value]="1"> Occupied</option>
+                  </select>
+                </div>
+          </div>
+         
+          <div class="commonDivBar">
+              <button  class="searchBtn">Search</button>
+          </div>
+       
+      </div>
+    </div>
+  </form>
+
+  <!-- Search Property Slider Div :START -->
+      <div class="container-fluid" >
+          <div class="fullWidth serachscroll" *ngIf="unitDetailsDiv == false " >
+              <div class="searchPropertyMain">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6" *ngFor="let searchData of allsearchData">
+                      <div class="searchSingleList">
+                        <div class="imgDivSearch ">
+                          <img src="{{url}}{{searchData.property_imges}}" class="img-fluid searchImg">
+                        </div>
+                        <div class="searchDetail  text-left" (click)="unitDetailsDisplay(searchData.id)">
+                          <h3>{{searchData.propertyName}}</h3>
+                          <p>{{searchData.country}},{{searchData.city}},{{searchData.state}},{{searchData.pincode}}</p>
+                          <h4> Unit NO:<span>{{searchData.flatHoseNo}}</span> </h4>
+                        </div>
+                        <div class="searchProperty text-right">
+                            <p>Property Type</p>
+                            <h3>{{searchData.propertyType}}</h3>  
+							<div class="searchProperty BottomSet">
+								<p>Unit Type</p>
+								<h3>{{searchData.onRent== 'Yes'?'Occupied': 'Vaccant'}}</h3>
+							</div>        
+                        </div>
+                        
+                      </div>
+                    </div>
+                    
+                  </div>
+              </div>
+            </div>
+
+          <div class="col-md-12 " *ngIf="unitDetailsDiv">
+            
+            <div class="loginInner serachscroll">
+              <div class="card">
+               <div class="card-body">
+                  <div class="row mainwrapper">
+                     <div class="col-md-12 heading">
+                        <h1 class="pull-left">Unit Details</h1>
+                        <button class=" backspace pull-right" (click)="hideUnitDetailsDiv()">BACK</button>
+                     </div>
+                     <!-- <div class="row"> -->
+                     <div class="col-md-8" >
+                        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+                  <!--       <div class="" >
+                            <div class="product-slider">
+                                <div id="carousel" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner sliderImg">
+                                    <div class="item" *ngFor="let unitimg of unitImges;let i = index"  [ngClass]="{'active':i == '0'}" > <img src="{{url}}{{unitimg.home_img}}"> </div>
+                                   
+                                  </div>
+                                </div>
+                                <div class="clearfix">
+                                  <div id="thumbcarousel" class="carousel slide" data-interval="false">
+                                    <div class="carousel-inner">
+                                      <div class="item active">
+                                        <div  [attr.data-slide-to]="i"  *ngFor="let unitimg of unitImges?.slice(0, 4) ; let i = index"  data-target="#carousel" class="thumb"><img src="{{url}}{{unitimg.home_img}}"></div>
+                                      </div>
+                                      <div class="item" *ngIf="unitImges?.length > 4">
+                                        <div  [attr.data-slide-to]="i + 4"  *ngFor="let unitimg of unitImges?.slice(4, 8) ; let i = index "  data-target="#carousel" class="thumb"><img src="{{url}}{{unitimg.home_img}}"></div>
+                                      </div>
+                                      <div class="item" *ngIf="unitImges?.length > 8">
+                                        <div  [attr.data-slide-to]="i + 8"  *ngFor="let unitimg of unitImges?.slice(8, 12) ; let i = index "  data-target="#carousel" class="thumb"><img src="{{url}}{{unitimg.home_img}}"></div>
+                                      </div>
+                                      <div class="item" *ngIf="unitImges?.length > 12">
+                                        <div  [attr.data-slide-to]="i + 12"  *ngFor="let unitimg of unitImges?.slice(12, 16) ; let i = index "  data-target="#carousel" class="thumb"><img src="{{url}}{{unitimg.home_img}}"></div>
+                                      </div>
+                                      <div class="item" *ngIf="unitImges?.length > 16">
+                                        <div  [attr.data-slide-to]="i + 16"  *ngFor="let unitimg of unitImges?.slice(16, 20) ; let i = index "  data-target="#carousel" class="thumb"><img src="{{url}}{{unitimg.home_img}}"></div>
+                                      </div>
+                                    </div>
+                                   
+                                    <a class="left carousel-control" href="#thumbcarousel" role="button" data-slide="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> </a> <a class="right carousel-control" href="#thumbcarousel" role="button" data-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i> </a> </div>
+                                
+                                  
+                                </div>
+                              </div>
+
+
+
+
+                          
+                        </div> -->
+                     </div>
+                     <div class="col-md-4 right-section" *ngFor="let unit of unitData">
+                        <h2>{{unit.propertyName}}</h2>
+                        <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>  {{unit.city}}, {{unit.state}}, {{unit.country}}, {{unit.pincode}}</p>
+                        <div class="row apartmentUnits">
+                           <div class="col-md-6 totalUnit">
+                              <!-- <p ><span>Total Units :</span>    100</p> -->
+                           </div>
+                           <div class="col-md-6 vacantUnit">
+                              <!-- <p><span>Vacant Units :</span>    45</p> -->
+                           </div>
+                        </div>
+                      
+                        <div class="Greenwood" >
+                           <div class="row apartmentDetails">
+                              <div class="col-md-6">
+                                 <p class="Flat_No">Flat / House No :  <br> <span>{{unit.flatHoseNo}}</span> </p>
+                              </div>
+                              <div class="col-md-6 ">
+                                 <p class="Rent">Rent per month <br><span>  {{unit.rentAmount}}$</span> </p>
+                              </div>
+                           </div>
+                           <div class="row apartmentDetails">
+                              <div class="col-md-6 ">
+                                 <p>Unit Type:  <br> <span> {{unit.unitType}}</span> </p>
+                              </div>
+                              <div class="col-md-6 ">
+                                 <p>Furnished Type:  <br> <span>{{unit.furnishing}}</span> </p>
+                              </div>
+                           </div>
+                           <div class="row apartmentDetails">
+                              <div class="col-md-6">
+                                 <p>Landlord Name:  <br> <span>{{unit.userName}}</span> </p>
+                              </div>
+                              <div class="col-md-6 ">
+                                 <p class="email">Contact E-mail:  <br> <span>{{unit.email}}</span> </p>
+                              </div>
+                           </div>
+                           <div class="row Amount_deposite">
+                              <div class="col-md-12">
+                                 <p>Deposite Amount: <span>{{unit.depositAmount}} $</span> </p>
+                              </div>
+                            
+                           </div>
+                           <div class="row apartmentDetails">
+                            <div class="col-md-12">
+                              <span>Mobile No.: </span><span>{{unit.phone}} </span> 
+                           </div>
+                         </div>
+                        </div>
+                        <button class="btn btn-success request_btn" (click)="sendRequest(unit.id,unit.propertyId,unit.landlord_id)"> Send Request </button>
+                     </div>
+                    
+                  </div>
+               </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+  <!-- Search Property Slider Div :END -->
+  
+  
+<!-- landloard search and popup for that  -->
+		<div class="Findlandlord" *ngIf="findLandlord">
+			<div class="cardMain">
+				<div class="fullwidth text-center" >
+					<h2>Welcome <span>{{userName}} !</span></h2>
+					<p>currently you are not residing anywhere,<br>you could either find your landlord,<br>or search property </p>
+				</div>
+				<div class="landloadrMain" (click)="showFindLandlordPopup()">
+					<div class="imgDivLand">
+						<img src="assets/img/key.png" class="img-fluid commonImgKey">
+					</div>
+					<h4>Find Your Landloard</h4>
+				</div>
+				<div class="SearchPropertyMain" (click)="searchPropertyPopUp()">
+					<div class="imgDivLand imgDivSearchLand">
+						<img src="assets/img/company.png" class="img-fluid commonImgKey">
+					</div>
+					<h4>Search Properties</h4>
+				</div>
+			</div>
+		</div>
+
+		<button type="button"style="float:right" class="btn btn-primary ModalBtn" (click)="hideSearchLandPop()">
+			Search Landlord
+		</button>
+		  <!-- The Modal -->
+		<div class="modal inviteLandloardPop" id="myModal">
+			<div class="modal-dialog">
+        <form [formGroup]='searchlandForm' (ngSubmit)="sendNewRequest()"  autocomplete="off">
+				<div class="modal-content">
+		  
+					<!-- Modal Header -->
+					<div class="modal-header noBorder">
+					  <!-- <h4 class="modal-title">Invite Your Landlord</h4> -->
+					  <h4 class="modal-title">Find Your Landlord</h4>
+					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+			
+					<!-- Modal body -->
+					<div class="modal-body padd3040" >
+						<div class="form-group">
+							<!-- <label for="">Email Id:</label> -->
+              <!-- <input type="email" class="form-control" id="list" placeholder="Email Id"> -->
+              <div class="form-control" autocomplete="false">
+                <ng-autocomplete 
+                  [data]="data"
+                  [searchKeyword]="keyword"
+                  (selected)='selectEvent($event)'
+                  (inputChanged)='onChangeSearch($event)'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplate"
+                  [placeHolder]="placeHolder"
+                  [notFoundTemplate]="notFoundTemplate"
+                  formControlName='landlord_id'>                                 
+                </ng-autocomplete>
+                <div *ngIf="submit && f.landlord_id.errors" class="errors">
+                    <div >Landlord Name Required</div>
+                 </div>
+                <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.name"></a>
+                </ng-template>
+                 
+                <!-- <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template> -->
+                </div>
+            </div>
+            <div class="form-group">
+              <select  class="form-control" (change)="getUnit($event.target.value)"  formControlName='Property_id' >
+                <option value=""[selected]=true>---select Property Name---</option>
+                <option [value]="property.id" *ngFor="let property of property_data"> {{property.propertyName}} </option>
+                <option [value]="" *ngIf="property_data?.length == 0" disabled> No Records</option> 
+              </select>
+              <div *ngIf="submit && f.Property_id.errors"  class="errors" >
+                  <div >Property Name  required</div>
+               </div>
+            </div>
+					
+            <div class="form-group">
+                 
+              <select   class="form-control"  formControlName='unit_id'  >
+                <option value=""[selected]=true>---select Unit Name---</option>
+                <option [value]="unit.id" *ngFor="let unit of unit_data"> {{unit.flatHoseNo}} </option>
+                <option [value]="" *ngIf="unit_data?.length == 0" disabled>No Records</option>
+              </select>
+              <div *ngIf="submit && f.unit_id.errors"  class="errors">
+                  <div >Unit Name required</div>
+               </div>
+            </div>
+						<div class="form-group">
+							<!-- <button class="btn btnSendInvitation btn-block">Send Invitation</button> -->
+							<button class="btn btnSendInvitation btn-block">Send request to Landloard</button>
+						</div>
+						<div class="form-group sentBtn"  (click)="sendInvation()">
+              
+              <h5><span (click)="sendInvation(1)">Invite Mobile No!</span> <span (click)="sendInvation(0)">Invite Email!</span> </h5>
+							<!-- <h5> Invite Email !</h5> -->
+              
+            </div>
+            
+					</div>
+        
+        </div>
+      </form>
+			</div>
+		</div>
+		
+		
+    <!-- landloard search and popup for that close -->
+    
+    <!-- send Ivation in Email Popup:Start -->
+    <div class="modal inviteLandloardPop" id="sendInvitaionEmail">
+        <div class="modal-dialog">
+          <form [formGroup]='sendInvitationForm' (ngSubmit)="sendInvitation(0)"  autocomplete="off">
+          <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header noBorder">
+              <!-- <h4 class="modal-title">Invite Your Landlord</h4> -->
+              <h4 class="modal-title">Invite </h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        
+            <!-- Modal body -->
+            <div class="modal-body padd3040 InvitaionMainBody" >
+             
+        <div class="form-group">
+					<label> Email:</label>
+          <input type="text" formControlName="email">
+          <div *ngIf="inviteFormSubmit && form.email.errors"  class="errors">
+              <div *ngIf="form.email.errors.required">Email required</div>
+              <div *ngIf="form.email.errors.email">Email must be a valid email address</div>
+           </div>
+        </div>
+			  <div class="form-group">
+					<label> Message :</label>
+          <textarea class="" rows="8" formControlName="messgae"></textarea>
+          <div *ngIf="inviteFormSubmit && form.messgae.errors"  class="errors">
+              <div >Message required</div>
+              
+           </div>
+              </div>
+             
+              <div class="form-group text-center">
+                <button class="btn btnSendInvitation min150Btn">Send </button>
+               <!--   <button class="btn btnSendInvitation btn-block">Send request to Landloard</button> -->
+				 <button type="button"(click)="hideSendInvitationForm()" class="btn btnCancel"> Cancel</button>
+              </div>
+              
+            </div>
+          
+          </div>
+        </form>
+        </div>
+      </div>
+   <!-- send Ivation Popup:Start -->
+
+   <!-- send Ivation in Phone Popup:Start -->
+   <div class="modal inviteLandloardPop" id="sendInvitaionPhone">
+    <div class="modal-dialog">
+      <form [formGroup]='sendInvitationFormPhone' (ngSubmit)="sendInvitation(1)"  autocomplete="off">
+      <div class="modal-content">
+    
+        <!-- Modal Header -->
+        <div class="modal-header noBorder">
+          <!-- <h4 class="modal-title">Invite Your Landlord</h4> -->
+          <h4 class="modal-title">Invite </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+    
+        <!-- Modal body -->
+        <div class="modal-body padd3040 InvitaionMainBody" >
+         
+    <div class="form-group">
+      <label> Mobile No.:</label>
+      <input type="text" formControlName="phone">
+      <div *ngIf="inviteFormSubmit && formphone.phone.errors"  class="errors">
+          <div> Mobile No. required</div>
+       </div>
+    </div>
+    <div class="form-group">
+      <label> Message :</label>
+      <textarea class="" rows="8" formControlName="messgae"></textarea>
+      <div *ngIf="inviteFormSubmit && formphone.messgae.errors"  class="errors">
+          <div >Message required</div>
+          
+       </div>
+          </div>
+         
+          <div class="form-group text-center">
+            <button class="btn btnSendInvitation min150Btn">Send </button>
+           <!--   <button class="btn btnSendInvitation btn-block">Send request to Landloard</button> -->
+     <button type="button"(click)="hideSendInvitationForm()" class="btn btnCancel"> Cancel</button>
+          </div>
+          
+        </div>
+      
+      </div>
+    </form>
+    </div>
+  </div>
+<!-- send Ivation Popup:Start -->
+
+    </div>
+  </div>
+</div>
+  
+   
+     <!-- <div class="form-group">
+      <label class="bmd-label-floating">Select User type</label>
+    <select formControlName='user_type'  class="form-control" name="user_type"  [(ngModel)]="stafe.user_type">
+    <option [selected]=true>{{stafe.user_type}}</option>
+    <option *ngIf="stafe.user_type != 'caretaker'"value="caretaker"> Caretaker </option>
+    <option *ngIf="stafe.user_type != 'agent'" value="agent"> agent </option>
+    <option *ngIf="stafe.user_type != 'service_providers'" value="service_providers"> service providers </option>
+  
+
+  </select>
+  <div *ngIf="land_staff_edit.controls['user_type'].hasError('required')" class="error"> Select user type  </div>
+
+</div> -->

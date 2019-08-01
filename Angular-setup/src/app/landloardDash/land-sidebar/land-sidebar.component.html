@@ -1,0 +1,224 @@
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <a routerLink="/landlord-dash" class="simple-text logo-normal">
+     Landlord Dashboard
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+
+      <li class="nav-item  "  [ngClass]="{'active':activestate == '/landlord-dash'}" >
+        <a class="nav-link" routerLink="/landlord-dash" >
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+  
+      <li class="nav-item "  [ngClass]="{'active':activestate == '/add-properties'}"  >
+        <a class="nav-link" routerLink="/add-properties">
+        
+    <i class="fa fa-home" aria-hidden="true"></i>
+          <p>Properties</p>
+        </a>
+      </li>
+  
+  <li class="nav-item "  [ngClass]="{'active':activestate == '/tenants-list'}" >
+        <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples" aria-expanded="false">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <p> Tenants
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="pagesExamples" >
+          <ul class="nav">
+            <li class="nav-item "  [ngClass]="{'active':activestate == '/tenants-list'}">
+              <a class="nav-link" routerLink="/tenants-list" >
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Tenants List </span>
+              </a>
+            </li>
+           <li class="nav-item " [ngClass]="{'active':activestate == '/lease-list'}">
+              <a class="nav-link" routerLink="/lease-list" >
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Leases </span>
+              </a>
+            </li>
+    <li class="nav-item " [ngClass]="{'active':activestate == '/document-details'}">
+              <a class="nav-link" routerLink="/document-details">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Documents </span>
+              </a>
+            </li>
+            <li class="nav-item " [ngClass]="{'active':activestate == '/messages'}">
+              <a class="nav-link" routerLink="/messages">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Massages </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+  
+      <li class="nav-item "  [ngClass]="{'active':activestate == '/notice'}"  >
+        <a class="nav-link" routerLink="/notice">
+        
+    <i  class="fa fa-users" aria-hidden="true"></i>
+          <p>Notice</p>
+        </a>
+      </li>
+  
+  <li class="nav-item ">
+        <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples1" aria-expanded="false">
+         <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <p> Transactions
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="pagesExamples1" >
+          <ul class="nav">
+            <li class="nav-item ">
+              <a class="nav-link" routerLink="/recurring-transactions">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Recurring Transactions </span>
+              </a>
+            </li>
+           <li class="nav-item ">
+              <a class="nav-link" routerLink="/all-transactions">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> All Transactions </span>
+              </a>
+            </li>
+    <li class="nav-item ">
+              <a class="nav-link" routerLink="/suppliers">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Vendors / Suppliers </span>
+              </a>
+            </li>
+           
+          </ul>
+        </div>
+      </li>	
+  
+  
+  
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/request-details">
+          <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+          <p>Request</p>
+        </a>
+  
+      </li>
+    
+  
+  <li class="nav-item ">
+        <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples12" aria-expanded="false">
+          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+          <p> Reports
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="pagesExamples12" >
+          <ul class="nav">
+            <li class="nav-item " [ngClass]="{'active':activestate == '/financial-report'}" >
+              <a class="nav-link" routerLink="/financial-report">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Financial </span>  
+              </a>
+            </li>
+           <li class="nav-item " [ngClass]="{'active':activestate == '/leases-report'}" >
+              <a class="nav-link" routerLink="/leases-report">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Leases Reports </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>	
+  
+    
+  
+      <li class="nav-item ">
+        <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples3" aria-expanded="false">
+         <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+          <p> Settings
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="pagesExamples3" >
+          <ul class="nav">
+            <li class="nav-item ">
+              <a class="nav-link" routerLink="/my-profile">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> My Profile </span>
+              </a>
+            </li>
+           <li class="nav-item ">
+              <a class="nav-link" routerLink="/payment-option">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Payment Option </span>
+              </a>
+            </li>
+           <li class="nav-item ">
+              <a class="nav-link" routerLink="/notification">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Notification </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" routerLink="/add-staff">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Add Staff </span>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/add-users">
+                  <span class="sidebar-mini">  </span>
+                  <span class="sidebar-normal"> Add Users </span>
+                </a>
+              </li>
+            <li class="nav-item ">
+              <a class="nav-link" routerLink="/land-security">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Security </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" routerLink="/land-billing">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Billing </span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" routerLink="/land-massages">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal"> Massages </span>
+              </a>
+            </li>
+           
+          </ul>
+        </div>
+      </li>	
+      
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/landlord-chat">
+          <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+          <p>Chat</p>
+        </a>
+  
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="./notifications.html">
+         <i class="fa fa-info" aria-hidden="true"></i>
+          <p>Helps</p>
+        </a>
+      </li>
+  
+    </ul>
+  </div>
+</div>

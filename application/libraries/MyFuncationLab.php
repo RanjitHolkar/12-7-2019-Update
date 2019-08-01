@@ -23,7 +23,7 @@ class MyFuncationLab {
         return $token;
       }  
 
-public  function  sendNotification($user_token,$message){
+  public  function  sendNotification($user_token,$message){
         //$cleaner_id=5;
         // $user_token=$this->PublishBookingModel->get_Token($cleaner_id); 
 

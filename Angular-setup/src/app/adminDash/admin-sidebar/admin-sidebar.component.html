@@ -1,0 +1,41 @@
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <a routerLink="/adminDash" class="simple-text logo-normal">
+       Admin Dashboard
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item " [ngClass]="{'active':activestate == '/admin-dash'}">
+        <a class="nav-link"routerLink="/admin-dash">
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+
+      <li class="nav-item   " [ngClass]="{'active':activestate == '/create-users'}"> 
+        <a class="nav-link"routerLink="/create-users">
+          <i  aria-hidden="true" class="fa fa-users"></i>
+          <p>Add Users</p>
+        </a>
+      </li>
+
+      <li class="nav-item   " [ngClass]="{'active':activestate == '/admin-mpesa'}"> 
+        <a class="nav-link"routerLink="/admin-mpesa">
+          <i  aria-hidden="true" class="fa fa-users"></i>
+          <p>MPESA Payments</p>
+        </a>
+      </li>
+
+     
+     
+    </ul>
+  </div>
+</div>
+
+

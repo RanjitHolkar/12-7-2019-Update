@@ -1,0 +1,2257 @@
+<div class="wrapper ">
+<app-land-sidebar></app-land-sidebar>
+<!--  Mid section  -->
+<div class="main-panel">
+<!-- Navbar -->
+<app-land-nav></app-land-nav>
+<!-- End Navbar -->
+<div class="content" *ngIf="!editServiceRequest && !showTenantForm" >
+   <!-- ###############  Properties list ######################-->
+   <!-- Add Unit PopUp:Start -->
+   <div class="container-fluid"  *ngIf="display_document == false && houseImage == false && addleasePopup == false && editPropertiesDiv ==false && addUnitPopup == false && editleasePopup == false && addDocumentPopup == false && addPropertyDoc == false &&  addTransaction == false && !editUnitPopUp"   >
+      <div class="main-box">
+         <div class="row">
+            <div class=" col-sm-12" *ngIf="propertyDeatils">
+               <div class="PropertyUnitDetails" >
+                  <div class="unitBadge">
+                     <h4>Units</h4>
+                     <div class="badgesRound">{{unit_data?.length}}</div>
+                  </div>
+                  <div class="unitDetails1">
+                     <div class=" boxDivInner1" >
+                        <img src="{{url}}{{property_data.property_imges}} ">
+                        <i class="fa fa-pencil-square editIcon" (click)="editProertyImage(property_data.id)" aria-hidden="true"></i>
+                     </div>
+                     <div class="property-name">
+                        <div class="boxDivInner">
+                           <h4 > Property Name - <span> {{property_data.propertyName}}</span> </h4>
+                        </div>
+                        <div class="boxDivInner">
+                           <h4 >
+                              <!-- Address --> <i class="fa fa-map-marker locationIcon" aria-hidden="true"></i> -  <span> {{property_data.landmark}} , {{property_data.city}} ,{{property_data.state}} , {{property_data.country}} , {{property_data.pincode}}</span> 
+                           </h4>
+                        </div>
+                        <div class="boxDivInner">
+                           <h4 ><i class="fa fa-home homeIcon" aria-hidden="true"></i> -  <span> {{property_data.propertyType}} </span> </h4>
+                        </div>
+                        <div class="boxDivInner">
+                           <button class="btn EditProperty marR10" (click)="editProperty()"> Edit Property</button>
+                           <button *ngIf="unit_data?.length == 0" class="btn EditProperty" (click)="deleteProperty()"> Delete Property</button>                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- <div class="row"> -->
+            <div class="loginInner col-md-12 mar0" >
+               <ul class="nav nav-list marTB20" *ngIf="propertyDeatils">
+                  <li class="nav-item">
+                     <a class="nav-link" [ngClass]="{active: unitpopup}" (click)="unitPopup()">UNITS</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" [ngClass]="{active: unitsPopupFiles}"(click)="unitsFilesPopup()" >FILES</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" [ngClass]="{active: unitTrasactionPopup}" (click)="unitsTransactionPopup()" >TRANSACTIONS</a>
+                  </li>
+               </ul>
+               <div class="card mar0">
+                  <div class="card-body padd0" *ngIf="unitpopup == true && propertyDeatils == true">
+                     <div class="boxDivInner float-right btnDiv">
+                        <button  class="btn EditProperty m-r-5" (click)="addNewUnitShowPopup()" *ngIf="property_data.propertyType != 'singleunit' || unit_data?.length != '1'">Add </button>
+                     </div>
+                     <div class="tableShadow" >
+                        <table class="table table-striped " >
+                           <thead>
+                              <tr>
+                                 <th>Sr No.</th>
+                                 <th>Flat/House No.</th>
+                                 <th>Type</th>
+                                 <th>Furnishing Type</th>
+                                 <th>Lease Status</th>
+                                 <th>Action</th>
+                                 <!-- <th>Add Tenant</th> -->
+                              </tr>
+                           </thead>
+                           <tbody >
+                              <tr *ngFor="let unit of unit_data; let inx = index">
+                                 <td>{{inx+1}}</td>
+                                 <td>{{unit.flatHoseNo}}</td>
+                                 <td>{{unit.unitType}}</td>
+                                 <td>{{unit.furnishing}}</td>
+                                 <td>
+                                    <a *ngIf="unit.lease_status == 1"> YES</a><a *ngIf="unit.lease_status == 0"> NO </a><!-- <button class="btn btn-success" (click)="display_homeImages(unit.id)">View Images</button> -->
+                                 </td>
+                                 <td  >
+                                    <!-- <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> -->
+                                       <button class="btn blueBtn"  (click)="showUnitDetils(unit.id)" > <i class="fa fa-eye eyeIcon" title="View Unit Details"  aria-hidden="true" ></i></button>
+                                       <button class="btn greenBtn" (click)="editUnitDeatils(unit.id,inx)"><i class="fa fa-pencil" title="Edit Unit Details" aria-hidden="true"></i></button>
+                                       <button class="btn redBtn"(click)="deleteUnitDetails(unit.id)" *ngIf="unit.onRent == null"> <i  class="fa fa-trash" title="Delete Unit"  aria-hidden="true"  ></i></button>
+                                    <!-- </a> -->
+                                    <!-- <a href="#"><i class="fa fa-eye eyeIcon" style="color: #21BACF;" aria-hidden="true" ></i></a> --> 
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <div class="col-md-12 outerNoRecord" *ngIf="unit_data?.length ==0">
+                           <div >No Records</div>
+                        </div>
+                     </div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <div class="newUnitForm">
+                     <form action="">
+                     </form>
+                  </div>
+                  <div class="tableDiv FilesTable tableShadow" *ngIf="unitsPopupFiles && propertyDeatils">
+                     <div class="boxDivInner float-right btnDiv">
+                        <button  class="btn EditProperty m-r-5" (click)="addPropertyDocument()">Add </button>
+                     </div>
+                     <table class="table table-striped" >
+                        <thead>
+                           <tr>
+                              <th>Document Name</th>
+                              <th>Type</th>
+                              <th>File Format</th>
+                              <th>Added Date</th>
+                              <th>file</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr *ngFor="let Dcoumnet of propertyDoc">
+                              <td>{{Dcoumnet.document_name}}</td>
+                              <td>{{Dcoumnet.document_type}}</td>
+                              <td>{{Dcoumnet.file_format}}</td>
+                              <th>{{Dcoumnet.date}}</th>
+                              <td><a href="{{url}}{{Dcoumnet.file}}" download="myimage" target="_blank"><i class="fa fa-file-text-o fileIcon" aria-hidden="true"></i></a></td>
+                              <td (click)="delete_document_prp(Dcoumnet.id)"><button class="btn btn-danger">Delete</button></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div class="col-md-12 outerNoRecord" *ngIf="propertyDoc?.length ==0">
+                        <div >No Records</div>
+                     </div>
+                  </div>
+                  <div class="tableDiv tableShadow" *ngIf="unitTrasactionPopup && propertyDeatils">
+                     <div class="boxDivInner float-right btnDiv">
+                        <button  class="btn EditProperty m-r-5" (click)="addtransaction()">Add </button>
+                     </div>
+                     <table class="table table-striped" >
+                        <thead>
+                           <tr>
+                              <th>Unit Name</th>
+                              <th>Tenant Name</th>
+                              <th>Date</th>
+                              <th>Type</th>
+                              <th>Vendor Name</th>
+                              <th>Amount</th>
+                           </tr>
+                        </thead>
+                        <tbody >
+                           <tr *ngFor="let transaction of transactionData">
+                              <td>{{transaction.flatHoseNo}}</td>
+                              <td>{{transaction.userName}}</td>
+                              <td>{{transaction.payment_date | date}}</td>
+                              <td>{{transaction.payment_status==0 ? 'Unpaid' : transaction.payment_status==1 ? 'Paid' : 'Partially Paid'}}</td>
+                              <td>{{transaction.name}}</td>
+                              <td>{{transaction.totalAmount}}</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div class="col-md-12 outerNoRecord" *ngIf="transactionData?.length ==0">
+                        <div>No Records</div>
+                     </div>
+                  </div>
+                 
+                  <div class="collapse1 unitViewMain" id="collapseExample1">
+                     <div class="card card-body padd0 mar0">
+                        <div class="container-fluid"  *ngIf="houseImage== true">
+                           <div class="col-md-12">
+                              <div class="loginInner">
+                                 <div class="card">
+                                    <div class="card-header card-header-info">
+                                       <h4 class="card-title pull-left"> List  </h4>
+                                       <button type="submit" class="btn btn-info pull-right" (click)="hide_houseImagePopup()" >Back</button>
+                                    </div>
+                                    <div class="card-body">
+                                       <div class="row">
+                                          <div class="col-sm-3" *ngFor="let img of houseImages" >
+                                             <div class="singleListImg">
+                                                <img src="{{img.home_img}}" class="img-fluid desImgcommon">
+                                                <i class="fa fa-pencil-square editIcon" (click)="editImage(img.id)" aria-hidden="true"></i>
+                                                <i class="fa fa-window-close deleteIcon" (click)="deleteImage(img.id)" aria-hidden="true"></i>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-md-12">
+                                       <div class="noRecordsDiv" *ngIf="noRecordsPopup == true">No Records</div>
+                                    </div>
+                                    <div class="newUnitForm">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <!-- House/flat Image Delete Confirmation modal :START -->
+                        <div id="myModal" class="modal fade">
+                           <div class="modal-dialog modal-confirm">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title delete">Are you sure?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Do you really want to delete these image</p>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteconfirm_image()">Delete</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--  House/flat Image Delete Confirmation modal:END -->
+
+                        <!-- Property Delete Confirmation modal :START -->
+                        <div id="propertyModal" class="modal fade">
+                           <div class="modal-dialog modal-confirm">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title delete">Are you sure?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Do you really want to delete these Property</p>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                    <button  type="button" class="btn btn-danger" (click)="deleteConfirmProperty()">Delete</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--  Property Delete Confirmation modal:END -->
+
+                        <!-- Unit Delete Confirmation modal :START -->
+                        <div id="unitModal" class="modal fade">
+                           <div class="modal-dialog modal-confirm">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title delete">Are you sure?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Do you really want to delete these Unit</p>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                    <button  type="button" class="btn btn-danger" (click)="unitConfirmDelete()">Delete</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--  Property Delete Confirmation modal:END -->
+
+                        <!-- Edit Image Model:Start -->
+                        <div class="modal fade" id="Edit_img_Modal">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title">Select Flat/Home Image</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <form id="imgform">
+                                       <input type="file" class="btn btn-info " id="selectFile" name="selectFile"  (change)="fileChangeEvent($event)" />
+                                       <span *ngIf="image_error == true"class="error_display">Please select Image</span>
+                                    </form>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button class="btn comn-btn-info"(click)="Upload_EditImage()">Upload</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Edit Image Model:END -->
+
+
+                        <!-- Edit Property Image Model:Start -->
+                        <div class="modal fade" id="Edit_Pimg_Modal">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title">Select Property Images</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <form id="imgform">
+                                       <input type="file" class="btn btn-info " id="selectFile" name="selectFile"  (change)="houseFileget($event)" />
+                                       <span *ngIf="image_error == true"class="error_display">Please select Image</span>
+                                    </form>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button class="btn comn-btn-info"(click)="Upload_PEditImage()">Upload</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Edit Image Model:END -->
+
+                        <!-- Edit Document Model:Start -->
+                        <div class="modal fade" id="Edit_Document_Modal">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title delete">Document </h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <form id="imgform">
+                                       <input type="text" id="des">
+                                       <input type="file" class="btn btn-info " id="selectFile" name="selectFile"  (change)="fileChangeEvent($event)" />
+                                    </form>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button class="btn comn-btn-info"(click)="Upload_EditImage()">Update</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Edit Document Model:END -->
+
+                        <!-- document  Delete Confirmation modal :START -->
+                        <div id="document_model" class="modal fade">
+                           <div class="modal-dialog modal-confirm">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h4 class="modal-title delete">Are you sure?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Do you really want to delete these Document</p>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteconfirm_document()">Delete</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--  document Delete Confirmation modal:END -->
+                        <!-- Property document  Delete Confirmation modal :START -->
+                        <div id="document_model_prop" class="modal fade">
+                           <div class="modal-dialog modal-confirm">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <!-- <div class="icon-box">
+                                       <i class="material-icons">&#xE5CD;</i>
+                                       </div>         -->
+                                    <h4 class="modal-title delete">Are you sure?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Do you really want to delete these Document</p>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteconfirm_document_pro()">Delete</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Property  document Delete Confirmation modal:END -->
+                        <!-- ADD New Lease :Start -->
+                        <div class="container-fluid" *ngIf="addleasePopup == true " >
+                           <div class="col-md-12">
+                              <div class="loginInner">
+                                 <div class="card">
+                                    <div class="card-header card-header-info">
+                                       <h4 class="card-title pull-left"> Add Lease To Property   </h4>
+                                       <button type="submit" class="btn btn-info pull-right" (click)="hide_addleasePopup()">Back</button>
+                                    </div>
+                                    <div class="card-body">
+                                       <form   [formGroup]='leaseForm' (ngSubmit)="addNewLease()"  autocomplete="off" > 
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating"> Start Date</label>
+                                                <input type="date"  formControlName='start_date'  aria-placeholder="Start Date" name="start_date" class="form-control" [(ngModel)]="start_date" >
+                                                <div *ngIf="submit && f.start_date.errors" >
+                                                   <div >start date  required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating"> End Date</label>
+                                                <input type="date" formControlName='end_date' min="{{start_date}}"  name="end_date" class="form-control">
+                                                <div *ngIf="submit && f.end_date.errors" >
+                                                   <div >Flat/House   required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating">Rent Amount</label>
+                                                <input type="text" formControlName='rent' name="rent" class="form-control">
+                                                <div *ngIf="submitted && f.rent.errors" >
+                                                   <div >Rent Amount required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating">Deposite Amount </label>
+                                                <input type="text" formControlName='deposite_amount' name="deposite_amount" class="form-control">
+                                                <div *ngIf="submitted && f.deposite_amount.errors" >
+                                                   <div >Deposite amount required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating">Payment Day </label>
+                                                <select formControlName='payment_day'  class="form-control" name="payment_day">
+                                                   <option [selected]=true disabled=""  > Select Day </option>
+                                                   <option *ngFor="let day of dayduties">{{day}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.payment_day.errors" >
+                                                   <div >payment_day required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating">Payment Frequency  </label>
+                                                <select formControlName='payment_frequency'  class="form-control" name="payment_frequency">
+                                                   <option [selected]=true disabled=""> Select payment frequency </option>
+                                                   <option>Weekly</option>
+                                                   <option>Monthly</option>
+                                                   <option>Bi-Annually(6 Months)</option>
+                                                   <option>Yearly</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.payment_frequency.errors" >
+                                                   <div >payment frequency required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating">Tenant Reminder </label>
+                                                <select formControlName='tenant_reminder'  class="form-control" name="tenant_reminder">
+                                                   <option [selected]=true disabled=""> Select Tenant Reminder </option>
+                                                   <option>Yes</option>
+                                                   <option>No</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.tenant_reminder.errors" >
+                                                   <div >Tenant reminder required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <div class="form-group">
+                                                <label class="bmd-label-floating">Overdue Reminder </label>
+                                                <select formControlName='overview_reminder'  class="form-control" name="overview_reminder">
+                                                   <option [selected]=true disabled=""> Select overview reminder </option>
+                                                   <option>Yes</option>
+                                                   <option>No</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.overview_reminder.errors" >
+                                                   <div >Overview reminder required</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-12 text-center">
+                                          <button type="submit" class="btn btn-info pull-right">Save Lease</button>
+                                       </div>
+                                       <div class="clearfix"></div>
+                                       </form>
+                                    </div>
+                                    <div class="newUnitForm">
+                                       <!-- <form action="">
+                                          </form> -->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- ADD New Lease :End -->
+                     </div>
+                     <div class="card card-body mar0 padd0">
+                        <div class="unitViewMainInner"  *ngIf="display_document == false && propertyDeatils == false && addleasePopup == false && editPropertiesDiv ==false && addUnitPopup == false && !editUnitPopUp"  >
+                           <!-- <div class="main-box"> -->
+                           <div class="row">
+                              <div class=" col-sm-12">
+                                 <div class="PropertyUnitDetails " >
+                                    <div class="unitDetails1" *ngFor="let unit_data of oneUnit_data">
+                                       <div class=" boxDivInner1" >
+                                          <img src="{{url}}{{unit_data.home_img}}"> 
+                                       </div>
+                                       <div class="backBtnDiv ">
+                                          <button class="btn btn-info" (click)="this.propertyDeatils=true;">BACK</button>
+                                       </div>
+                                       <div class="property-name" >
+                                          <div class="boxDivInner">
+                                             <h4 > Flat / House No. -  <span> {{unit_data.flatHoseNo}}</span> </h4>
+                                          </div>
+                                          <div class="boxDivInner">
+                                             <h4 > Type -  <span> {{unit_data.unitType}} </span> </h4>
+                                          </div>
+                                          <div class="boxDivInner">
+                                             <h4 >Furnishing Type - <span> {{unit_data.furnishing}} </span> </h4>
+                                             <h4 class=""><b> Rent - {{unit_data.rentAmount}}</b></h4>
+                                             <label class="switch">
+                                                <input type="checkbox" (change)="ActiveDeactiveUnit(unit_data.id,unit_data.linkMultiTenant == '1' ? '0':'1')" [checked]="unit_data.linkMultiTenant == '0' ? 'true':'' ">
+                                                <span class="slider round"  ></span>
+                                              </label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="loginInner col-md-12">
+                                 <ul class="nav nav-list">
+                                    <li class="nav-item">
+                                       <a class="nav-link" [ngClass]="{active: leaseDeatils}" (click)="leaseDeatilsPopup()">DETAILS</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" [ngClass]="{active: tenantDeatils}" (click)="tenantDeatilsPopup()">TENANTS</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" [ngClass]="{active: unitFiles}" (click)="unitFilesPopup()">FILES</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" [ngClass]="{active: unitImages}" (click)="unitPicturesPopup()">PICTURE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                       <a class="nav-link" [ngClass]="{active: unitService}" (click)="unitServicePopup()" >SERVICE REQUEST</a>
+                                    </li>
+                                 </ul>
+                                 <div class="col-md-12">
+                                 </div>
+                                 <div class="card">
+                                    <div class="card-body property-details">
+                                       <div class="tableDiv tableShadow" *ngIf="leaseDeatils">
+                                          <div class="boxDivInner float-right btnDiv">
+                                             <button *ngIf="lease_data?.length == 0" class="btn EditProperty m-r-5" (click)="add_lease()">Add </button>
+                                             <button class="btn EditProperty" *ngIf="lease_data?.length != 0"  (click)="edit_lease()">EditLease</button>
+                                          </div>
+                                          <table class="table table-striped">
+                                             <thead>
+                                                <tr>
+                                                   <th>Rent Amount</th>
+                                                   <th>Payment Day</th>
+                                                   <th>Tenant Reminder</th>
+                                                   <th>Deposit Amount</th>
+                                                   <th>Payment Frequency</th>
+                                                   <th>Overdue Reminder</th>
+                                                   <!-- <th>Add Tenant</th> -->
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                <tr  *ngFor="let lease of lease_data">
+                                                   <td>{{lease.rentAmount}}</td>
+                                                   <td>{{lease.paymentDay}}</td>
+                                                   <td>{{lease.tenantReminder}}</td>
+                                                   <td>{{lease.depositAmount}}</td>
+                                                   <td>{{lease.paymentFrequency}}</td>
+                                                   <td>{{lease.overdueReminder}}</td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                          <div class="col-md-12 outerNoRecord" *ngIf="lease_data?.length ==0">
+                                             <div  >No Records</div>
+                                          </div>
+                                       </div>
+                                       <div class="tableDiv TenantTable tableShadow" *ngIf="tenantDeatils">
+                                             <div class="boxDivInner float-right btnDiv">
+                                                   <button  class="btn EditProperty m-r-5" (click)="add_tenant()">Add </button>
+                                                   
+                                                </div>
+                                          <table class="table table-striped" >
+                                             <thead>
+                                                <tr>
+                                                   <th>Tenant Name</th>
+                                                   <th>Phone</th>
+                                                   <th>Email</th>
+                                                   <th>Join Date</th>
+                                                   <th>Action</th>
+                                                   <!-- <th>Add Tenant</th> -->
+                                                </tr>
+                                             </thead>
+                                             <tbody >
+                                                <tr *ngFor="let tenant_list of tenant_data">
+                                                   <td>{{tenant_list.userName}}</td>
+                                                   <td>{{tenant_list.phone}}</td>
+                                                   <td>{{tenant_list.email}}</td>
+                                                   <td>{{tenant_list.regDate}}</td>
+                                                   <td *ngIf="lease_data?.length !=0"><button class="btn btn-success" *ngIf="tenant_list.onLease == 'No' " (click)="link_tenant(tenant_list.id)"> Link</button><button class="btn btn-success" *ngIf="tenant_list.onLease == 'Yes'" (click)="remove_tenant(tenant_list.id)"> Unlink</button></td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                          <div class="col-md-12 outerNoRecord" *ngIf="tenant_data?.length ==0">
+                                             <div >No Records</div>
+                                          </div>
+                                       </div>
+                                       <div class="tableDiv FilesTable tableShadow" *ngIf="unitFiles">
+                                          <div class="boxDivInner float-right btnDiv">
+                                             <button class="btn EditProperty m-r-5" (click)="addDocumentPopupshow()">Add </button>    
+                                          </div>
+                                          <table class="table table-striped" >
+                                             <thead>
+                                                <tr>
+                                                   <th>Document Name</th>
+                                                   <th>Type</th>
+                                                   <th>File Format</th>
+                                                   <th>Added Date</th>
+                                                   <th>file</th>
+                                                   <th>Action</th>
+                                                   <!-- <th>Add Tenant</th> -->
+                                                </tr>
+                                             </thead>
+                                             <tbody >
+                                                <tr *ngFor="let Dcoumnet of document_files">
+                                                   <td>{{Dcoumnet.document_name}}</td>
+                                                   <td>{{Dcoumnet.document_type}}</td>
+                                                   <td>{{Dcoumnet.file_format}}</td>
+                                                   <th>{{Dcoumnet.date}}</th>
+                                                   <td ><i class="fa fa-file-text-o fileIcon" aria-hidden="true"></i></td>
+                                                   <td ><div class="dropdown actionBtn">
+                                                      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
+                                                      </button>
+                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                            <a href="{{url}}{{Dcoumnet.file}}" download="documentFile" target="_blank">
+                                                        <button class="dropdown-item dropMenu" type="button"> <i class="fa fa-pencil"></i> View</button></a>
+                                                        <button class="dropdown-item dropMenu" type="button" (click)="delete_document(Dcoumnet.id)"> <i class="fa fa-trash"></i> Delete</button>
+                                                        <!-- <button class="dropdown-item dropMenu"  type="button"(click)="add_unit(property.id)"><i class="fa fa-trash" aria-hidden="true"></i>Add Unit</button> -->
+                                                       
+                                                      </div>
+                                                    </div> </td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                          <div class="col-md-12 outerNoRecord" *ngIf="document_files?.length ==0">
+                                             <div>No Records</div>
+                                          </div>
+                                       </div>
+                                       <div class="PictureListUnit" *ngIf="unitImages">
+                                          <div class="boxDivInner float-right btnDiv">
+                                             <button class="btn EditProperty m-r-5"(click)="add_new_img()">Add </button>    
+                                          </div>
+                                          <div class="row">
+                                             <div class="col-sm-6 col-xs-12 col-md-4" *ngFor="let img of unit_img">
+                                                <div class="listDivSingle">
+                                                   <img src="{{url}}{{img.home_img}}" class="img-fluid">
+                                                   <i class="fa fa-times closeIconImg" *ngIf="unit_img.length !=1" aria-hidden="true" (click)="removeUnitImg(img.id)"></i>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- Unit Service Popup:START -->
+                                       <div class="tableDiv FilesTable tableShadow" *ngIf="unitService">
+                                          <!-- <div class="boxDivInner float-right btnDiv"> -->
+                                             <!-- <button class="btn EditProperty m-r-5" >Add </button>     -->
+                                          <!-- </div> -->
+										   <div class="boxDivInner btnDiv completedBtn">
+                                             <button class="serviceButton"  [ngClass]="{ 'activeBtn': completeServiceReqdata == true}" (click)="completedServiceReq(1)">Completed </button>    
+                                             <button  class="serviceButton"  [ngClass]="{ 'activeBtn': pendingServiceReqdata == true}" (click)="completedServiceReq(0)" >Pending </button>    
+                                             <button  class="serviceButton"  [ngClass]="{ 'activeBtn': declineServiceReqdata == true}" (click)="completedServiceReq(2)" >Decline </button>   
+                                          </div>
+                                          <table class="table table-striped" >
+                                             <thead>
+                                                <tr>
+                                                   <th>Task</th>
+                                                   <th>Property Name</th>
+                                                   <th>Tenant Name</th>
+                                                   <th>Start Date</th>
+                                                   <th>Due Date</th>
+                                                   <th>Priority</th>
+                                                   <th *ngIf="pendingServiceReqdata">Action</th>
+                                                </tr>
+                                             </thead>
+                                             <tbody *ngIf="pendingServiceReqdata">
+                                                <tr *ngFor="let services of services_data">
+                                                   <td>{{services.title}}</td>
+                                                   <td>{{services.propertyName}}</td>
+                                                   <td>{{services.userName}}</td>
+                                                   <th>{{services.start_date}}</th>
+                                                   <td >{{services.due_date}}</td>
+                                                   <td >{{services.priority == 0 ? 'Low' : services.priority == 1 ? 'High' : services.priority == 2 ? 'Medium' : 'Urgent'}}</td>                                                   
+                                                   <td ><div class="dropdown actionBtn">
+                                                      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
+                                                      </button>
+                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <button class="dropdown-item dropMenu" type="button" (click)="editService(services.id,services.unit_id)"> <i class="fa fa-pencil"></i> Edit</button>
+                                                        <button class="dropdown-item dropMenu" type="button" > <i class="fa fa-trash"></i> Delete</button>
+                                                        <!-- <button class="dropdown-item dropMenu"  type="button"(click)="add_unit(property.id)"><i class="fa fa-trash" aria-hidden="true"></i>Add Unit</button> -->
+                                                       
+                                                      </div>
+                                                    </div> </td>
+                                                </tr>
+                                             </tbody>
+                                             <tbody *ngIf="completeServiceReqdata">
+                                                   <tr *ngFor="let services_new of complete_services">
+                                                      <td>{{services_new.title}}</td>
+                                                      <td>{{services_new.propertyName}}</td>
+                                                      <td>{{services_new.userName}}</td>
+                                                      <th>{{services_new.start_date}}</th>
+                                                      <td >{{services_new.due_date}}</td>
+                                                      <td >{{services_new.priority == 0 ? 'Low' : services_new.priority == 1 ? 'High' : services_new.priority == 2 ? 'Medium' : 'Urgent'}}</td>                                                   
+                                                      <!-- <td ><div class="dropdown actionBtn">
+                                                         <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                           Action
+                                                         </button>
+                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                           <button class="dropdown-item dropMenu" type="button" (click)="editService(services_new.id,services_new.unit_id)"> <i class="fa fa-pencil"></i> Edit</button>
+                                                           <button class="dropdown-item dropMenu" type="button" > <i class="fa fa-trash"></i> Delete</button>
+                                                          
+                                                          
+                                                         </div>
+                                                       </div> </td> -->
+                                                   </tr>
+                                                </tbody>
+                                                <tbody *ngIf="declineServiceReqdata">
+                                                   <tr *ngFor="let services_new of decline_services">
+                                                      <td>{{services_new.title}}</td>
+                                                      <td>{{services_new.propertyName}}</td>
+                                                      <td>{{services_new.userName}}</td>
+                                                      <th>{{services_new.start_date}}</th>
+                                                      <td >{{services_new.due_date}}</td>
+                                                      <td >{{services_new.priority == 0 ? 'Low' : services_new.priority == 1 ? 'High' : services_new.priority == 2 ? 'Medium' : 'Urgent'}}</td>                                                   
+                                                      <!-- <td ><div class="dropdown actionBtn">
+                                                         <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                           Action
+                                                         </button>
+                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                           <button class="dropdown-item dropMenu" type="button" (click)="editService(services_new.id,services_new.unit_id)"> <i class="fa fa-pencil"></i> Edit</button>
+                                                           <button class="dropdown-item dropMenu" type="button" > <i class="fa fa-trash"></i> Delete</button>
+                                                          
+                                                          
+                                                         </div>
+                                                       </div> </td> -->
+                                                   </tr>
+                                                </tbody>
+                                          </table>
+                                          <div class="col-md-12 outerNoRecord" *ngIf="services_data?.length == 0 && pendingServiceReqdata">
+                                             <div>No Records</div>
+                                          </div>
+                                          <div class="col-md-12 outerNoRecord" *ngIf="complete_services?.length ==0 && completeServiceReqdata">
+                                                <div>No Records</div>
+                                          </div>
+                                          <div class="col-md-12 outerNoRecord" *ngIf="decline_services?.length ==0 && declineServiceReqdata">
+                                             <div>No Records</div>
+                                       </div>
+                                       </div>
+                                       <!-- Unit Service Popup:END -->
+                                    </div>
+                                    <div class="newUnitForm">
+                                       <form action="">
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- </div> -->
+                        </div>
+                        <!-- On view End-->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Add New Unit :End -->
+      <!-- list Div -->
+      <div class="container-fluid"  *ngIf="houseImage== true">
+         <div class="col-md-12">
+            <div class="loginInner">
+               <div class="card">
+                  <div class="card-header card-header-info">
+                     <h4 class="card-title pull-left"> List  </h4>
+                     <button type="submit" class="btn btn-info pull-right" (click)="hide_houseImagePopup()" >Back</button>
+                  </div>
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-sm-3" *ngFor="let img of houseImages" >
+                           <div class="singleListImg">
+                              <img src="{{img.home_img}}" class="img-fluid desImgcommon">
+                              <i class="fa fa-pencil-square editIcon" (click)="editImage(img.id)" aria-hidden="true"></i>
+                              <i class="fa fa-window-close deleteIcon" (click)="deleteImage(img.id)" aria-hidden="true"></i>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="noRecordsDiv" *ngIf="noRecordsPopup == true">No Records</div>
+                  </div>
+                  <div class="newUnitForm">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- House/flat Image Delete Confirmation modal :START -->
+      <div id="myModal" class="modal fade">
+         <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title delete">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <p>Do you really want to delete these image</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteconfirm_document()">Delete</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  House/flat Image Delete Confirmation modal:END -->
+
+       <!-- active Deactive unit For Multiple Tenant Sent Request modal :START -->
+       <div id="ActiveDeactive" class="modal fade">
+         <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title delete">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <p>Do you really want to {{ActiveDeactive_value== 0?'Active':'Deactive'}} For Sent Multiple Tenatns</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-info" (click)="hideActiveDeactiveModal()" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-danger" (click)="activeDeactiveConfirm()">Yes</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- active Deactive unit For Multiple Tenant Sent Request modal :END -->
+
+
+      <!-- Edit Image Model:Start -->
+      <div class="modal fade" id="add_img_modal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h4 class="modal-title">Select Flat/Home Image</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <form id="imgform">
+                     <input type="file" class="btn btn-info " id="selectFile" name="selectFile"  (change)="fileChangeEvent($event)" />
+                     <span *ngIf="image_error == true"class="error_display">Please select Image</span>
+                  </form>
+               </div>
+               <div class="modal-footer">
+                  <button class="btn comn-btn-info"(click)="Add_unit_Image()">Add</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Edit Image Model:END -->
+      <!-- Edit Document Model:Start -->
+      <div class="modal fade" id="Edit_Document_Modal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title delete">Document </h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                  <form id="imgform">
+                     <input type="text" id="des">
+                     <input type="file" class="btn btn-info " id="selectFile" name="selectFile"  (change)="fileChangeEvent($event)" />
+                  </form>
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer">
+                  <button class="btn comn-btn-info"(click)="Upload_EditImage()">Update</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Edit Document Model:END -->
+      <!-- document  Delete Confirmation modal :START -->
+      <div id="document_model" class="modal fade">
+         <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <div class="icon-box">
+                     <i class="material-icons">&#xE5CD;</i>
+                     </div>         -->
+                  <h4 class="modal-title delete">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <p>Do you really want to delete these Document</p>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteconfirm_document()">Delete</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--  document Delete Confirmation modal:END -->
+   </div>
+   <!-- Edit Properties:START -->
+   <div class="container-fluid" *ngIf="editPropertiesDiv" >
+      <div class="col-md-12">
+         <div class="loginInner">
+            <div class="card">
+               <div class="card-header card-header-info">
+                  <h4 class="card-title pull-left"> Edit Properties </h4>
+                  <button type="submit" class="btn btn-info pull-right" (click)="hideEditpropertiesDiv()" >Back</button>
+               </div>
+               <div class="card-body">
+                  <form   [formGroup]='propertyForm' (submit)="editProperties()"  autocomplete="off"> 
+                  <div class="row" >
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> Property Name</label>
+                           <input type="text"   formControlName='propertyName' name="propertyName" class="form-control" [(ngModel)]="property_data.propertyName">
+                           <div *ngIf="propertyForm.controls['propertyName'].hasError('required')" class="error"> Property  required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Street Address</label>
+                           <input type="text" class="form-control" formControlName='streetName' name="streetName" [(ngModel)]="property_data.streetName" >
+                           <div *ngIf="propertyForm.controls['streetName'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Multiunit / Singleunit</label>
+                           <select formControlName='propertyType'  class="form-control" name="propertyType" [(ngModel)]="property_data.propertyType" [attr.disabled]="unit_data.length > 1 && property_data.propertyType == 'multiunit' ? 'true' :null">
+                           <option disabled=""> Select Option </option>
+                           <option *ngFor="let unit of unitType" [(ngValue)]="unit.unitName">{{unit.unitName}}</option>
+                           </select>
+                           <div *ngIf="propertyForm.controls['propertyType'].hasError('required')" class="error"> Select Property Type  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> Select country </label>
+                           <select formControlName='country'  class="form-control" name="country" [(ngModel)]="property_data.country" >
+                           <option> {{property_data.name}}</option>
+                           <option  *ngFor="let co of countries" [(ngValue)]="co.name" >{{co.name}}</option>
+                           </select>
+                           <div *ngIf="propertyForm.controls['country'].hasError('required')"  class="error"> country  required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">City</label>
+                           <input type="text" class="form-control" formControlName='city' name="city" [(ngModel)]="property_data.city">
+                           <div *ngIf="propertyForm.controls['city'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">State</label>
+                           <input type="text" class="form-control" formControlName='state' name="state" [(ngModel)]="property_data.state">
+                           <div *ngIf="propertyForm.controls['state'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Zip/Postal code</label>
+                           <input type="text" class="form-control" formControlName='pincode' name="pincode"  (keypress)="numberOnly($event)" [(ngModel)]="property_data.pincode" >
+                           <div *ngIf="propertyForm.controls['pincode'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Landmark</label>
+                           <input type="text" class="form-control" formControlName='landmark' name="landmark" [(ngModel)]="property_data.landmark" >
+                           <div *ngIf="propertyForm.controls['landmark'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Suburbs</label>
+                           <input type="text" class="form-control" formControlName='suburbs' name="suburbs"  [(ngModel)]="property_data.suburbs" >
+                           <div *ngIf="propertyForm.controls['suburbs'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Notes</label>
+                           <input type="text" class="form-control" formControlName='notes' name="notes"  [(ngModel)]="property_data.notes" >
+                           <div *ngIf="propertyForm.controls['notes'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Phone</label>
+                           <input type="text" class="form-control" formControlName='phone' name="phone"  [(ngModel)]="property_data.phone" >
+                           <div *ngIf="propertyForm.controls['phone'].hasError('required')" class="error">   required  </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                     <button type="submit" class="btn btn-info pull-right">Update</button>
+                  </div>
+                  <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Edit Properties:END -->
+
+   <!-- Add Unit PopUp:Start -->
+   <div class="container-fluid" *ngIf="addUnitPopup == true " >
+      <div class="col-md-12">
+         <div class="loginInner">
+            <div class="card">
+               <div class="card-header card-header-info">
+                  <h4 class="card-title pull-left"> Add Unit </h4>
+                  <button type="submit" class="btn btn-info pull-right" (click)="hide_addUnitPopup()" >Back</button>
+               </div>
+               <div class="card-body">
+                  <form   [formGroup]='unitForm' (ngSubmit)="addNewUnit()"  autocomplete="off" > 
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> Flat/House No</label>
+                           <input type="text" formControlName='flatno' name="flatno" class="form-control">
+                           <div *ngIf="submitted && formerr.flatno.errors" class="errors">
+                              <div >Flat/House required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Unit Type</label>
+                           <select formControlName='unitType'  class="form-control" name="propertyType">
+                              <option disabled=""> Select Unit Type </option>
+                              <option>1 BHK</option>
+                              <option>2 BHK</option>
+                              <option>3 BHK</option>
+                           </select>
+                           <div *ngIf="submitted && formerr.unitType.errors" class="errors">
+                              <div *ngIf="formerr.unitType.errors.required"> Unit Type required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Furnishing </label>
+                           <select formControlName='FurnishingType'  class="form-control" name="country">
+                              <option disabled=""> Select Furnishing Type </option>
+                              <option>Furnishing</option>
+                              <option>Unfurnishing</option>
+                              <option>Semifurnishing</option>
+                           </select>
+                           <div *ngIf="submitted && formerr.FurnishingType.errors" class="errors">
+                              <div *ngIf="formerr.FurnishingType.errors.required"> Furnishing Type required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div>
+                           <label class="bmd-label-floating"> Flat/House Images</label>
+                           <input type="file" formControlName='flatImage' (change)="detectFiles($event)" name="flatImage[]" class="form-control" multiple>
+                           <div *ngIf="submitted && formerr.flatImage.errors" class="errors">
+                              <div *ngIf="formerr.flatImage.errors.required" > required </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                     <button type="submit" class="btn btn-info pull-right">Save</button>
+                  </div>
+                  <div class="clearfix"></div>
+                  </form>
+               </div>
+               <div class="newUnitForm">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Add New Unit :End -->
+
+    <!-- Edit Unit PopUp:Start -->
+    <div class="container-fluid" *ngIf="editUnitPopUp" >
+      <div class="col-md-12">
+         <div class="loginInner">
+            <div class="card">
+               <div class="card-header card-header-info">
+                  <h4 class="card-title pull-left"> Edit Unit </h4>
+                  <button type="button" class="btn btn-info pull-right" (click)="editUnitPopUp = false && submitted = false" >Back</button>
+               </div>
+               <div class="card-body">
+                  <form   [formGroup]='editUnitForm' (ngSubmit)="saveEditUnit()"  autocomplete="off" > 
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> Flat/House No</label>
+                           <input type="text" formControlName='flatHoseNo' name="flatHoseNo" class="form-control">
+                           <div *ngIf="submitted && editFormerr.flatHoseNo.errors" class="errors">
+                              <div >Flat/House required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Unit Type</label>
+                           <select formControlName='unitType'  class="form-control" >
+                              <option disabled=""> Select Unit Type </option>
+                              <option>1 BHK</option>
+                              <option>2 BHK</option>
+                              <option>3 BHK</option>
+                           </select>
+                           <div *ngIf="submitted && editFormerr.unitType.errors" class="errors">
+                              <div *ngIf="editFormerr.unitType.errors.required"> Unit Type required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Furnishing </label>
+                           <select formControlName='furnishing'  class="form-control" >
+                              <option disabled=""> Select Furnishing Type </option>
+                              <option>Furnishing</option>
+                              <option>Unfurnishing</option>
+                              <option>Semifurnishing</option>
+                           </select>
+                           <div *ngIf="submitted && editFormerr.furnishing.errors" class="errors">
+                              <div *ngIf="editFormerr.furnishing.errors.required"> Furnishing Type required </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                     <button type="submit" class="btn btn-info pull-right">Edit</button>
+                  </div>
+                  <div class="clearfix"></div>
+                  </form>
+               </div>
+               <div class="newUnitForm">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Add New Unit :End -->
+
+   <!-- ADD New Lease :Start -->
+   <div class="container-fluid" *ngIf="addleasePopup == true " >
+      <div class="col-md-12">
+         <div class="loginInner">
+            <div class="card">
+               <div class="card-header card-header-info">
+                  <h4 class="card-title pull-left"> Add Lease To Property   </h4>
+                  <button type="submit" class="btn btn-info pull-right" (click)="hide_addleasePopup()">Back</button>
+               </div>
+               <div class="card-body">
+                  <form   [formGroup]='leaseForm' (ngSubmit)="addNewLease()"  autocomplete="off" > 
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> Start Date</label>
+                           <input type="date"  formControlName='start_date'  aria-placeholder="Start Date" name="start_date" class="form-control" [(ngModel)]="start_date" >
+                           <div *ngIf="submit && f.start_date.errors" >
+                              <div >start date  required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> End Date</label>
+                           <input type="date" formControlName='end_date' min="{{start_date}}"  name="end_date" class="form-control">
+                           <div *ngIf="submit && f.end_date.errors" >
+                              <div >Flat/House   required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Rent Amount</label>
+                           <input type="text" formControlName='rent' name="rent" class="form-control">
+                           <div *ngIf="submitted && f.rent.errors" >
+                              <div >Rent Amount required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Deposite Amount </label>
+                           <input type="text" formControlName='deposite_amount' name="deposite_amount" class="form-control">
+                           <div *ngIf="submitted && f.deposite_amount.errors" >
+                              <div >Deposite amount required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Payment Day </label>
+                           <select formControlName='payment_day'  class="form-control" name="payment_day">
+                              <option [selected]=true disabled=""  > Select Day </option>
+                              <option *ngFor="let day of dayduties">{{day}}</option>
+                           </select>
+                           <div *ngIf="submitted && f.payment_day.errors" >
+                              <div >payment_day required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Payment Frequency  </label>
+                           <select formControlName='payment_frequency'  class="form-control" name="payment_frequency">
+                              <option [selected]=true disabled=""> Select payment frequency </option>
+                              <option>Weekly</option>
+                              <option>Monthly</option>
+                              <option>Yearly</option>
+                           </select>
+                           <div *ngIf="submitted && f.payment_frequency.errors" >
+                              <div >payment frequency required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Tenant Reminder </label>
+                           <select formControlName='tenant_reminder'  class="form-control" name="tenant_reminder">
+                              <option [selected]=true disabled=""> Select Tenant Reminder </option>
+                               <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                           </select>
+                           <div *ngIf="submitted && f.tenant_reminder.errors" >
+                              <div >Tenant reminder required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Overdue Reminder </label>
+                           <select formControlName='overview_reminder'  class="form-control" name="overview_reminder">
+                              <option [selected]=true disabled=""> Select overview reminder </option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                           </select>
+                           <div *ngIf="submitted && f.overview_reminder.errors" >
+                              <div >Overview reminder required</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                     <button type="submit" class="btn btn-info pull-right">Save Lease</button>
+                  </div>
+                  <div class="clearfix"></div>
+                  </form>
+               </div>
+               <div class="newUnitForm">
+                  <!-- <form action="">
+                     </form> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- ADD New Lease :End -->
+   <!-- Edit Lease :Start -->
+   <div class="container-fluid" *ngIf="editleasePopup == true " >
+      <div class="col-md-12">
+         <div class="loginInner">
+            <div class="card">
+               <div class="card-header card-header-info">
+                  <h4 class="card-title pull-left"> Edit Lease To Property   </h4>
+                  <button type="button" class="btn btn-info pull-right" (click)="editleasePopup = false" >Back</button>
+               </div>
+               <div class="card-body">
+                  <form   [formGroup]='editForm' (ngSubmit)="updateLease()" autocomplete="off" *ngFor="let lease_data of lease_data"> 
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> Start Date</label>
+                           <input type="date"  formControlName='start_date' aria-placeholder="Start Date" name="start_date" class="form-control" [(ngModel)]="lease_data.startDate" >
+                           <div *ngIf="submit && f.start_date.errors"  class="errors">
+                              <div >start date  required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating"> End Date</label>
+                           <input type="date" formControlName='end_date' name="end_date" class="form-control" [(ngModel)]="lease_data.endDate">
+                           <div *ngIf="submit && f.end_date.errors"  class="errors">
+                              <div >End Date required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Rent Amount</label>
+                           <input type="text" formControlName='rent' name="rent" class="form-control" [(ngModel)]="lease_data.rentAmount">
+                           <div *ngIf="submit && f.rent.errors"  class="errors">
+                              <div >Rent Amount required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Deposite Amount </label>
+                           <input type="text" formControlName='deposite_amount' name="deposite_amount" class="form-control" [(ngModel)]="lease_data.depositAmount">
+                           <div *ngIf="submit && f.deposite_amount.errors" class="errors">
+                              <div >Deposite amount required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Payment Day </label>
+                           <select formControlName='payment_day'  class="form-control" name="payment_day" [(ngModel)]="lease_data.paymentDay">
+                           <option [selected]=true>{{lease_data.paymentDay}}</option>
+                           <option *ngIf="lease_data.paymentDay !='1'" >1</option>
+                           <option *ngIf="lease_data.paymentDay !='2'">2</option>
+                           <option *ngIf="lease_data.paymentDay !='3'">3</option>
+                           </select>  
+                           <div *ngIf="submit && f.payment_day.errors" class="errors">
+                              <div >payment_day required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Payment Frequency  </label>
+                           <select formControlName='payment_frequency'  class="form-control" name="payment_frequency" [(ngModel)]="lease_data.paymentFrequency" >
+                           <!-- <option [selected]=true> {{lease_data.paymentFrequency}} </option> -->
+                           <option >Weekly</option>
+                           <option>Monthly</option>
+                           <option>Yearly</option>
+                           </select>  
+                           <div *ngIf="submit && f.payment_frequency.errors"  class="errors" >
+                              <div >payment frequency required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Tenant Reminder </label>
+                           <select formControlName='tenant_reminder'  class="form-control" name="tenant_reminder" [(ngModel)]="lease_data.tenantReminder">
+                           <option value="lease_data.tenantReminder" [selected]=true>{{lease_data.tenantReminder}} </option>
+                           <option>1</option>
+                           <option>2</option>
+                           <option>3</option>
+                           <option>4</option>
+                           <option>5</option>
+                           <option>6</option>
+                           </select>  
+                           <div *ngIf="submit && f.tenant_reminder.errors"  class="errors" >
+                              <div >Tenant reminder required</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Overdue Reminder </label>
+                           <select formControlName='overview_reminder'  class="form-control" name="overview_reminder" [(ngModel)]="lease_data.overdueReminder">                           
+                           <option value="lease_data.overdueReminder" [selected]=true > {{lease_data.overdueReminder}} </option>
+                           <option>1</option>
+                           <option>2</option>
+                           <option>3</option>
+                           <option>4</option>
+                           <option>5</option>
+                           <option>6</option>
+                           </select>  
+                           <div *ngIf="submit && f.overview_reminder.errors"  class="errors" >
+                              <div >Overview reminder required</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                     <button type="submit" class="btn btn-info pull-right">Update Lease</button>
+                  </div>
+                  <div class="clearfix"></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Edit  Lease :End -->
+
+   <!-- Add Property Document:START -->
+   
+   <div class="content" *ngIf="addPropertyDoc">
+      <div class="container-fluid">
+         <div class="transactionPage">
+            <div class="card">
+               <div class="card-body document-body">
+                  <div class="heading">
+                     <h3>Add Documents</h3>
+                  </div>
+                  <div class="tableDIv">
+                     <div class="card">
+                        <div class="card-body documents-details">
+                           <form [formGroup]='addPropDocumentForm' (ngSubmit)="addPropDocument()" autocomplete="off" >
+                           <div class="row ">
+                              <div class="col-md-12 ">
+                                 <div class="form-row form-content">
+                                    <div class="col-md-4 docType input-text mb-3">
+                                       <label for="validationCustom01">Document Name</label>
+                                       <input type="text" class="form-control" formControlName='document_name'>
+                                       <div *ngIf="documentPropSubmit && documentPropsaveForm.document_name.errors" class="errors">
+                                          <div *ngIf="documentPropsaveForm.document_name.errors.required"> Document name required </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-4 docType input-text">
+                                       <!-- <label for="validationCustom02">Document Type</label>
+                                          <input type="text" class="form-control" id="validationCustom04"  required> -->
+                                       <label for="validationCustom02">Document Type</label>
+                                       <select id="validationCustom02" class="form-control" formControlName='document_type'>
+                                          <option  aria-selected="true" disabled=""> Please Select</option>
+                                          <option  [(ngValue)]="document.id" *ngFor="let document of DocimentPropType" >{{document.type}}</option>
+                                       </select>
+                                       <div *ngIf="documentPropSubmit && documentPropsaveForm.document_type.errors" class="errors">
+                                          <div *ngIf="documentPropsaveForm.document_type.errors.required">Document type required </div>
+                                       </div>
+                                       <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                       <a (click)="showaddDocumentTypePropPop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="col-md-4 input-text ">
+                                       <!-- <div class="custom-file"> -->
+                                       <label  for="validationCustom04">Choose file</label>
+                                       <input type="file" class="choose-flie" id="validationCustom04" (change)="detectDocumentFile($event)" formControlName='document_file'>
+                                       <button type="button" class="browse_btn" id="validationCustom04">Browse</button>
+                                       <div *ngIf="documentPropSubmit && documentPropsaveForm.document_file.errors" class="errors">
+                                          <div *ngIf="documentPropsaveForm.document_file.errors.required"> Document file required </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- </div> -->
+                                 <div class="form-row form-content">
+                                 </div>
+                              </div>
+                              <!-- </div> -->
+                              <div class="col-md-12">
+                                 <div class=" input-btn text-right mb-3">
+                                    <button class=" btn btn-primary" type="submit" style="background-color: #21BACF!important; border-color: #21BACF!important;"><i class="fa fa-check" aria-hidden="true"></i>SAVE</button>
+                                    <button class="btn btn-primary" (click)="hidepropPopUp()" type="button" style="background-color: #ff8c1e!important; border-color:#ff8c1e!important"><i class="fa fa-times" aria-hidden="true"></i>CANCEL</button>
+                                 </div>
+                              </div>
+                           </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Add Property Document:End -->
+
+   <!-- Add Unit Document:START -->
+   <div class="content" *ngIf="addDocumentPopup" >
+      <div class="container-fluid">
+         <div class="transactionPage">
+            <div class="card">
+               <div class="card-body document-body">
+                  <div class="heading">
+                     <h3>Add Documents</h3>
+                  </div>
+                  <div class="tableDIv">
+                     <div class="card">
+                        <div class="card-body documents-details">
+                           <form [formGroup]='addDocumentForm' (ngSubmit)="AddNewDocument()" autocomplete="off" >
+                           <div class="row ">
+                              <div class="col-md-12 ">
+                                 <div class="form-row form-content">
+                                    <div class="col-md-4 docType input-text mb-3">
+                                       <label for="validationCustom01">Document Name</label>
+                                       <input type="text" class="form-control" formControlName='document_name'>
+                                       <div *ngIf="documentSubmit && documentsaveForm.document_name.errors" class="errors">
+                                          <div *ngIf="documentsaveForm.document_name.errors.required"> Document name required </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-4 docType input-text">
+                                       <label for="validationCustom02">Document Type</label>
+                                       <select id="validationCustom02" class="form-control" formControlName='document_type'>
+                                          <option value="">---- Please Select----</option>
+                                          <option  [(ngValue)]="document.id" *ngFor="let document of document_Type" >{{document.type}}</option>
+                                       </select>
+                                       <div *ngIf="documentSubmit && documentsaveForm.document_type.errors" class="errors">
+                                          <div *ngIf="documentsaveForm.document_type.errors.required">Document type required </div>
+                                       </div>
+                                       <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                       <a (click)="showaddDocumentTypePop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="col-md-4 docType input-text">
+                                       <label for="validationCustom02"> Tenant Name</label>
+                                       <select id="validationCustom02" class="form-control" formControlName='tenant_name'>
+                                          <option   [value]="">---- Please Select----</option>
+                                          <option [value]="tenant.id"*ngFor="let tenant of tenant_type">{{tenant.userName}}</option>
+                                         
+                                       </select>
+                                       <div *ngIf="documentSubmit && documentsaveForm.tenant_name.errors" class="errors">
+                                          <div *ngIf="documentsaveForm.tenant_name.errors.required">Tenant Name required </div>
+                                       </div>
+                                    </div>  
+                                    <div class="col-md-4 input-text">
+                                       <label  for="validationCustom04">Choose file</label>
+                                       <input type="file" class="choose-flie" id="validationCustom04" (change)="detectDocumentFile($event)" formControlName='document_file'>
+                                       <button type="button" class="browse_btn" id="validationCustom04">Browse</button>
+                                       <div *ngIf="documentSubmit && documentsaveForm.document_file.errors" class="errors">
+                                          <div *ngIf="documentsaveForm.document_file.errors.required"> Document file required </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="form-row form-content">
+                                 </div>
+                              </div>
+                              <div class="col-md-12">
+                                 <div class=" input-btn text-right mb-3">
+                                    <button class=" btn btn-primary" type="submit" style="background-color: #21BACF!important; border-color: #21BACF!important;"><i class="fa fa-check" aria-hidden="true"></i>SAVE</button>
+                                    <button class="btn btn-primary" (click)="hidePopUP();addDocumentForm.reset()" type="button" style="background-color: #ff8c1e!important; border-color:#ff8c1e!important"><i class="fa fa-times" aria-hidden="true"></i>CANCEL</button>
+                                 </div>
+                              </div>
+                           </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Add Unit Document:End -->
+   <!-- Add Document Type Model:START -->
+   <div class="modal fade" id="documentTypeModel">
+      <div class="modal-dialog">
+         <form [formGroup]="addDocumentType" (ngSubmit)="addDocumentSave()">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Add Document Type</h4>
+               <button type="button" (click)="hideaddDocType()">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+               <div class="form-group">
+                  <label class="bmd-label-floating">Document Name</label>
+                  <input type="text" formControlName="docname" class="form-control" [ngClass]="{ 'is-invalid': dataSubmit && documentForm.docname.errors }">
+                  <div *ngIf="dataSubmit && documentForm.docname.errors" class="invalid-feedback">
+                     <div *ngIf="documentForm.docname.errors.required">Document Type is required</div>
+                  </div>
+               </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button  class="btn btn-info">Add</button>
+            </div>
+         </div>
+         </form>
+      </div>
+   </div>
+   <!--Add Document Type Model:STOP -->
+   <!-- Add Document Type Property Model:START -->
+   <div class="modal fade" id="documentTypePropModel">
+      <div class="modal-dialog">
+         <form [formGroup]="addDocumentType" (ngSubmit)="addPropertyDocumentsave()" >
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Add Document Type</h4>
+                  <button type="button" (click)="hideaddDocType()">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label class="bmd-label-floating">Document Name</label>
+                     <input type="text" formControlName="docname" class="form-control" [ngClass]="{ 'is-invalid': dataSubmit && documentForm.docname.errors }">
+                     <div *ngIf="dataSubmit && documentForm.docname.errors" class="invalid-feedback">
+                        <div *ngIf="documentForm.docname.errors.required">Document Type is required</div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer">
+                  <button    class="btn btn-info">Add</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   <!--Add Document Type Model:STOP -->
+   <!-- Add Transaction :START -->
+   <div class="container-fluid"  *ngIf="addTransaction">
+      <div class="card transaction">
+         <div class="card-body">
+            <div class="row mainwrapper">
+               <div class="col-md-12 heading">
+                  <h1><img src="assets/img/transaction.png" style="width: 3%; height: auto;"> Add Transaction</h1>
+                  <div class="amountPage">
+                     <form [formGroup]="addtransactionForm" (ngSubmit)="addTransactionSave()">
+                     <div class="col-md-12 transactionPage">
+                        <div class="row">
+                           <div class="col-md-6 timeDetails">
+                              <h2>Timing Details</h2>
+                              <!-- <div class="form-row paymentDetails"> -->
+                              <div class="form-group payment">
+                                 <label for="inputDate">Date</label>
+                                 <input type="date" formControlName="payment_date" class="form-control" id="inputDate">
+                                 <div *ngIf="transactionSubmit && saveTransactionForm.payment_date.errors" class="errors">
+                                    <div *ngIf="saveTransactionForm.payment_date.errors.required">Document type required </div>
+                                 </div>
+                              </div>
+                              <!-- </div> -->
+                              <div class="bill">
+                                 <label>Billing Period</label>
+                                 <div class="form-row billingDetails">
+                                    <div class="form-group col-md-5 billDate">
+                                       <input type="date" formControlName="start_period" class="form-control" id="inputBill">
+                                       <div *ngIf="transactionSubmit && saveTransactionForm.start_period.errors" class="errors">
+                                          <div *ngIf="saveTransactionForm.start_period.errors.required">Document type required </div>
+                                       </div>
+                                    </div>
+                                    <p>To</p>
+                                    <div class="form-group col-md-5 billDate">
+                                       <input type="date" formControlName="end_period" class="form-control" id="inputBill">
+                                       <div *ngIf="transactionSubmit && saveTransactionForm.end_period.errors" class="errors">
+                                          <div *ngIf="saveTransactionForm.end_period.errors.required">Document type required </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 transactionDetails Details">
+                              <h2>Transaction Details</h2>
+                              <div class="form-group col-md-12 transactionType transactionTypeNew">
+                                 <label for="inputName">Transaction Type</label>
+                                 <select id="inputName" class="form-control">
+                                    <option selected>Select</option>
+                                    <optgroup label="Income" value="0"><option>dzgvc</option></optgroup>
+                                    <optgroup label="Expence" value="1"><option>abcd</option></optgroup> 
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                  <!-- <a (click)="showaddDocumentTypePop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
+                                  <button type="button" class="addBtn" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Vender Name</label>
+                                 <select id="inputName" class="form-control">
+                                    <option selected>Select</option>
+                                    <option>...</option>
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Property Name</label>
+                                 <select id="inputName" class="form-control">
+                                    <option selected>Select</option>
+                                    <option>...</option>
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                 <!-- <input type="text" formControlName="note" class="form-control" id="inputName">
+                                    <div *ngIf="transactionSubmit && saveTransactionForm.note.errors" class="errors">
+                                       <div *ngIf="saveTransactionForm.note.errors.required">Document type required </div>
+                                    </div> -->
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Unit Number</label>
+                                 <select id="inputName" class="form-control">
+                                    <option selected>Select</option>
+                                    <option>...</option>
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                              </div>
+                              <div class="form-group col-md-12 transactionType">
+                                 <label for="inputName">Tenant Name</label>
+                                 <select id="inputName" class="form-control">
+                                    <option selected>Select</option>
+                                    <option>...</option>
+                                 </select>
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12 paymentDetails">
+                        <h2>Payment Details</h2>
+                        <div class="form-group row">
+                           <label for="inputAmount" class="col-sm-2 col-form-label">Amount</label>
+                           <div class="col-sm-10 address">
+                              <div class=" dolarAmount">
+                                 <div class="dollarSymbol">
+                                    <img class="img-fluid dollar-img" src="assets/img/dollar-symbo.png">
+                                 </div>
+                                 <div class="col-md-8 amountInput ">
+                                    <input type="text" formControlName="amount" class="form-control" id="inputAmount" >
+                                    <div *ngIf="transactionSubmit && saveTransactionForm.amount.errors" class="errors">
+                                       <div *ngIf="saveTransactionForm.amount.errors.required">Document type required </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group row ">
+                           <label for="inputNote" class="col-sm-2 col-form-label">Addition(+) Type</label>
+                           <div class="col-sm-10">
+                              <!-- <input type="text" class="form-control" id="inputNote"> -->
+                            
+                              <div class="row">
+                                 <div class="col-sm-3 pr-0">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="Type">
+                                 </div>
+                                 <div class="col-sm-2 pr-0 selection-box">
+                                    <select id="inputName" class="form-control" placeholder="%">
+                                       <option selected>%</option>
+                                       <option>...</option>
+                                    </select>
+                                    <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                 </div>
+                                 <div class="col-sm-2 pr-0 ">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="0">
+                                 </div>
+                                 <div class="digital-amount col-sm-3 pr-0">
+                                    <div class="rupee-icon"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                                    <input type="number" class="digits form-control" id="inputNote" placeholder="Digits Only" style="text-align: right;">
+                                 </div>
+                                  <!-- <div class="col-sm-2 addition_btn">
+                                   
+                                   
+                                    <button class="cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <button class="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div> -->
+                              </div>
+                           
+
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label for="inputNote" class="col-sm-2 col-form-label">Deduction(-) Type</label>
+                           <div class="col-sm-10">
+                              <div class="row">
+                                 <div class="col-sm-3 pr-0">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="Type">
+                                 </div>
+                                 <div class="col-sm-2 pr-0 selection-box">
+                                    <select id="inputName" class="form-control" placeholder="%">
+                                       <option selected>%</option>
+                                       <option>...</option>
+                                    </select>
+                                    <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                 </div>
+                                 <div class="col-sm-2 pr-0 ">
+                                    <input type="text" class="form-control" id="inputNote" placeholder="0">
+                                 </div>
+                                 <div class="digital-amount col-sm-3 pr-0">
+                                    <div class="rupee-icon"><i class="fa fa-inr" aria-hidden="true"></i></div>
+                                    <input type="number" class="digits form-control" id="inputNote" placeholder="Digits Only" style="text-align: right;">
+                                 </div>
+                                  <!-- <div class="col-sm-2 addition_btn">
+                                   
+                                   
+                                    <button class="cross"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <button class="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div> -->
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label for="inputNote" class="col-sm-2 col-form-label">Note</label>
+                           <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputNote">
+                           </div>
+                        </div>
+                        <div class="form-group row input-text">
+                           <label  for="validationCustom04" class="col-sm-2 col-form-label">Attach file</label>
+                           <div class="col-sm-4">
+                              <input type="file" class="choose-flie" id="validationCustom04" (change)="detectDocumentFile($event)" formControlName='document_file'>
+                              <button type="button" class="browse_btn" id="validationCustom04">Browse
+                              <i class="fa fa-desktop" aria-hidden="true" style="padding-left: 10px;"></i>
+                              </button>
+                              <div *ngIf="documentSubmit && documentsaveForm.document_file.errors" class="errors">
+                                 <div *ngIf="documentsaveForm.document_file.errors.required"> Document file required </div>
+                              </div>
+                           </div>
+                        </div>
+                        <fieldset class="form-group radioBtn">
+                           <div class="form-row">
+                              <legend class="col-form-label col-sm-2 pt-0">Payment Status</legend>
+                              <div class="col-sm-10">
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Paid
+                                    <input type="radio" formControlName="payment_status" class="form-control"name="payment_status" value=1  >
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Unpaid
+                                    <input type="radio" formControlName="payment_status" class="form-control"name="payment_status" value=0  >
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Partially Paid
+                                    <input type="radio" formControlName="payment_status" name="payment_status" value=0>
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div *ngIf="transactionSubmit && saveTransactionForm.payment_status.errors" class="errors">
+                                    <div *ngIf="saveTransactionForm.payment_status.errors.required">Document type required </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                        <fieldset class="form-group radioBtn">
+                           <div class="row">
+                              <legend class="col-form-label col-sm-2 pt-0">Payment Method</legend>
+                              <div class="col-sm-10">
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Cash
+                                    <input type="radio" formControlName="payment_method" class="form-control"name="payment_method" value=1  >
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Check
+                                    <input type="radio" formControlName="payment_method" class="form-control"name="payment_method" value=0  >
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check form-check-inline">
+                                    <label class="paymentStatus">Other
+                                    <input type="radio" formControlName="payment_method" name="payment_method" value=0>
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div *ngIf="transactionSubmit && saveTransactionForm.payment_status.errors" class="errors">
+                                    <div *ngIf="saveTransactionForm.payment_status.errors.required">Document type required </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </div>
+                     </form>
+
+
+                     <!-- Add transaction popup :START-->
+<button type="button" class="addTransactionBtn" data-toggle="modal" data-target="#addTransactionModal">
+  ADD TRANSACTION TYPE
+</button>
+
+
+ <div class="modal" id="addTransactionModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-text">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                     <h4 class="modal-title">Add Transaction Type</h4>
+                     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  </div>
+                  <!-- Modal body -->
+                  <div class="col-md-8 addPayment ">
+                     <select id="inputName" class="form-control">
+                                    <option selected>Type</option>
+                                    <option>...</option>
+                                 </select>
+
+                                 <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                     <!-- <input type="text" class="form-control" id="inputPayment" placeholder="Type" > -->
+                  </div>
+                  <fieldset class=" radioBtn">
+                           <div class="form-row">
+                              <legend class="col-form-label">Select</legend>
+         
+                          
+                                 <div class="form-check" style="margin-right: 10px;">
+                                    <label class="paymentStatus">Income
+                                    <input type="radio" formControlName="payment_status" class="form-control"name="payment_status" value=1  >
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                 <div class="form-check" style="margin-right: 10px;">
+                                    <label class="paymentStatus">Expense
+                                    <input type="radio" formControlName="payment_status" class="form-control"name="payment_status" value=0  >
+                                    <span class="checkmark"></span>
+                                    </label>
+                                 </div>
+                                
+                                 <div *ngIf="transactionSubmit && saveTransactionForm.payment_status.errors" class="errors">
+                                    <div *ngIf="saveTransactionForm.payment_status.errors.required">Document type required </div>
+                                 </div>
+                           
+                           </div>
+                        </fieldset>
+                  <div class="modal-footer footer-btn">
+                     <button type="button" class="add-btn" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i>Add</button>
+                     <button type="button" class="cancel-btn"><i class="fa fa-times" aria-hidden="true"></i>Cancle</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Add transaction popup : END-->
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+      <!-- Add Transaction :STOP -->
+      <!-- Add Transaction Type:START -->
+      <div class="modal" id="myModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-text">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                     <h4 class="modal-title">Add Payment</h4>
+                     <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  </div>
+                  <!-- Modal body -->
+                  <div class="col-md-8 addPayment ">
+                     <input type="text" class="form-control" id="inputPayment" >
+                  </div>
+                  <div class="modal-footer footer-btn">
+                     <button type="button" class="add-btn" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i>Add</button>
+                     <button type="button" class="cancel-btn"><i class="fa fa-times" aria-hidden="true"></i>Cancle</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+      <!-- Add Transaction Type:END -->
+      <div class="serviceRequestMAin" *ngIf="showTenantForm==true">
+         <div class="loginMainDiv">
+           <div class="loginInner">
+             <div class="card">
+               
+               
+               <div class="card-header card-header-info">
+                 
+                 <h4 class="card-title">Tenants</h4>
+                <!--  <p class="card-category">Complete your profile</p> -->
+                
+               </div>
+               <div class="card-body">
+                   <form [formGroup]='tenantform' (ngSubmit)='addTenant()'>
+                   <div class="row">
+                    
+                     <div class="col-md-12">
+                       <div class="form-group">
+                         <label class="bmd-label-floating">Tenant Name</label>
+                         <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" >
+
+                         <div *ngIf="tenantform.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+                         <div *ngIf="tenantform.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+                       </div>
+                     </div>
+           <div class="col-md-12">
+                       <div class="form-group">
+                         <label class="bmd-label-floating">Mobile No</label>
+                         <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)">
+                         <div *ngIf="tenantform.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+                         <div *ngIf="tenantform.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+                         <div *ngIf="tenantform.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+                         <div *ngIf="tenantform.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+               
+                       </div>
+           </div>
+           <div class="col-md-12">
+                       <div class="form-group">
+                         <label class="bmd-label-floating">Email Id</label>
+                         <input type="text" class="form-control" name='email' formControlName='email'>
+                         <div *ngIf="tenantform.controls['email'].hasError('required')" class="error">Phone Number Required</div>	  
+                        <div *ngIf="tenantform.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+                       </div>
+           </div>
+    
+         
+           
+                     <div class="col-md-12" >
+                       <!-- existEmailAndphone -->
+                       <div class="form-group" *ngIf="existEmailAndphone">
+                               <div class="error">  This email id / phone already existe ...!  </div>
+                       </div>
+
+                       <div class="alert alert-success" *ngIf="accountCreated">
+                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                 <i class="material-icons">close</i>
+                               </button>
+                               <span>
+                                 <b> Your account created  successfully </b> <a routerLink="/login"> Login</a>
+                               </span>
+                          </div>
+                      </div>
+                      
+
+                     
+                   </div>
+                   
+                   
+                  
+                   <button  [disabled]="formSubmit" type="submit" class="btn btn-info pull-right">Add Tenant</button>
+                   <div class="clearfix"></div>
+                 </form>
+
+               
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+        <!--- ############ Show tenant List ####################-->   
+
+<div class="serviceRequestMAin" *ngIf="editServiceRequest">
+   <form [formGroup]="editServiceRequestForm" (ngSubmit)="saveEditRequest()">
+	<div class="serviceRequestInner" *ngFor="let services_data of editservices_req">
+		<div class="serReqHead">
+			<h3 class="pull-left">Service Request</h3>
+			<div class="pull-right text-center">
+				<!-- <button class="btn commonBtnP">Save & New</button> -->
+				<button class="btn commonBtnP">Save</button>
+				<button type="button" (click)="hideEditServicePop()" class="btn commonBtnC">Cancel</button>
+			</div>
+		</div>	
+		<div class="serReqForm">
+			<div class="row">
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Task *</label>
+                  <input type="text" placeholder="" formControlName="title" [(ngModel)]="services_data.title">
+                  <div *ngIf="requestSubmit && editRequestForm.title.errors" class="errors">
+                        <div *ngIf="editRequestForm.title.errors.required">Task is required </div>
+                  </div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Select Property *</label>
+						<select class="form-control" [(ngModel)]="services_data.propertyName" formControlName="property_Name">
+							<option  [selected]="true">{{services_data.propertyName}}	</option>
+						</select>
+						<i aria-hidden="true" class="fa fa-caret-down dropdown"></i>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Select Tenant</label>
+						<select class="form-control" [(ngModel)]="services_data.userName" formControlName="tenant_name">
+							<option  [selected]=true>{{services_data.userName}}	</option>
+						</select>
+						<i aria-hidden="true" class="fa fa-caret-down dropdown"></i>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Task start date</label>
+						<input type="date"  class="form-control" id="inputBill2" [(ngModel)]="services_data.start_date " formControlName="start_date">
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Task due date</label>
+						<input type="date"  class="form-control" id="inputBill3" [(ngModel)]="services_data.due_date " formControlName="due_date">	
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Document File</label>
+						<input type="file" class="choose-flie" id="validationCustom04" formControlName="file" >
+						<button type="button" class="browse_btn" id="validationCustom04">Browse
+							<i class="fa fa-desktop" aria-hidden="true" style="padding-left: 10px;float:right;margin: 4px 0;" ></i>
+						</button>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Alert me</label>
+						 <div class="fullWidth">
+							<div class="form-check form-check-inline">
+								<label class="paymentStatus">Yes
+								<input type="radio"  class="form-control" (click)="alertMeBox(1)"  [value]=1   [(ngModel)]="services_data.alert_status" formControlName="alert_status" [checked]="services_data.alert_status == 1 ? 'true' : ''">
+								<span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<label class="paymentStatus">No
+								<input type="radio" class="form-control" (click)="alertMeBox(0)"  [value]=0 [(ngModel)]="services_data.alert_status" formControlName="alert_status" [checked]="services_data.alert_status == 0 ? 'true' : ''">
+								<span class="checkmark"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Status</label>
+						 <div class="fullWidth">
+							<div class="form-check form-check-inline">
+								<label class="paymentStatus">Pending
+								<input type="radio" class="form-control" [(ngModel)]="services_data.status" [value]=0 formControlName="status"  [checked]="services_data.status == 0 ? 'true' : ''" >
+								<span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<label class="paymentStatus">Complete
+								<input type="radio" class="form-control" [(ngModel)]="services_data.status" [value]=1  formControlName="status"  [checked]="services_data.status == 1 ? 'true' : ''" >
+								<span class="checkmark"></span>
+								</label>
+                     </div>
+                     <div class="form-check form-check-inline">
+								<label class="paymentStatus">Decline
+								<input type="radio" class="form-control" [(ngModel)]="services_data.status" [value]=2  formControlName="status"  [checked]="services_data.status == 2 ? 'true' : ''" >
+								<span class="checkmark"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4" *ngIf="alertBox">
+					<div class="form-group">
+						<label>Alert me before</label>
+						<select class="form-control" id="inputName2" formControlName="alert_day" [(ngModel)]="services_data.alert_day">
+							<option  [selected]=true [value]=1>1 Day</option>
+							<option [value]=2>2 Day</option>
+							<option [value]=3 >3 Day</option>
+							<option [value]=4>4 Day</option>
+                     <option [value]=5>5 Day</option>
+                     <option [value]=6>6 Day</option>  
+						</select>
+						<i aria-hidden="true" class="fa fa-caret-down dropdown"></i>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Vendor Name</label>
+						<select class="form-control" id="inputName2" formControlName="vendor_id" [(ngModel)]="services_data.vendor_id" >
+                     <option [selected]="true" *ngIf="services_data.vendor_id == 0">--Please Select ----</option>
+							<option  *ngFor="let vendors of vendors_data" [value]="vendors.id">{{vendors.name}}</option>
+						</select>
+						<i aria-hidden="true" class="fa fa-caret-down dropdown"></i>
+               </div>
+               <div *ngIf="requestSubmit && editRequestForm.vendor_id.errors" class="errors">
+                     <div *ngIf="editRequestForm.vendor_id.errors.required"> Vender Name required </div>
+               </div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Priority</label>
+						<select class="form-control" id="inputName1" [(ngModel)]="services_data.priority" formControlName="priority">
+							<option [value]="0"> Low </option>
+							<option [value]="1" >High</option>
+                     <option [value]="2">Mediam</option>
+                     <option [value]="3">Urgent</option>
+						</select>
+						<i aria-hidden="true" class="fa fa-caret-down dropdown"></i>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="form-group">
+						<label>Notes</label>
+						<textarea rows="5" placeholder="" [(ngModel)]="services_data.description" formControlName="description">{{services_data.description}}</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+   </div>
+</form>
+   <!-- ccomment box start -->
+		<!-- <div class="commentBoxMain" *ngFor="let chat of chat_message">
+			<div class="commentBox" *ngIf="chat.role == 0">
+				<div class="commentBoxImgDiv">
+					<img src="assets/img/faces/avatar.jpg" class="picImg">
+				</div>
+				<div class="commentBoxTextDiv">
+					<h4>{{chat.task}}<span> at {{chat.date}}</span></h4>
+					<div class="textFlex">
+						<p> Created By : <span>{{chat.role == 0? 'Tenant' : 'Landlord'}}</span></p>
+						<p> Task Date : <span>{{chat.date}}</span></p>
+					</div>
+					<p>Details : <span>{{chat.message}}</span></p>
+					
+					
+					
+				</div>
+			</div>	
+			<div class="commentBox subCommentBox"  *ngIf="chat.role == 1">
+				<div class="commentBoxImgDiv">
+					<img src="assets/img/faces/avatar.jpg" class="picImg">
+				</div>
+				<div class="commentBoxTextDiv">
+					<h4>Rose service req <span> at 2019-Mar-13 01:41:44 am</span></h4>
+					<div class="textFlex">
+						<p> Created By : <span>Landlord</span></p>
+						<p> Task Date : <span>12/02/2019</span></p>
+						<p> Task Status : <span>Pending</span></p>
+					</div>
+					<p>Details : <span>demo 1</span></p>
+				</div>
+			</div>			
+			
+      </div>
+      <button class="btn commonBtnP pull-right" data-toggle="modal" data-target="#myModalComment">Post Reply</button> -->
+		<!-- comment box close -->
+</div>
+
+<!-- popup  post replay -->
+<!-- <div class="modal commentReply" id="myModalComment">
+	<div class="modal-dialog">
+		<div class="modal-content fullWidth">
+			<div class="modal-text padd0">
+         <form [formGroup]="replayMeassge" (ngSubmit)="sendReplay()">
+			 
+			  <div class="modal-header">
+				 <h4 class="modal-title">Post a Reply</h4>
+				  <button type="button" class="close" data-dismiss="modal">&times;</button> 
+			  </div>
+			 
+			  <div class="col-md-12 addPayment ">
+				 <textarea type="text" formControlName="message" class="form-control" placeholder="comment..." ></textarea>
+			  </div>
+			  <div class="modal-footer text-right">
+				 <button  class="commonBtnP">Replay</button>
+           </div>
+         </form>
+			</div>
+		</div>
+	</div>
+</div> -->
+<!-- popup  post replay -->
+
+
+
+      <footer class="footer">
+         <div class="container-fluid">
+         </div>
+      </footer>
+   </div>
+   <!-- min end section -->        
+</div>

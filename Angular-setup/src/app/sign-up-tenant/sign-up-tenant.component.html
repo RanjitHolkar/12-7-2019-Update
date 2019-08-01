@@ -1,0 +1,174 @@
+
+
+
+  <!--  <form [formGroup]='signForm' (ngSubmit)='signUp()'>
+        <input type="text" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$"  >
+         <div *ngIf="signForm.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+           <div *ngIf="signForm.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+           
+        <input type='email' name='email' formControlName='email'/>
+
+        <div *ngIf="signForm.controls['email'].hasError('required')" class="error">Phone Number Required</div>	  
+        <div *ngIf="signForm.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+
+        <input type='text' name='phone' formControlName='phone'>
+          <div *ngIf="signForm.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+          <div *ngIf="signForm.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+          <div *ngIf="signForm.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+          <div *ngIf="signForm.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+
+        
+     <input type="password" formControlName="password" (input)="checkNewPwd($event.target.value)" id="pwd" placeholder="Enter Password"  minlength="5"/>
+     <div *ngIf="signForm.controls['password'].hasError('required')" class="error"  >Plaese enter  new Password</div>
+      <div *ngIf="signForm.controls['password'].hasError('minlength')" class="error" >Enter 5 minimum length password </div>
+  
+         
+	 <input type="password" formControlName="cpassword" (input)="checkConformPwd($event.target.value)" id="rpwd"  minlength="5" placeholder="Re Enter Password"/>
+   <div *ngIf="signForm.controls['cpassword'].hasError('required')" class="error">Plaese enter Conform Password</div>
+   <div *ngIf="signForm.controls['cpassword'].hasError('minlength')" class="error" >Enter 5 minimum length password </div>
+  
+
+   <div *ngIf="conpass==false" class="error"> Password and Conform Password  must be same   </div>
+       <input  type="submit"  value="Sing Up "/>
+
+      </form>-->
+  <!--
+
+<div>
+  <form novalidate (ngSubmit)="formSubmit()" role="form" [formGroup]="signin">       
+    <div class="form-group has-feedback">
+      <input type="text" class="form-control" name="phoneOrEmail" placeholder="Email Id" formControlName="phoneOrEmail" autocomplete="off" />
+      <div *ngIf="signin.controls['phoneOrEmail'].hasError('required')" class="error">Please Enter Email id</div>
+    </div>
+    <div class="form-group has-feedback">
+      <input type="password" class="form-control" name="password" placeholder="**********" formControlName="pass"
+        minlength="5" autocomplete="off" />      
+    </div>    
+    <div class="row">
+      <div class="col-xs-4">
+        <button type="submit" class="btn btn-info btn-block btn-flat">Login</button>
+      </div>
+    </div>
+  </form>
+</div>-->
+
+
+
+<div class="wrapper ">
+    <!-- <app-sidebar></app-sidebar> -->
+      
+     <!--  Mid section  -->
+  
+     
+     <!-- Navbar -->
+     
+        <!--   <app-nav></app-nav>  --> 
+     
+     <!-- End Navbar -->
+     <div class="content">
+       <div class="container-fluid">
+         <div class="loginMainDiv singlePage">
+           <div class="loginInner">
+             <div class="card">
+               <div class="card-header card-header-info">
+                 <h4 class="card-title">Sign up as tenant</h4>
+                <!--  <p class="card-category">Complete your profile</p> -->
+               </div>
+              <div class="card-body">
+                    <form [formGroup]='signForm' (ngSubmit)='signUp()' autocomplete="off">
+                    <div class="row">
+                     
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">User Name</label>
+                          <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" >
+
+                          <div *ngIf="signForm.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+                          <div *ngIf="signForm.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+                        </div>
+                      </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Mobile No</label>
+                          <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)">
+                          <div *ngIf="signForm.controls['phone'].hasError('required')" class="error">Mobile Number Required</div>
+                          <div *ngIf="signForm.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+                          <div *ngIf="signForm.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+                          <div *ngIf="signForm.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+                
+                        </div>
+                      </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Email Id</label>
+                          <input type="text" class="form-control" name='email' formControlName='email'>
+                          <div *ngIf="signForm.controls['email'].hasError('required')" class="error">Email Id Required</div>	  
+                         <div *ngIf="signForm.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+                        </div>
+                      </div>
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input class="form-control"  type="password" formControlName="password" (input)="checkNewPwd($event.target.value)" id="pwd"  minlength="5">
+                          <div *ngIf="signForm.controls['password'].hasError('required')" class="error"  >Plaese enter  new Password</div>
+                          <div *ngIf="signForm.controls['password'].hasError('minlength')" class="error" >Enter 5 minimum length password </div>
+                        </div>
+                      </div>
+					
+					  <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Conform Password</label>
+                          <input  class="form-control" type="password" formControlName="cpassword" (input)="checkConformPwd($event.target.value)" id="rpwd"  minlength="5">
+                         
+                          <div *ngIf="conpass==false || signForm.controls['cpassword'].hasError('required') || signForm.controls['cpassword'].hasError('minlength') " class="error"> Password and Conform Password  must be same ...!  </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12" >
+                        <!-- existEmailAndphone -->
+                        <div class="form-group" *ngIf="existEmailAndphone">
+                                <div class="error">  This email id / phone already existe ...!  </div>
+                        </div>
+
+                        <div class="alert alert-success" *ngIf="accountCreated">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <i class="material-icons">close</i>
+                                </button>
+                                <span>
+                                   Your account created  successfully , Please Check Email And Click the Link To Activate Account ...! <a routerLink="/login"> If you already have an account with us please login</a>
+                                </span>
+                           </div>
+                       </div>
+                       
+
+                      
+                    </div>
+                    
+                    
+                    <button type="button" class="btn googleBtn pull-right" (click)="socialSignIn()"><i class="fa fa-google" aria-hidden="true"></i>Google Login</button>
+                    <button type="submit" class="btn btn-info pull-right">Sign Up</button>
+                    <div class="clearfix"></div>
+                  </form>
+
+                  <div class="alink">
+                      <a routerLink="/login"> If you already have an account with us please login</a>
+                   </div>
+                </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <footer class="footer">
+       <div class="container-fluid">
+        
+       </div>
+     </footer>
+  
+      <!-- min end section -->        
+  
+    </div>
+    <div class="overlayDivLoader">
+        <img src="assets/img/loaderimg.png" class="loaderimg">
+    </div>
+
+

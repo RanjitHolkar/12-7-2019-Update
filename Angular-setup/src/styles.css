@@ -1,0 +1,597 @@
+/* You can add global styles to this file, and also import other style files */
+
+.overlayDivLoader{
+    text-align: center;
+}
+
+.loginMainDiv {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.singleDivBOx {
+    background-color: #ffff;
+    width: 100%;
+    float: left;
+}
+.boxHeader {
+    background-color: #dcdbdb;
+    padding: 30px;
+}
+
+ .boxHeader h4{
+    font-size: 20px;
+    margin: 0;
+    color: #000;
+}
+.singleDivBOx  p {
+    font-size: 12px;
+    color: #000;
+    margin: 0;
+}
+.BoxText {
+    width: 100%;
+    float: left;
+    padding: 15px 25px;
+}
+.width30 {
+    width: 33.33%;
+    float: left;
+    text-align: center;
+}
+.width30 h4{
+    font-size: 20px;
+    color: #000;
+}
+.blockDiv {
+    width: 100%;
+    float: left;
+    margin: 0 0 40px;
+}
+h4.PropertyHead {
+    font-size: 16px;
+    font-weight: bold;
+}
+.error {
+color: red;
+
+}
+.loginMainDiv.singlePage {
+    max-width: 500px;
+    margin: 150px auto;
+}
+.paddLR15{
+    padding: 0 15px;
+}
+.fullwidth{
+    width: 100%;
+    float: left;
+}
+.btnDiv a{
+    display: block;
+    width: 100%;
+    text-align: right;
+    float: left;
+}
+
+
+
+
+/* common css */
+.sidebar li a {
+	background-color: transparent !important;
+    box-shadow: unset !important;
+    color: #fff!important;
+}
+.sidebar .nav li a i {
+    color: #fff !important;
+}
+.sidebar .nav li.active a {
+    color: #fff !important;
+    background-image: linear-gradient(to bottom, #25c5d9, #1cadc2) !important;
+}
+.sidebar .nav li a:hover {
+    color: #fff !important;
+    background-image: linear-gradient(to bottom, #25c5d9, #1cadc2) !important;
+}
+.sidebar .sidebar-wrapper {
+     background-image: linear-gradient(to bottom, #1e8bf8, #305df4) !important; 
+	    /* background-image: linear-gradient(to bottom, #25c5d9, #1cadc2) !important; */
+}
+.navbar.navbar-transparent {
+    background-color: #f1f3f5 !important;
+    box-shadow: 5px 0px 10px grey;
+    width: calc(100% - 260px);
+    position: fixed;
+    right: 0;
+    left: unset;
+}
+/* common css */
+
+.alink a{
+    color: #1db0c5;
+}
+
+.loginMainDiv {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.singleDivBOx {
+    background-color: #ffff;
+    width: 100%;
+    float: left;
+    box-shadow: 0 0 10px #80808045;
+}
+.boxHeader {
+    background-color: #dcdbdb;
+    padding: 30px;
+    width: 100%;
+    float: left;
+}
+.lightBG {
+    background-color: #9999991f;
+    padding: 5px 30px;
+}
+ .boxHeader h4{
+    font-size: 20px;
+    margin: 0;
+    color: #000;
+}
+.singleDivBOx  p {
+    font-size: 12px;
+    color: #000;
+    margin: 0;
+}
+.BoxText {
+    width: 100%;
+    float: left;
+    padding: 15px 25px;
+}
+.width30 {
+    width: 33.33%;
+    float: left;
+    text-align: center;
+}
+.width30 h4{
+    font-size: 20px;
+    color: #000;
+}
+.blockDiv {
+    width: 100%;
+    float: left;
+    margin: 0 0 40px;
+}
+h4.PropertyHead {
+    font-size: 16px;
+    font-weight: bold;
+}
+.boxHeader1 {
+    width: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+.boxHeader2 {
+    width: calc(100% - 70px);
+    float: left;
+    padding: 10px 21px;
+}
+.fullwidth{
+	width:100%;
+	float:left;
+}
+.form-check.btn.btn-primary.commonBtn {
+    padding: 15px 0px;
+    min-width: 150px;
+    
+}
+.commonBtn label{
+	color: #fff !important;
+}
+/* dashboard css */
+.min200{
+	min-height:150px;
+}
+.fullwidth{
+	width:100%;
+	float:left;
+}
+.commonDropDown .dropdown-toggle.btn-light{
+	display:none;
+}
+.commonDropDown .btn{
+    padding: 3px 15px;
+    border-radius: 5px;
+}
+.commonDropDown{
+    min-width: 150px;
+    float: left;
+    margin: 15px 2px 30px 0;
+}
+.commonDropDown .dropdown-toggle:after {
+margin-left: -9px;
+    vertical-align: 0;
+}
+.paddB30{
+	padding-bottom:30px;
+}
+.leasePage .commonDropDown .dropdown{
+	width:100%;
+	float:left;
+}
+.leasePage .commonDropDown {
+	margin: 0 2px 0px 0;
+}
+/* dashboard css close*/
+/* timeline page css  */
+.commentTextDiv {
+    width: calc(100% - 60px);
+    float: left;
+    padding: 0px 20px;
+}
+.commentImgDiv {
+    width: 60px;
+    height: 60px;
+    float: left;
+}
+.commentTextDiv h4{
+	color:#1f88f8;
+	font-weight:bold;
+	font-size:16px;
+	margin:0;
+}
+/* .commentReply .commentTextDiv h4{
+	color:#1f88f8;
+} */
+.commentTextDiv p{
+	color: #666;
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+}
+.bgWhite{
+	background-color:#fff;
+}
+.heading h3 {
+    color: #1e87f8;
+    font-size: 30px;
+}
+.singleCommentDivMain {
+    width: 100%;
+    float: left;
+}
+.comment {
+	padding: 15px;
+    width: calc(100% - 80px);
+    float: left;
+    background-color: #2181f714;
+    margin-bottom: 10px;
+	border-top: 1px solid #1d86f7;
+}
+.sendIcon {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    color: #286ef5;
+    transform: rotate(15deg);
+}
+.replyComment input.form-control {
+    padding-right: 35px;
+}
+.secheading {
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+}
+.commentReply {
+    width: calc(100% - 80px);
+    float: right;
+    border-top: 1px solid #1fbcd4;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #1fbcd417;
+}
+.commentTextDiv.NotificationInner {
+    width: 100%;
+    border-radius: 0;
+    padding: 10px 20px;
+    background-color: #e8f9fb;
+    margin-bottom: 10px;
+}
+
+/* timeline page css  close*/
+/* payment details page css  start*/
+.paymentDetail h4 {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0 0;
+}
+/* toggle switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+    margin: 10px 0 0;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(33px);
+    -ms-transform: translateX(33px);
+    transform: translateX(33px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* payment details page css  close*/
+/* contact page css  start*/
+.singleCommon {
+    padding: 15px;
+    border-radius: 10px;
+}
+.singleCommon h4 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+.contactHead {
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0 10px;
+}
+.singleCommon1 {
+    box-shadow: 10px 10px 10px #488fdb91;
+    background-color: #2294fa4f;
+}
+.singleCommon2 {
+    box-shadow: 10px 10px 10px #03a9f4ad;
+    background-color: #03a9f469;
+}
+.singleCommon3 {
+	box-shadow: 10px 10px 10px #5db0f6;
+    background-color: #5db0f6c7;
+}
+.contactImgDiv {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 16px;
+}
+input.inputupload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    opacity: 0;
+}
+.btnUpload {
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+.uploadDiv {
+    width: 150px;
+    position: relative;
+    margin: 0 auto;
+}
+.paymentDetail .form-check, .paymentDetail label {
+    font-size: 16px;
+    line-height: 1.42857;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+    color: #000;
+}
+/* contact page css  close*/
+
+.loaderimg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100px;
+}
+.overlayDivLoader {
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000094;
+    top: 0;
+    display: none;
+}
+.dropMenu:hover{
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    background-color: #1fbcd4 !important;
+    color: #FFFFFF !important;
+}
+
+.profileImg{ 
+ max-height: 30px;
+border-radius: 49%;
+    
+}
+
+.commonInnerBox {
+    text-align: center;
+    background-color: #1eb2c76e;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    min-height:200px;
+    display: table;
+    width:100%;
+}
+.textDiv{
+    display: table-cell;
+    vertical-align: middle;
+}
+.commonInnerBox h4 {
+    font-size: 20px;
+    color: #fff;
+}
+.commonInnerBox h5 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+}
+.desImg {
+    height: 110px !important;
+    width: auto;
+}
+.desImgcommon {
+    margin: 0;
+    object-fit: cover;
+    height: 100% !important;
+    width: 100%;
+}
+.singleListImg{
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #666;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.editIcon{
+    position:absolute;
+    top: 10px;
+    right:40px;
+    color:#000;
+    font-size: 20px;
+}
+.deleteIcon{
+    position:absolute;
+    top: 10px;
+    right:10px;
+    color:red; 
+    font-size: 20px;
+}
+.bordB2{
+    border-bottom: 2px solid #dddd;
+    padding: 0 15px 20px;
+}
+.error_display{
+    color: red;
+    width: 100%;
+    float: left;
+    font-size: 14px;
+}
+select.form-control {
+    height: auto;
+}
+
+.modal-title.delete{
+    width: 100%;
+    text-align: center;
+}
+.marB15{
+    margin-bottom: 15px;
+    position: relative;
+}
+.commonIconaddRem {
+    position: absolute;
+    bottom: 10px;
+    right: 9px;
+    border: 1px solid #999;
+    background-color: #999;
+    padding: 2px 4px;
+    color: #fff;
+    border-radius: 2px;
+}
+.tableScroll {
+    overflow-y: auto;
+    height: calc(100vh - 250px);
+}
+.tableDIv .tableScroll {
+    overflow-y: auto;
+    height: calc(100vh - 340px);
+}
+.table>tbody>tr>td{
+    font-size: 16px;
+	color:#000;
+}
+.rentBtn {
+    background-color: #4ec808 !important;
+    font-size: 14px !important;
+}
+.vacantBtn {
+    font-size: 10px !important;
+}
+
+.overlay-right{
+    width: 1rem !important;
+  }
+  .overlay-left {
+    width: 1rem !important;
+  }
+  #grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+}
+.image-cropper img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
+.carousel-container ul {
+    padding: 0;
+}
+.autocomplete-container .suggestions-container.is-visible {
+    visibility: visible;
+    z-index: 9999;
+  }
+  .pagination {
+    float: right !important;
+    margin-top: 25px !important;
+    margin-bottom: 0 !important;
+}

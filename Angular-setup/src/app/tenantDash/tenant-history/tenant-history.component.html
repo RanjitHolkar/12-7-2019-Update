@@ -1,0 +1,82 @@
+
+
+
+
+<div class="wrapper ">
+  <app-tenant-sidebar></app-tenant-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel">
+  <!-- Navbar -->
+  
+     <app-tenant-nav></app-tenant-nav> 
+  
+  <!-- End Navbar -->
+
+
+  <div class="content bgWhite">
+    <div class="container-fluid">
+
+  <div class="loginMainDiv tenantHistory">
+        <div class="loginInner">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title pull-left">Past transaction</h4>
+     
+             <!--  <p class="card-category">Complete your profile</p> -->
+            </div>
+            <div class="card-body">
+      
+      <div class="full-width paymentDetail">
+        
+         <div class="card-body">
+          <div class="table-responsive text-center">
+            <table class="table">
+            <thead class=" text-info">
+              <tr>
+              <th> Sr no</th>
+              <th> Pay type</th>
+              <th> Date</th>
+              <th> Amount</th>
+             </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let transaction of transactionData;let i =index">
+              <td>{{i + 1}} </td>
+              <td>{{transaction.payment_type == 1?'cash' :transaction.payment_type == 2?'Check' : 'Other'}} </td>
+              <td>{{transaction.payment_date}} </td>
+              <td>{{transaction.totalAmount}} </td>
+              </tr>
+             <tr>
+            
+             
+            
+            </tbody>
+            </table>
+          </div>
+          
+          </div>
+        
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+  
+  <footer class="footer">
+    <div class="container-fluid">
+     
+    </div>
+  </footer>
+</div>
+   <!-- min end section -->        
+
+ </div>

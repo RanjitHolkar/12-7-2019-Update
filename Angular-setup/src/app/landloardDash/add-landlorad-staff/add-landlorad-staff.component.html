@@ -1,0 +1,259 @@
+
+
+
+
+<div class="wrapper ">
+    <app-land-sidebar></app-land-sidebar>
+     
+    <!--  Mid section  -->
+  
+    <div class="main-panel">
+    <!-- Navbar -->
+    
+    <app-land-nav></app-land-nav> 
+    
+    <!-- End Navbar -->
+  
+  
+    <div class="content bgWhite">
+      <div class="container-fluid">
+  
+    <div class="">
+          <div class="">
+            <div class="card">
+              <div class="card-header card-header-info">
+                <h4 class="card-title pull-left">Users List </h4>
+       
+               <!--  <p class="card-category">Complete your profile</p> -->
+              </div>
+              <div class="card-body">
+        <div class="full-width text-right">
+          <button class="btn btn-info" data-toggle="modal" data-target="#addStaffModal">Add User</button>
+        </div>
+        <div class="full-width paymentDetail">
+          
+           <div class="card-body">
+            <div class="table-responsive text-center">
+              <table class="table">
+              <thead class=" text-info">
+                <tr>
+                <th> Sr. No</th>
+                <th> Name</th>
+                <th> Email</th>
+                <th> Phone</th>
+                <th> User Type</th>
+                <th> Join Date </th>
+                <th> Status </th>
+                <th> Action </th>
+                
+               </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let user of staffList; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{user.userName}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>{{user.user_type}}</td>
+                  <td>{{user.regDate}}</td>
+                  <td>{{user.status}}</td>
+                  <td>
+                      <div class="dropdown">
+                          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item dropMenu" type="button" (click)="deletestaff(user.id)"> <i class="fa fa-trash-o"></i> Delete</button>
+                            <button class="dropdown-item dropMenu" type="button" (click)="editUsersInfo(user.id)"   > <i class="fa fa-pencil"></i> Edit</button>
+                            <button class="dropdown-item dropMenu"  type="button" *ngIf="user.status =='active'"  (click)="activeDeactivateUser(user.id,'deactivate')">Deactivate</button>
+                            <button class="dropdown-item dropMenu" type="button" *ngIf="user.status =='deactivate'"  (click)="activeDeactivateUser(user.id,'active')">Active</button>
+                          </div>
+                        </div>  
+                  
+                  
+                  </td>
+                </tr>
+             
+                
+              
+              </tbody>
+              </table>
+            </div>
+            
+            
+            
+            </div>
+          
+        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+      </div>
+  
+    </div>
+  
+  
+    <div class="modal fade" id="editStaffModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Staff</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <form [formGroup]="land_staff_edit" (submit)="saveEditStaff()" autocomplete="off" *ngFor=" let stafe of stafe_data; let i = index"> 
+          <!-- Modal body -->
+          <div class="modal-body" >
+          
+        <div class="form-group">
+          <label class="bmd-label-floating">Name</label>
+           <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" [(ngModel)]="stafe.userName" >
+           <div *ngIf="land_staff_edit.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+           <div *ngIf="land_staff_edit.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+        </div>
+        <div class="form-group">
+          <label class="bmd-label-floating">Email</label>
+          <input type="text" class="form-control" name='email' formControlName='email' [(ngModel)]="stafe.email">
+          <div *ngIf="land_staff_edit.controls['email'].hasError('required')" class="error">Email id Required</div>	  
+         <div *ngIf="land_staff_edit.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+        </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Mobile No</label>
+            <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)" [(ngModel)]="stafe.phone">
+            <div *ngIf="land_staff_edit.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+            <div *ngIf="land_staff_edit.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+            <div *ngIf="land_staff_edit.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+            <div *ngIf="land_staff_edit.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+  
+          </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Select User type</label>
+          <select formControlName='user_type'  class="form-control" name="user_type"  [(ngModel)]="stafe.user_type">
+          <option [selected]=true>{{stafe.user_type}}</option>
+          <option *ngIf="stafe.user_type != 'caretaker'"value="caretaker"> Caretaker </option>
+          <option *ngIf="stafe.user_type != 'agent'" value="agent"> agent </option>
+          <option *ngIf="stafe.user_type != 'service_providers'" value="service_providers"> service providers </option>
+        
+
+        </select>
+        <div *ngIf="land_staff_edit.controls['user_type'].hasError('required')" class="error"> Select user type  </div>
+
+      </div>
+    
+        
+        
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info" >Update Staff</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  
+    <div class="modal fade" id="addStaffModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add Staff</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <form [formGroup]="land_staff" (submit)="addStaff()" autocomplete="off"> 
+          <!-- Modal body -->
+          <div class="modal-body">
+          
+        <div class="form-group">
+          <label class="bmd-label-floating">Name</label>
+           <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" >
+           <div *ngIf="land_staff.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+           <div *ngIf="land_staff.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+        </div>
+        <div class="form-group">
+          <label class="bmd-label-floating">Email</label>
+          <input type="text" class="form-control" name='email' formControlName='email'>
+          <div *ngIf="land_staff.controls['email'].hasError('required')" class="error">Email id Required</div>	  
+         <div *ngIf="land_staff.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+        </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Mobile No</label>
+            <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)">
+            <div *ngIf="land_staff.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+            <div *ngIf="land_staff.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+            <div *ngIf="land_staff.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+            <div *ngIf="land_staff.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+  
+          </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Select User type</label>
+          <select formControlName='user_type'  class="form-control" name="user_type">
+          <option value="caretaker"> Caretaker </option>
+          <option value="agent"> agent </option>
+          <option value="service_providers"> service providers </option>
+        
+
+        </select>
+        <div *ngIf="land_staff.controls['user_type'].hasError('required')" class="error"> Select user type  </div>
+
+      </div>
+    
+        
+        
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info" >Add Staff</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    
+    
+    <footer class="footer">
+      <div class="container-fluid">
+       
+      </div>
+    </footer>
+  </div>
+     <!-- min end section -->        
+  
+   </div>
+
+    <!-- Staff  Delete Confirmation modal :START -->
+ <div id="Staff_delete_model" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <div class="icon-box">
+            <i class="material-icons">&#xE5CD;</i>
+          </div>				 -->
+          <h4 class="modal-title delete">Are you sure?</h4>	
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete these User </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteconfirm_staff()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+<!--  Staff Delete Confirmation modal:END -->
+   
+
+  

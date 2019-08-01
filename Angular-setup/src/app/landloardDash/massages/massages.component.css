@@ -1,0 +1,257 @@
+.tenentList {
+    background-color: #fff;
+    box-shadow: -5px 5px 10px 5px #999;
+}
+.tenaHead {
+    background-color: #1e8af7;
+    padding: 10px 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0;
+}
+.listTenant {
+    padding: 10px 0;
+    max-height: calc(100vh - 120px);
+    height: 100%;
+    min-height: 71vh;
+    overflow-y: auto;
+}
+.listTenant h5.activeText, .listTenant h5:hover {
+    background-color: #1d8af89c;
+    color: #fff;
+}
+.listTenant h5 {
+    color: #666;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 0;
+    font-weight: bold;
+	cursor:pointer;
+    margin-bottom: 2px;
+    background-color: #eee;
+}
+.radioDiv {
+    padding: 10px 20px;
+}
+.radioDiv label{
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+	margin: 0;
+}
+
+
+/* popup css */
+.modal-body.modalBody.modalPadd{
+    max-height: 495px;
+    height: 100%;
+    padding-bottom: 80px;
+}
+.fullwidth.replyComment {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0 15px;
+}
+.singleCommentDivMain .comment {
+    padding: 0;
+    max-width: calc(100% - 80px);
+    float: left;
+    background-color: unset;
+    margin-bottom: 0px;
+    border-top: 0px solid #1d86f7;
+}
+.singleCommentDivMain .commentReply {
+    padding: 0;
+    max-width: calc(100% - 80px);
+    float: right;
+    background-color: unset;
+    margin-bottom: 0px;
+    border-top: 0px solid #1d86f7;
+}
+.commentTextDiv p {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+.commentInner {
+    border-top: 1px solid #1d86f7;
+    background-color: #2181f714;
+    padding: 5px;
+    width: auto;
+    float: left;
+    margin-bottom: 10px;
+}
+.commentReply .commentInner {
+    border-top: 1px solid #1fbcd4;
+    background-color: #1fbcd417;
+    padding: 5px;
+    width: auto;
+    float: right;
+    margin-bottom: 10px;
+}
+.singleCommentDivMain {
+    width: 100%;
+    float: left;
+    max-height: 400px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+}
+.commentReply .modal-header {
+    background-color: #0175fe;
+}
+.commentReply {
+    width: 100%;
+}
+.commentReply .modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+}
+.receiptDetail {
+    padding:30px 40px 0px;
+    width: 100%;
+    float: left;
+}
+.commentReply .modal-content{
+    max-width: unset;
+    height: auto;
+}
+.commentReply .modal-title {
+    color: #fff;
+    font-weight: 500;
+    font-size: 20px;
+}
+.commentReply .modal-footer {
+    justify-content: center;
+}
+.commentReply .close {
+    color: #ffffff;
+    opacity: 1;
+}
+.commonBtnP {
+    color: #fff;
+    background-color: #1f87f8;
+    border: 1px solid #1f87f8;
+    font-size: 15px;
+    padding: 0 15px;
+    height: 40px;
+    margin: 0 5px;
+}
+.commonBtnC{
+	color: #1f87f8;
+    background-color: #fff;
+    border: 1px solid #1f87f8;
+    font-size: 15px;
+    padding: 0 15px;
+    height: 40px;
+    margin: 0 5px;
+}
+.receiptDetailInner {
+    border: 1px solid #0275fe;
+    width: 100%;
+    float: left;
+    margin: 15px 0;
+	position:relative;
+}
+h4.recHead {
+    font-size: 20px;
+    margin: 0 !important;
+    background-color: #0275fe;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.listReceipt {
+	padding: 25px 40px 0;
+    width: 100%;
+    float: left;
+}
+.listReceipt p {
+    margin: 0;
+    width: 50%;
+    float: left;
+    font-size: 16px;
+    color: #000;
+}
+.fullwidth.DFlex h3 {
+    font-size: 20px;
+}
+.fullwidth.DFlex div{
+    width: 100%;
+}
+.fullwidth.DFlex p {
+    font-size: 16px;
+    color: #000;
+}
+.fullwidth.DFlex {
+    display: flex;
+    width: 100%;
+    margin: 0px 0;
+   	padding: 5px 40px 0;
+}
+.noMar p{
+	margin:0;
+}
+.description{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #000;
+    padding: 0 0 20px;
+}
+.paidDiv {
+    position: absolute;
+    right: 10px;
+    height: 60px;
+    width: 60px;
+    border: 2px dashed red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 48px;
+    transform: rotate(40deg);
+}
+.paidDiv h4 {
+    color: red;
+    margin: 0;
+    font-size: 18px;
+}
+.paddL80 {
+    padding-left: 80px;
+}
+.modalHead {
+	background-color: #1d8af8;
+    position: relative;
+}
+.modalHead .modal-title2 {
+    position: absolute;
+    bottom: 8px;
+    font-size: 18px !important;
+}
+.modalHead .modal-title3 {
+    position: absolute;
+    right: 44px;
+    top: 11px;
+    display: flex;
+    align-items: center;
+}
+.modal-title3 img {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 10px;
+}
+.modalHead h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+	    margin: 0 !important;
+}
+/* popup css */
+.unreadCount{
+    color: red;
+}

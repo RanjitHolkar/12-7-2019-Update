@@ -1,0 +1,91 @@
+
+<div class="wrapper">
+    <app-tenant-sidebar></app-tenant-sidebar>
+    <!--  Mid section  -->
+    <div class="main-panel">
+       <!-- Navbar -->
+    <app-tenant-nav></app-tenant-nav>
+    <div class="content whiteBg">
+          
+<app-my-house-nav></app-my-house-nav>
+       <!-- lease Section  :Start  -->
+       <div class="AddRequestMainInner" >
+          <div class="addReqHead">
+             <h3>Lease</h3>
+          </div>
+          <div class="requestTable">
+             <div class=" mainCard mt-0">
+                <div class="card-body">
+                   <div class="row leaseRow" *ngFor="let lease of lease_data;let i=index">
+                      <div class="column">
+                         <div class="card leaseCard">
+                            <h3>Date</h3>
+                            <p>{{lease.startDate}} To {{lease.endDate}}</p>
+                         </div>
+                      </div>
+                      <div class="column">
+                         <div class="card leaseCard">
+                            <h3>Rent Amount</h3>
+                            <p>{{lease.rentAmount}} /-</p>
+                         </div>
+                      </div>
+                      <div class="column">
+                         <div class="card leaseCard">
+                            <h3>Deposit Amount</h3>
+                            <p>{{lease.depositAmount}}/-</p>
+                         </div>
+                      </div>
+                      <div class="column">
+                         <div class="card leaseCard">
+                            <h3>Payment Day</h3>
+                            <p>{{lease.paymentDay}}</p>
+                         </div>
+                      </div>
+                      <div class="column">
+                         <div class="card leaseCard">
+                            <h3>Payment Frequency</h3>
+                            <p>{{lease.paymentFrequency}}</p>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <!-- <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Rent Amount</th>
+                    <th>Deposit Amount</th>
+                    <th>Payment Day</th>
+                    <th>Payment Frequency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let lease of lease_data;let i=index">
+                    <td>{{lease.startDate}} To {{lease.endDate}}</td>
+                    <td>{{lease.rentAmount}}</td>
+                    <td>{{lease.depositAmount}}</td>
+                    <td>{{lease.paymentDay}}</td>
+                    <td>{{lease.paymentFrequency}}</td>
+                  </tr>
+                  
+                </tbody>
+                </table> -->
+             <div class="col-md-12 outerNoRecord" *ngIf="lease_data?.length ==0">
+                <div >No Records</div>
+             </div>
+          </div>
+       </div>
+
+
+<footer class="footer">
+  <div class="container-fluid">
+   
+  </div>
+</footer>
+</div>
+</div>
+
+
+
+

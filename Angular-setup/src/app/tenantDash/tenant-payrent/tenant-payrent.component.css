@@ -1,0 +1,331 @@
+/* payment Section Lease start*/
+.leaseSection{
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px #0606063d;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.headerLease {
+    padding: 30px;
+    background-color: #1d8af8;
+    width: 100%;
+    float: left;
+}
+.headerLeaseInner2 {
+    float: right;
+}
+.headerLeaseInner2 .EditProperty {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    margin: 15px 0 0;
+    text-transform: capitalize;
+    font-size: 14px;
+    box-shadow: none;
+}
+.paymentSec {
+    width: 100%;
+    float: left;
+    display: flex;
+}
+.headerLeaseInner1 h4 {
+    color: #fff;
+    font-size: 24px;
+}
+.headerLeaseInner1 h5 {
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+.headerLeaseInner1 {
+    float: left;
+}
+
+
+.payText p {
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+}
+.payText h4 {
+    font-size: 18px;
+    color: #666;
+}
+.payText {
+    width: 100%;
+    text-align: center;
+}
+.paymentCommonLeft {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.paymentCommon {
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+}
+/* .tenantSingle{
+    border: 1px solid lightgrey;
+    padding: 15px 25px;
+	border-radius:10px;
+	    margin-bottom: 25px;
+} */
+.profleDiv {
+    display: flex;
+    margin: 10px 0;
+}
+.tenetProfile {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.profleDiv h3 {
+	color: #3aadee;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.mobileIcon {
+    font-size: 25px;
+    color: #0d9deb;
+}
+.eamilIcon {
+    font-size: 18px;
+    color: #0d9deb;
+}
+.profileDetail h4 {
+    font-size: 16px;
+    color: #000;
+}
+.padd30{
+    padding: 30px;
+}
+.tenantHeader {
+    border-bottom: 1px solid #ddd;
+	padding:20px 30px;
+	width: 100%;
+    float: left;
+}
+.tenantHeader h3 {
+    font-size: 24px;
+    margin: 5px 0;
+    color: #06a2ec;
+}
+.tenantHeader .EditProperty{
+	margin:0;
+}
+.borderR {
+    border-right: 1px solid #ddd;
+}
+.multiUnit {
+	display: flex;
+    position: relative;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 5px;
+    background-color: #16161645;
+	transition:0.5s;
+	
+}
+.multiUnit.multiUnitActive {
+	background-color: #000000bf;
+    box-shadow: -7px 7px 10px grey;
+}
+.multiUnit:hover {
+	background-color: #000000bf;
+    box-shadow: -7px 7px 10px grey;
+}
+.multiUnit h4 {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+
+.multiUnit p {
+    position: absolute;
+    bottom: 0px;
+    left: 12px;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.EditProperty{
+    background-color: transparent;
+    color: #009aea;
+    border: 1px solid #009aea;
+    margin: 15px 0 0;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+.requestDiv {
+    background-color: #514d4d;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+	cursor: pointer;
+}
+.requestDiv  p {
+    color: #fff;
+    font-size: 14px;
+    margin: 5px 0;
+}
+.requestDiv  h4 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 5px 0;
+}
+.requestDiv:hover{
+    background-color: #888080;
+}
+.payrentRight {
+    width: calc(100% - 250px);
+    float: left;
+    padding-left: 20px;
+}
+.payrentLeft {
+    width: 250px;
+    float: left;
+}
+.requestIcon {
+    filter: invert(100%);
+}
+.propertyDetailDiv {
+	box-shadow: 0 5px 10px #477aaecc;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: #1d8af817;
+}
+.PropertyHeadDetail {
+    padding: 10px 15px;
+    border-bottom: 1px solid #4d4b4b42;
+}
+.PropertyHeadDetailText{
+	padding: 10px 15px;
+}
+.PropertyHeadDetail h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+.PropertyHeadDetailText h5{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.PropertyHeadDetailText p {
+    font-size: 13px;
+    margin: 0;
+}
+/* payment Section Lease start*/
+/* view request page start */
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.addReqHead {
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    width: 100%;
+    float: left;
+    border-radius: 5px;
+    background-color: #1d8af8;
+}
+.addReqHead h3{
+    float: left;
+    margin: 8px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+.addReqDIv {
+    float: right;
+}
+.addReqHead .EditProperty{
+    margin: 0;
+	color: #fff;
+    border: 1px solid #fff;
+}
+.requestTable {
+    width: 100%;
+    float: left;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px 20px;
+}
+.AddRequestMainInner {
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.AddRequestMainInner .table thead tr th {
+    font-size: 15px;
+    font-weight: bold;
+}
+.AddRequestMainInner td{
+	font-size: 15px;
+}
+.modalHead {
+    background-color: #1d8af8;
+}
+.modalHead h4{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+.modalBody .bmd-label-floating {
+    color: #000 !important;
+}
+.close{
+	color: #fff;
+}
+.modalBody .form-control:read-only {
+    background-image: linear-gradient(to top, #9f18b4 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+}
+/* view request page close */

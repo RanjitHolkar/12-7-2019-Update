@@ -1,0 +1,226 @@
+
+
+
+
+<div class="wrapper ">
+  <app-admin-sidebar></app-admin-sidebar>
+   
+  <!--  Mid section  -->
+
+  <div class="main-panel">
+  <!-- Navbar -->
+  
+     <app-admin-nav></app-admin-nav> 
+  
+  <!-- End Navbar -->
+
+
+  <div class="content">
+
+      <div class="col-md-12">
+
+          <button  *ngIf="showUserForm==true" type="button" class="btn btn-info pull-right" (click)="hideAddUsersDiv()" >Back</button>
+         
+          <button *ngIf="showUserForm==false" type="button" class="btn btn-info pull-right"  (click)="addUsersDiv()" >Add User</button>
+           
+         </div>
+
+
+         <div class="content">
+            <div class="container-fluid" *ngIf="showUserForm==true">
+              <div class="loginMainDiv">
+                <div class="loginInner">
+                  <div class="card">
+                    
+                      
+                    <div class="card-header card-header-info">
+                      <h4 class="card-title">Tenants</h4>
+                     <!--  <p class="card-category">Complete your profile</p> -->
+                     
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]='userform' autocomplete="off">
+                        <div class="row">
+                         
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">User Name</label>
+                              <input type="text" class="form-control" name="userName" formControlName='userName' pattern="^[a-zA-Z ]*$" >
+    
+                              <div *ngIf="userform.controls['userName'].hasError('required')" class="error"> User Name is required  </div>
+                              <div *ngIf="userform.controls['userName'].hasError('pattern')" class="error"> Enter only alphabets </div>
+                            </div>
+                          </div>
+                <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Mobile No</label>
+                              <input type="text" class="form-control" name='phone' formControlName='phone' (keypress)="numberOnly($event)">
+                              <div *ngIf="userform.controls['phone'].hasError('required')" class="error">Phone Number Required</div>
+                              <div *ngIf="userform.controls['phone'].hasError('pattern')" class="error">Enter only number</div>
+                              <div *ngIf="userform.controls['phone'].hasError('maxlength')" class="error">Enter only 10 digit number</div>
+                              <div *ngIf="userform.controls['phone'].hasError('minlength')" class="error">Enter only 10 digit number</div>  
+                    
+                            </div>
+                          </div>
+                <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Email Id</label>
+                              <input type="text" class="form-control" name='email' formControlName='email'>
+                              <div *ngIf="userform.controls['email'].hasError('required')" class="error">Email id Required</div>	  
+                             <div *ngIf="userform.controls['email'].hasError('email')" class="error"> Email Not Valid</div>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                                  <div class="form-group">
+                                  <label class="bmd-label-floating">Select User Roll</label>
+                                <select formControlName='role'  class="form-control" name="role">
+                                <option value="tenant"> Tenant </option>
+                                <option value="landlord"> LandLord </option>
+                              
+          
+                              </select>
+                              <div *ngIf="userform.controls['role'].hasError('required')" class="error"> Select Role  </div>
+          
+                            </div>
+                          </div>
+                
+                          <div class="col-md-12" >
+                            <!-- existEmailAndphone -->
+                            <div class="form-group" *ngIf="existEmailAndphone">
+                                    <div class="error">  This email id / phone already existe ...!  </div>
+                            </div>
+    
+                          </div>
+                           
+    
+                          
+                        </div>
+                        
+                        <button  *ngIf="showUserForm==true" type="button" class="btn btn-info pull-right" (click)="hideAddUsersDiv()" >Cancel</button>
+                       
+                        <button  *ngIf="showSaveBtn == true" [disabled]="formSubmit" type="button" (click)="addUser()" class="btn btn-info pull-right">Save</button>
+
+                        <button   *ngIf="showSaveBtn ==false"  [disabled]="formSubmit" type="button" (click)="updateUserInfo()" class="btn btn-info pull-right">Update</button>
+                       
+                        <div class="clearfix"></div>
+                      </form>
+    
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!--- ############ Show Users List ####################-->
+             <div class="container-fluid" *ngIf="showUserForm == false">
+             <div class="transactionPage">
+               <div class="heading">
+                 <h3>Users List </h3>
+                 
+               </div>
+               <div class="tenantListBtn">
+                 <div class="searchDiv pull-left">
+      
+                </div>
+                 <div class="pull-right ListTenantbtnDiv">
+                   <button type="submit" class="btn btn-info pull-right">Export</button>
+                   <button type="submit" class="btn btn-info pull-right">Import</button>
+                 </div>
+               </div>
+               
+               <div class="tableDIv">
+                 <div class="card">
+                  <table class="table">
+                  <thead class=" text-info">
+                    <tr>
+                           <th> Sr. No.</th> 
+                           <th> User Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Join Date</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                           <th>Action</th>
+                          </tr>
+                          </thead>
+                                      <tbody>
+                                        <tr *ngFor='let user of usersList; let inx = index'>
+                                            <td>{{inx+1}}</td>
+                                          <td>{{user.userName | titlecase }}</td>
+                                          <td>{{user.phone}}</td>
+                                          <td>{{user.email}}</td>
+                                          <td>{{user.regDate}}</td>
+                                          <td><b>{{user.role | titlecase }} </b></td>
+                                          <td><b>{{user.status | titlecase}}</b></td>
+                                          <td>
+                                              <!-- <button type="button" class="btn btn-info"  (click)="editUsersInfo(user)" >Edit</button>
+                                              <button type="button" class="btn btn-danger"  (click)="deleteUsers(user)" >Delete</button>
+                                              <button *ngIf="user.status =='active'" type="button" class="btn btn-info"  (click)="activeDeactivateUser(user.id,'deactivate')" >Deactivate</button>
+                                              <button *ngIf="user.status =='deactivate'" type="button" class="btn btn-info"  (click)="activeDeactivateUser(user.id,'active')" >Active</button> -->
+
+                                                <!-- Example split danger button -->
+                                                <div class="dropdown">
+                                                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Action
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                      <button class="dropdown-item dropMenu" type="button" (click)="deleteUsers(user)"> <i class="fa fa-trash-o"></i> Delete</button>
+                                                      <button class="dropdown-item dropMenu" type="button" (click)="editUsersInfo(user)"  > <i class="fa fa-pencil"></i> Edit</button>
+                                                      <button class="dropdown-item dropMenu"  type="button" *ngIf="user.status =='active'"  (click)="activeDeactivateUser(user.id,'deactivate')">Deactivate</button>
+                                                      <button class="dropdown-item dropMenu" type="button" *ngIf="user.status =='deactivate'"  (click)="activeDeactivateUser(user.id,'active')">Active</button>
+                                                    </div>
+                                                  </div>
+                                          </td>
+                                        </tr>
+                        </tbody>
+                     </table>
+                </div>
+               </div>
+             </div>
+               </div>
+
+
+          </div>
+        
+      </div>
+
+
+      <div class="modal fade" id="deleteModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Add other Bill</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+            <div class="form-group">
+              <label class="bmd-label-floating">Bill type</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="bmd-label-floating">Amount</label>
+              <input type="text" class="form-control">
+            </div>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Add</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+  <footer class="footer">
+    <div class="container-fluid">
+     
+    </div>
+  </footer>
+</div>
+   <!-- min end section -->        
+
+ </div>

@@ -1,0 +1,279 @@
+
+
+
+
+<div class="wrapper ">
+    <app-land-sidebar></app-land-sidebar>
+     
+    <!--  Mid section  -->
+  
+    <div class="main-panel">
+    <!-- Navbar -->
+    
+       <app-admin-nav></app-admin-nav> 
+    
+    <!-- End Navbar -->
+  
+   <div class="content bgWhite">
+    <div class="container-fluid">
+
+  <div  *ngIf="loginMainDiv == true">
+        <div class="loginInner">
+          <div class="card">
+            <div class="card-header card-header-info">
+              <h4 class="card-title pull-left">Vender/ Staff</h4>
+     
+             <!--  <p class="card-category">Complete your profile</p> -->
+            </div>
+            <div class="card-body">
+      <div class="full-width text-right">
+        <button class="btn btn-info" (click)="showAddpropertiesDiv()">Add New</button>
+      </div>
+      <div class="full-width paymentDetail">
+        
+         <div class="card-body">
+          <div class="table-responsive text-center">
+            <table class="table">
+            <thead class=" text-info">
+              <tr>
+              <th> Sr_No</th>
+              <th> Name</th>
+              <th> Email</th>
+              <th> Phone</th>
+              <th>Designation</th>
+              <th> Action </th>
+              
+             </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let supplier of supplier_data;let ind = index">
+              <td>{{ind +1}}</td>
+              <td>{{supplier.name}} </td>
+              <td>{{supplier.email}} </td>
+              <td>{{supplier.phone}} </td>
+              <td>{{supplier.designation}} </td>
+              <td> <div class="dropdown">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item dropMenu" type="button" (click)="editsuppliers(supplier.id)"   > <i class="fa fa-pencil"></i> Edit</button>
+                    <button class="dropdown-item dropMenu" type="button" (click)="deletesuppliers(supplier.id)"> <i class="fa fa-trash-o"></i> Delete</button>
+                   
+                   
+                  </div>
+                </div>  
+              </td>
+              </tr>
+            
+            
+            </tbody>
+            </table>
+          </div>
+        
+          
+          
+          </div>
+        
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+  
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <form [formGroup]="addsuppliersFrom" (ngSubmit)="addsuppliersSave()">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Suppliers</h4>
+          
+          <button type="button" (click)="hideAddpropertiesDiv()">&times;</button>
+          
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+			<div class="form-group">
+				<label class="bmd-label-floating">Name</label>
+        <input type="text" formControlName="name" class="form-control"  [ngClass]="{ 'is-invalid': submit && from_err.name.errors }">
+        <div *ngIf="submit && from_err.name.errors" class="invalid-feedback">
+            <div *ngIf="from_err.name.errors.required">Name is required</div>
+        </div>
+			</div>
+			<div class="form-group">
+				<label class="bmd-label-floating">Email</label>
+        <input type="text" formControlName="email" class="form-control"  [ngClass]="{ 'is-invalid': submit && from_err.email.errors }">
+        <div *ngIf="submit && from_err.email.errors" class="invalid-feedback">
+            <div *ngIf="from_err.email.errors.required">Email is required</div>
+            <div *ngIf="from_err.email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+				<label class="bmd-label-floating">phone</label>
+        <input type="text" formControlName="phone" class="form-control"  [ngClass]="{ 'is-invalid': submit && from_err.phone.errors }">
+        <div *ngIf="submit && from_err.phone.errors" class="invalid-feedback">
+            <div *ngIf="from_err.phone.errors.required">Phone is required</div>
+        </div>
+      </div>
+     
+        <div class="form-group">
+            <label class="bmd-label-floating">Designation</label><button type="button" title="Add Designation" (click)="addDesignation()">+</button>
+          <select  class="form-control" formControlName="designation" name="propertyType"  [ngClass]="{ 'is-invalid': submit && from_err.designation.errors }">
+          <option  disabled=""> Select Option </option>
+          <option *ngFor="let des of designation" [value]="des.designation_name">{{des.designation_name}}</option>
+          </select>
+          <div *ngIf="submit && from_err.designation.errors" class="invalid-feedback">
+              <div *ngIf="from_err.designation.errors.required">Designation is required</div>
+          </div>
+         </div>
+
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info" >Add</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+<!-- supplier  Delete Confirmation modal :START -->
+<div id="supplier_model" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <div class="icon-box">
+            <i class="material-icons">&#xE5CD;</i>
+          </div>				 -->
+          <h4 class="modal-title delete">Are you sure?</h4>	
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete these Supplier</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteconfirm_supplier()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+<!--  supplier Delete Confirmation modal:END -->
+
+  <!-- Edit Suppliers:START -->
+  <div class="modal fade" id="editModal">
+      <div class="modal-dialog">
+          <form [formGroup]="editsuppliersFrom" (ngSubmit)="EditsuppliersSave()" *ngFor="let suppliers of supplier_edit_data">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Suppliers</h4>
+            
+            <button type="button" (click)="hideeditpropertiesDiv()">&times;</button>
+            
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body" >
+        <div class="form-group" >
+          <label class="bmd-label-floating">Name</label>
+          <input type="text" formControlName="name" class="form-control"  [ngClass]="{ 'is-invalid': editsubmit && from_error.name.errors }" [(ngModel)]="suppliers.name" >
+          <div *ngIf="editsubmit && from_error.name.errors" class="invalid-feedback">
+              <div *ngIf="from_error.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="bmd-label-floating">Email</label>
+          <input type="text" formControlName="email" class="form-control"  [ngClass]="{ 'is-invalid': editsubmit && from_error.email.errors }" [(ngModel)]="suppliers.email">
+          <div *ngIf="editsubmit && from_error.email.errors" class="invalid-feedback">
+              <div *ngIf="from_error.email.errors.required">Email is required</div>
+              <div *ngIf="from_error.email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="bmd-label-floating">phone</label>
+          <input type="text" formControlName="phone" class="form-control"  [ngClass]="{ 'is-invalid': editsubmit && from_error.phone.errors }" [(ngModel)]="suppliers.phone">
+          <div *ngIf="editsubmit && from_error.phone.errors" class="invalid-feedback">
+              <div *ngIf="from_error.phone.errors.required">Phone is required</div>
+          </div>
+        </div>
+       
+          <div class="form-group">
+              <label class="bmd-label-floating">Designation</label>
+            <select  class="form-control" formControlName="designation" name="propertyType"  [ngClass]="{ 'is-invalid': editsubmit && from_error.designation.errors }" [(ngModel)]="suppliers.designation">
+            <option  disabled=""> Select Option </option>
+            <option *ngFor="let des of designation" [value]="des.designation_name">{{des.designation_name}}</option>
+            </select>
+            <div *ngIf="editsubmit && from_error.designation.errors" class="invalid-feedback">
+                <div *ngIf="from_error.designation.errors.required">Designation is required</div>
+            </div>
+           </div>
+  
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info" >Update</button>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+    <!-- Add Suppliers Edit:STOP -->
+  <!-- Add Designation Model:START -->
+  <div class="modal fade" id="designationModel">
+    <div class="modal-dialog">
+        <form [formGroup]="addDesignationFrom" (ngSubmit)="addDesignationSave()">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Designation</h4>
+          
+          <button type="button" (click)="hideAddDesignationDiv()">&times;</button>
+          
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+			<div class="form-group">
+				<label class="bmd-label-floating">Designation Name</label>
+        <input type="text" formControlName="desname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.desname.errors }">
+        <div *ngIf="submit && f.desname.errors" class="invalid-feedback">
+            <div *ngIf="f.desname.errors.required">Designation Name is required</div>
+        </div>
+			</div>
+      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info">Add</button>
+        </div>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+  <!-- Add Designation Model:STOP -->
+    <footer class="footer">
+      <div class="container-fluid">
+       
+      </div>
+    </footer>
+  </div>
+     <!-- min end section -->        
+  
+   </div>
+  

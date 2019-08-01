@@ -1,0 +1,986 @@
+<div class="wrapper ">
+   <app-tenant-sidebar></app-tenant-sidebar>
+   <!--  Mid section  -->
+   <div class="main-panel">
+      <!-- Navbar -->
+      <app-tenant-nav></app-tenant-nav>
+      <!-- End Navbar -->
+      <div class="content whiteBg">
+         <div class="loginInner col-md-12 mar0" >
+            <div class="tenantName">
+               <h4> Hi {{unitData?.userName}}</h4>
+               <p>  {{unitData?.propertyName}}/{{unitData?.flatHoseNo}}</p>
+            </div>
+            <ul class="nav nav-list marTB20 borB">
+               <li class="nav-item">
+                  <a class="nav-link " [ngClass]="{'active':transactionDetails}" (click)="transactionDetailsShow()">Transaction</a>
+               </li>
+               <li class="nav-item"  (click)="leaseDeatilsShow()">
+                  <a class="nav-link" [ngClass]="{'active':leaseDetails}">Lease Details</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" (click)="filesDetailsShow()" [ngClass]="{'active':filesDetails}" >Files </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active':history}"  (click)="historyDetailsShow()">History</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link"  [ngClass]="{'active':serviceRequest}" (click)="serviceRequestDetailsShow()">Service Requests</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active':contact}" (click)="contactLandlordShow()">Contact landlord</a>
+               </li>
+            </ul>
+            <!-- transaction section open -->
+            <div class="DueToday" *ngIf="transactionDetails">
+               <div class="DueToday">
+                  <div class="card">
+                     <div class="card-body padd0 disF">
+                        <div class="dueTodayDiv ">
+                           <div class="dueInner">
+                              <h4 class="secHead">Due Today </h4>
+                              <div class="amountdiv">
+                                 <h2 class="pull-left">$25.00 </h2>
+                                 <button  class="btn EditProperty  pull-right mar0" >Add Bill</button>
+                              </div>
+                              <div class="btn-group">
+                                 <button type="button" class="btn btn-default">Bank</button>
+                                 <button type="button" class="btn btn-default">MPESA</button>
+                                 <button type="button" class="btn btn-default">Offline PAyment</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="leaseDiv">
+                           <div class="leaseSingle">
+                              <h4>Lease</h4>
+                              <p>: Rangit Holkar</p>
+                           </div>
+                           <div class="leaseSingle">
+                              <h4>Recurring Rent</h4>
+                              <p>: Ksh. 50000</p>
+                           </div>
+                           <div class="leaseSingle">
+                              <h4>Due Date</h4>
+                              <p>: 5th Sep</p>
+                           </div>
+                           <div class="leaseSingle">
+                              <h4>Automatic Pay</h4>
+                              <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider round"></span>
+                              </label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="UpcomingDiv">
+                  <div class="addReqHead">
+                     <h3>In Progress & Upcoming</h3>
+                  </div>
+                  <!-- <h4 class="secHead"></h4> -->
+                  <div class="card marB25">
+                     <div class="card-body " >
+                        <div class="tableShadow" >
+                           <table class="table table-striped " >
+                              <thead>
+                                 <tr>
+                                    <th>Status </th>
+                                    <th>Type </th>
+                                    <th>Due</th>
+                                    <th>Paid</th>
+                                    <th>Balance</th>
+                                    <!-- <th>Add Tenant</th> -->
+                                 </tr>
+                              </thead>
+                              <tbody >
+                                 <tr *ngFor="let InProgresstransaction of in_progress_payment">
+                                    <td>
+                                       <h4 class="orangeText">Due</h4>
+                                       <h4 class="">{{InProgresstransaction.payment_date}}</h4>
+                                    </td>
+                                    <td>{{InProgresstransaction.paymentFrequency}} Rent</td>
+                                    <td>{{InProgresstransaction.totalAmount}}</td>
+                                    <td>0</td>
+                                    <td>
+                                       6000
+                                    </td>
+                                 </tr>
+                                 <tr >
+                                    <td>
+                                       <h4 class="blueText">Shedule</h4>
+                                       <h4 class="">Jan 5th</h4>
+                                    </td>
+                                    <td>Monthly Rent</td>
+                                    <td>6000</td>
+                                    <td>0</td>
+                                    <td>
+                                       6000
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <div class="col-md-12 outerNoRecord" *ngIf="unit_data?.length ==0">
+                              <div >No Records</div>
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="Completed">
+                  <div class="addReqHead">
+                     <h3>Completed</h3>
+                  </div>
+                  <!-- <h4 class="secHead"></h4> -->
+                  <div class="card marB25">
+                     <div class="card-body" >
+                        <div class="tableShadow" >
+                           <table class="table table-striped " >
+                              <thead>
+                                 <tr>
+                                    <th>Date </th>
+                                    <th>Type </th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                    <!-- <th>Add Tenant</th> -->
+                                 </tr>
+                              </thead>
+                              <tbody >
+                                 <tr *ngFor="let transaction of transactionHistory">
+                                    <td>
+                                       <h4 class="">{{transaction.payment_date | date: 'MMM d, y'}}</h4>
+                                    </td>
+                                    <td>{{transaction.type_name}} </td>
+                                    <td>{{transaction.totalAmount}}<span>{{transaction.payment_type == 1 ? 'Cash' : transaction.payment_type == 2 ? 'Check' : 'Other' }}</span></td>
+                                    <td><button class="btn EditProperty mar0" (click)="showReciptPopup(transaction.id)"> Receipt </button></td>
+                                 </tr>
+                                 <!-- <tr >
+                                    <td>
+                                    <h4 class="">Jan 5th</h4>
+                                    </td>
+                                    <td>Monthly Rent</td>
+                                    <td>6000 <span>Bank</span></td>
+                                    <td><button class="btn EditProperty mar0"> Receipt </button></td>
+                                    
+                                    
+                                    </tr> -->
+                                 <!-- <tr >
+                                    <td>
+                                    <h4 class="">Jan 5th</h4>
+                                    </td>
+                                    <td>Monthly Rent</td>
+                                    <td>6000 <span>Offline Payment</span></td>
+                                    <td><button class="btn EditProperty mar0"> Receipt </button></td>
+                                    
+                                    
+                                    </tr> -->
+                              </tbody>
+                           </table>
+                           <div class="col-md-12 outerNoRecord" *ngIf="transactionHistory?.length ==0">
+                              <div >No Records</div>
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- transaction section close -->
+            <!-- History section open -->
+            <div class="History" *ngIf="history">
+               <div class="Completed">
+                  <div class="addReqHead">
+                     <h3>History</h3>
+                  </div>
+                  <div class="card marB25">
+                     <div class="card-body " >
+                        <div class="tableShadow" >
+                           <table class="table table-striped " >
+                              <thead>
+                                 <tr>
+                                    <th>Date </th>
+                                    <th>Transaction Type </th>
+                                    <th>Method</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                    <!-- <th>Add Tenant</th> -->
+                                 </tr>
+                              </thead>
+                              <tbody >
+                                 <tr *ngFor="let history of transactionHistory">
+                                    <td>
+                                       <h4 class="">{{history.payment_date | date: 'MMM d, y'}}</h4>
+                                    </td>
+                                    <td> {{history.type_name}} </td>
+                                    <td><span class="mar0" >{{history.payment_type == 1 ? 'Cash' : history.payment_type == 2 ? 'Check' : 'Other' }}</span></td>
+                                    <td>{{history.totalAmount}}</td>
+                                    <td><button class="btn EditProperty mar0" (click)="showReciptPopup(history.id)"> Receipt </button></td>
+                                    <!-- <td><i class="fa fa-arrow-down" aria-hidden="true"></i> <i class="fa fa-window-maximize" aria-hidden="true"></i></td> -->
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <div class="col-md-12 outerNoRecord" *ngIf="unit_data?.length ==0">
+                              <div >No Records</div>
+                           </div>
+                        </div>
+                        <div class="clearfix"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- History section close -->
+            <!-- contact section open -->
+            <div class="contact" *ngIf="contact">
+               <div class="UpcomingDiv">
+                  <div class="addReqHead">
+                     <h3>Send Message to Landlord</h3>
+                  </div>
+                  <!-- <h4 class="secHead"> Send Message to Landlord</h4> -->
+                  <div class="card marB25">
+                     <div class="card-body row">
+                        <form [formGroup]="personalMessageForm" (ngSubmit)="sendMessageLand()" class="fullwidth"> 
+                        <div class="form-group col-sm-6 contactSub">
+                           <label>Subject</label>
+                           <textarea class="" rows="6" formControlName="subject"></textarea>
+                           <div *ngIf="messageSubmit && personalform.subject.errors" class="errors">
+                              <div *ngIf="personalform.subject.errors.required">Subject is required</div>
+                           </div>
+                           <div class="btnDivnoti">
+                              <!-- <input type="checkbox" name="vehicle" value="Bike"> Notify me -->
+                              <button class="btn EditProperty pull-right mar0"> Send </button>
+                           </div>
+                        </div>
+                        </form>
+                        <div class="clearfix"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="Completed">
+                  <h4 class="secHead">Past message</h4>
+                  <div class="card marB25">
+                     <div class="card-body " >
+                        <div class="messageList">
+                           <h4 class="titleText">Read <span>/ Unread</span></h4>
+                           <h4    [className]="sub.status == '0' ? 'Unread':'read'"   (click)="showAllMessage(sub.id,sub.subject)" *ngFor="let sub of subjects">{{sub.subject}}</h4>
+                           <!-- <h4 class="Unread" >Gorge Pay Rent</h4> -->
+                           <!-- <h4 class="Unread">Rent paid please check</h4>
+                              <h4 class="read">20th Aug Hello Landloard</h4> -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- contact section close -->
+            <!-- Files Section  :Start  -->
+            <div class="AddRequestMainInner" *ngIf="filesDetails && !tenantDocument">
+               <div class="addReqHead">
+                  <h3>Document</h3>
+                  <div class="addReqDIv">
+                     <button class="btn EditProperty" (click)="addTenantDocumentPopup()"> Add </button>
+                  </div>
+               </div>
+               <div class="requestTable">
+                  <table class="table table-striped">
+                     <thead>
+                        <tr>
+                           <th>Document Name</th>
+                           <th>Type</th>
+                           <th>File Format</th>
+                           <th>Added Date</th>
+                           <th>File</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let files of files_data;let i=index">
+                           <td>{{files.document_name}}</td>
+                           <td>{{files.type}}</td>
+                           <td>{{files.file_format}}</td>
+                           <td>{{files.date}}</td>
+                           <td ><a href="{{url}}{{files.file}}" download="myimage" target="_blank"><i class="fa fa-file-text-o fileIcon" aria-hidden="true"></i></a></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <!-- Files Section :Stop -->
+            <!-- lease Section  :Start  -->
+            <div class="AddRequestMainInner" *ngIf="leaseDetails">
+               <div class="addReqHead">
+                  <h3>Lease</h3>
+               </div>
+               <div class="requestTable">
+                  <div class=" mainCard mt-0">
+                     <div class="card-body">
+                        <div class="row leaseRow" *ngFor="let lease of lease_data;let i=index">
+                           <div class="column">
+                              <div class="card leaseCard">
+                                 <h3>Date</h3>
+                                 <p>{{lease.startDate}} To {{lease.endDate}}</p>
+                              </div>
+                           </div>
+                           <div class="column">
+                              <div class="card leaseCard">
+                                 <h3>Rent Amount</h3>
+                                 <p>{{lease.rentAmount}} /-</p>
+                              </div>
+                           </div>
+                           <div class="column">
+                              <div class="card leaseCard">
+                                 <h3>Deposit Amount</h3>
+                                 <p>{{lease.depositAmount}}/-</p>
+                              </div>
+                           </div>
+                           <div class="column">
+                              <div class="card leaseCard">
+                                 <h3>Payment Day</h3>
+                                 <p>{{lease.paymentDay}}</p>
+                              </div>
+                           </div>
+                           <div class="column">
+                              <div class="card leaseCard">
+                                 <h3>Payment Frequency</h3>
+                                 <p>{{lease.paymentFrequency}}</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- <table class="table table-striped">
+                     <thead>
+                     	<tr>
+                     		<th>Date</th>
+                     		<th>Rent Amount</th>
+                     		<th>Deposit Amount</th>
+                     		<th>Payment Day</th>
+                     		<th>Payment Frequency</th>
+                     	</tr>
+                     </thead>
+                     <tbody>
+                     	<tr *ngFor="let lease of lease_data;let i=index">
+                     		<td>{{lease.startDate}} To {{lease.endDate}}</td>
+                     		<td>{{lease.rentAmount}}</td>
+                     		<td>{{lease.depositAmount}}</td>
+                     		<td>{{lease.paymentDay}}</td>
+                     		<td>{{lease.paymentFrequency}}</td>
+                     	</tr>
+                     	
+                     </tbody>
+                     </table> -->
+                  <div class="col-md-12 outerNoRecord" *ngIf="lease_data?.length ==0">
+                     <div >No Records</div>
+                  </div>
+               </div>
+            </div>
+            <!-- Files Section :Stop -->
+            <!-- Service Request :Start  -->
+            <div class="AddRequestMainInner" *ngIf="serviceRequest">
+               <div class="addReqHead">
+                  <h3>Requests</h3>
+                  <div class="addReqDIv">
+                     <button class="btn EditProperty" (click)="SentServiceRequest()"> Add Request </button>
+                  </div>
+               </div>
+               <div class="requestTable">
+                  <table class="table table-striped">
+                     <thead>
+                        <tr>
+                           <th>Unit Name</th>
+                           <th>Title</th>
+                           <th>Date</th>
+                           <th>Details</th>
+                           <th>Status</th>
+                           <!-- <th>Edit</th> -->
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr *ngFor="let requst of serviceRequstData;let i=index">
+                           <td>{{requst.flatHoseNo}}</td>
+                           <td>{{requst.title}}</td>
+                           <td>{{requst.start_date}}</td>
+                           <td>{{requst.description}}</td>
+                           <td>{{requst.status == 0 ?'pending':'Complete'}}</td>
+                           <!-- <td><button class="btn EditProperty" (click)="editServiceRequest(i)"> Edit </button></td> -->
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <!-- Service Request :Stop -->
+            <!-- Add Tenant Document:START -->
+            <div class="content"  *ngIf="tenantDocument">
+               <div class="container-fluid">
+                  <div class="transactionPage">
+                     <div class="card">
+                        <div class="card-body document-body">
+                           <div class="addReqHead">
+                              <h3>Add Documents</h3>
+                           </div>
+                           <div class="tableDIv">
+                              <div class="card">
+                                 <div class="card-body documents-details">
+                                    <form [formGroup]='addTenantDocumentForm' (ngSubmit)="addTenantDocument()" autocomplete="off" >
+                                    <div class="row ">
+                                       <div class="col-md-12 ">
+                                          <div class="form-row form-content">
+                                             <div class="col-md-4 docType input-text mb-3">
+                                                <label for="validationCustom01">Document Name</label>
+                                                <input type="text" class="form-control" formControlName='document_name'>
+                                                <div *ngIf="addFilesSubmit && addDocTenantForm.document_name.errors" class="errors">
+                                                   <div *ngIf="addDocTenantForm.document_name.errors.required"> Document name required </div>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-4 docType input-text">
+                                                <!-- <label for="validationCustom02">Document Type</label>
+                                                   <input type="text" class="form-control" id="validationCustom04"  required> -->
+                                                <label for="validationCustom02">Document Type</label>
+                                                <select id="validationCustom02" class="form-control" formControlName='document_type'>
+                                                   <option value=""> Please Select</option>
+                                                   <option  [value]="document.id" *ngFor="let document of documentType" >{{document.type}}</option>
+                                                </select>
+                                                <div *ngIf="addFilesSubmit && addDocTenantForm.document_type.errors" class="errors">
+                                                   <div *ngIf="addDocTenantForm.document_type.errors.required">Document type required </div>
+                                                </div>
+                                                <i class="fa fa-caret-down dropdown" aria-hidden="true"></i>
+                                                <!-- <a (click)="showaddDocumentTypePropPop()" title="Add New Document Type" class="btn-add"><i class="fa fa-plus" aria-hidden="true"></i></a> -->
+                                             </div>
+                                             <div class="col-md-4 input-text ">
+                                                <!-- <div class="custom-file"> -->
+                                                <label  for="validationCustom04">Choose file</label>
+                                                <input type="file" class="choose-flie" id="validationCustom04" (change)="detectDocumentFile($event)" formControlName='document_file'>
+                                                <button type="button" class="browse_btn" id="validationCustom04">Browse</button>
+                                                <div *ngIf="addFilesSubmit && addDocTenantForm.document_file.errors" class="errors">
+                                                   <div *ngIf="addDocTenantForm.document_file.errors.required"> Document file required </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <!-- </div> -->
+                                          <div class="form-row form-content">
+                                          </div>
+                                       </div>
+                                       <!-- </div> -->
+                                       <div class="col-md-12">
+                                          <div class=" input-btn text-right mb-3">
+                                             <button class=" btn btn-primary" type="submit" style="background-color: #21BACF!important; border-color: #21BACF!important;"><i class="fa fa-check" aria-hidden="true"></i>SAVE</button>
+                                             <button class="btn btn-primary" (click)="cancelTenantDocumentPopup()" type="button" style="background-color: #ff8c1e!important; border-color:#ff8c1e!important"><i class="fa fa-times" aria-hidden="true"></i>CANCEL</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Add Tenant Document:End -->
+            <!-- popup receipt start-->
+            <div class="modal commentReply" id="myModalRecipt">
+               <div class="modal-dialog">
+                  <div class="modal-content fullWidth">
+                     <div class="modal-text padd0" *ngFor="let transaction of transaction">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                           <h4 class="modal-title">Receipt</h4>
+                           <button type="button" class="close" data-dismiss="modal">&times;</button> 
+                        </div>
+                        <!-- Modal body -->
+                        <div class="receiptDetail" id="PdfRecipt">
+                           <div class="receiptDetailInner">
+                              <h4 class="recHead">Rent Receipt</h4>
+                              <div class="listReceipt">
+                                 <p>Date</p>
+                                 <p>	: {{transaction.payment_date | date}}</p>
+                              </div>
+                              <div class="listReceipt">
+                                 <p>Received From	</p>
+                                 <p>:{{transaction.tenant_name}}	</p>
+                              </div>
+                              <div class="listReceipt">
+                                 <p>Rental Property	</p>
+                                 <p>: {{transaction.flatHoseNo}}	</p>
+                              </div>
+                              <div class="listReceipt">
+                                 <p>Payment Received As</p>
+                                 <p>: Rent	</p>
+                              </div>
+                              <div class="listReceipt">
+                                 <p>Payment Method</p>
+                                 <p>	: {{transaction.payment_type == 1 ? 'Cash' :transaction.payment_type == 2 ? 'Check' : 'Other'}}</p>
+                              </div>
+                              <div class="listReceipt">
+                                 <p>For The Period	</p>
+                                 <p>: {{transaction.start_period | date}} To {{transaction.end_period | date}}	</p>
+                              </div>
+                              <div class="fullwidth DFlex noMar" >
+                                 <div class="text-left">
+                                    <h3>Charge Description</h3>
+                                    <p>Sub Total</p>
+                                 </div>
+                                 <div class="text-right">
+                                    <h3>Amount</h3>
+                                    <p>KSh {{transaction.amount}}</p>
+                                 </div>
+                              </div>
+                              <div class="description">
+                                 <div class="listReceipt" *ngFor="let dedution_data of deduction">
+                                    <p >{{dedution_data.remove_text}}	</p>
+                                    <p style="text-align:right;">(-) Ksh {{dedution_data.remove_digit }}	</p>
+                                 </div>
+                                 <div class="listReceipt" *ngFor="let addtional_data of additonal">
+                                    <p >{{addtional_data.add_text}}</p>
+                                    <p style="text-align:right;">(+)Ksh {{addtional_data.add_digit }}	</p>
+                                 </div>
+                                 <!-- <div class="listReceipt">
+                                    <p >For The Period	</p>
+                                    <p style="text-align:right;">: {{transaction.start_period | date}} To {{transaction.end_period | date}}	</p>
+                                    </div> -->
+                              </div>
+                              <div class="fullwidth DFlex">
+                                 <div class="text-left">
+                                    <p>Total Charges</p>
+                                    <p>Landlord:</p>
+                                 </div>
+                                 <div class="text-right">
+                                    <p>KSh  {{transaction.totalAmount}}</p>
+                                    <p>{{transaction.userName}}</p>
+                                 </div>
+                              </div>
+                              <div class="paidDiv">
+                                 <h4>{{transaction.payment_status == 0 ?'Unpaid' : transaction.payment_status == 1 ?'Paid' : 'Partially Paid'}}</h4>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <!-- <button (click)="SendEmailRecipt(transaction.id)"class="btn commonBtnP">Email Receipt</button> -->
+                           <button class="btn commonBtnP" (click)="genratePdf()">Save as PDF</button>
+                           <button class="btn commonBtnC" (click)="hideRecipt()">Cancel</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- popup receipt end -->
+         </div>
+      </div>
+      <!-- Requests  close -->
+      <!-- Requests Detail start  -->
+      <!-- <div class="AddRequestMainInner">
+         <div class="addReqHead">
+         	<h3>Requests Detail</h3>
+         	<div class="addReqDIv">
+         		<button class="btn EditProperty"> Save </button>
+         		<button class="btn EditProperty"> Cancel </button>
+         	</div>
+         </div>
+         <div class="requestTable">
+         	<div class="row">
+         		<div class="col-sm-6">
+         			
+         		</div>
+         	</div>
+         </div>
+         </div>  -->
+      <!-- Edit Service Request :START  -->
+      <div class="modal fade" id="editServiceRequst">
+         <div class="modal-dialog">
+            <form [formGroup]="editServiceAddForm" (ngSubmit)="editRequest()">
+            <div class="modal-content">
+               <!-- Modal Header  -->
+               <div class="modal-header modalHead">
+                  <h4 class="modal-title">Edit Requests Detail</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body  -->
+               <div class="modal-body modalBody">
+                  <div class="row">
+                     <div class="col-md-12" style="display:none">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">unit*</label>
+                           <input type="text" class="form-control" formControlName="unit" [(ngModel)]="editservice.flatHoseNo" readonly>
+                           <div *ngIf="Submit && editServiceForm.unit.errors" class="errors">
+                              <div *ngIf="editServiceForm.unit.errors.required">Unit Name required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Title*</label>
+                           <input type="text" class="form-control" formControlName="title"  [(ngModel)]="editservice.title">
+                           <div *ngIf="Submit && editServiceForm.title.errors" class="errors">
+                              <div *ngIf="editServiceForm.title.errors.required">Title is required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Details*</label>
+                           <input type="text" class="form-control" formControlName="details" [(ngModel)]="editservice.description">
+                           <div *ngIf="Submit && editServiceForm.details.errors" class="errors">
+                              <div *ngIf="editServiceForm.details.errors.required">Details required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="">
+                           <input type="file" class="form-control"  formControlName="file"  (change)="detectTransactionFile($event)"/>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer text-center">
+                  <button class="btn btn-info">Save</button>
+                  <button type="button" (click)="hideEditRequest()" class="btn btn-danger">Cancel</button> 
+               </div>
+            </div>
+            </form>
+         </div>
+      </div>
+      <!-- Edit Service Request :END -->
+      <div class="modal fade" id="ProfileUpdateModal">
+         <div class="modal-dialog">
+            <form [formGroup]="serviceAddForm" (ngSubmit)="sendRequest()">
+            <div class="modal-content">
+               <!-- Modal Header  -->
+               <div class="modal-header modalHead">
+                  <h4 class="modal-title">Requests Detail</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body  -->
+               <div class="modal-body modalBody">
+                  <div class="row">
+                     <div class="col-md-12" style="display:none">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">unit*</label>
+                           <input type="text" class="form-control" formControlName="unit_id" [(ngModel)]="unitName" readonly>
+                           <div *ngIf="Submit && addServiceForm.unit_id.errors" class="errors">
+                              <div *ngIf="addServiceForm.unit_id.errors.required">Unit Name required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Title*</label>
+                           <input type="text" class="form-control" formControlName="title">
+                           <div *ngIf="Submit && addServiceForm.title.errors" class="errors">
+                              <div *ngIf="addServiceForm.title.errors.required">Title is required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <label class="bmd-label-floating">Details*</label>
+                           <input type="text" class="form-control" formControlName="details">
+                           <div *ngIf="Submit && addServiceForm.details.errors" class="errors">
+                              <div *ngIf="addServiceForm.details.errors.required">Details required </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="">
+                           <input type="file" class="form-control"  formControlName="file"  (change)="detectTransactionFile($event)"/>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Modal footer  -->
+               <div class="modal-footer text-center">
+                  <button class="btn btn-info">Save</button>
+                  <button type="button" (click)="hideAddRequest()"class="btn btn-danger">Cancel</button>
+               </div>
+            </div>
+            </form>
+         </div>
+      </div>
+      <!-- Requests Detail close  -->
+      <!--Tenant Message:START  -->
+      <div class="modal fade" id="tenantMessage">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <!-- Modal Header  -->
+               <div class="modal-header modalHead" >
+                  <!-- <h4 class="modal-title">Message</h4> -->
+                  <h4 class="modal-title2">Subject :{{subject}}</h4>
+                  <div class="leftImgDiv modal-title3">
+                     <img src="{{url}}{{land_profile}}" class="img-fluid "> 
+                     <h4 class="">{{land_name}} </h4>
+                  </div>
+                  <button type="button" (click)="hideModal()" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body  -->
+               <div class="modal-body modalBody modalPadd">
+                  <div class="row">
+                     <div class="fullwidth">
+                        <div class="singleCommentDivMain" id="chatDiv" >
+                           <div class="singleCommentDivMainInner"  *ngFor="let message of chat_msg">
+                              <div class="comment" *ngIf="message.sender_status == 1">
+                                 <div class=" commentInner">
+                                    <div class="commentImgDiv">
+                                       <img src="{{url}}{{land_profile}}" class="img-fluid ">
+                                    </div>
+                                    <div class="commentTextDiv">
+                                       <h4> {{land_name |titlecase}} </h4>
+                                       <p>{{message.message}}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="paddL80" *ngIf="message.sender_status == 0">
+                                 <div class="comment commentReply">
+                                    <div class=" commentInner">
+                                       <div class="commentImgDiv">
+                                          <img src="{{url}}{{tenantPrfilePhoto}}" class="img-fluid ">
+                                       </div>
+                                       <div class="commentTextDiv">
+                                          <h4> {{unitData?.userName |titlecase }} </h4>
+                                          <p>{{message.message}}</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="fullwidth replyComment">
+                           <div class="">
+                              <div  class="form-group bmd-form-group is-filled">
+                                 <label class="bmd-label-floating">comment</label>
+                                 <input class="form-control ng-valid ng-touched ng-dirty" (input)="sendComment($event)" [(ngModel)]="msg" type="text" >
+                                 <i *ngIf="sendbutton"  (click)="sendTenantLandMsg(msg)" class="fa fa-paper-plane-o sendIcon" aria-hidden="true"></i>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Modal footer -->
+            </div>
+         </div>
+      </div>
+      <!-- Tenant Message :END -->
+      <!-- <div class="row">
+         <div class="payrentLeft">
+         	<div class="requestDiv">
+         		<img src="assets/img/customer-service.png" class="requestIcon">
+         		<div class="requsetText">
+         			<h4> Request </h4>
+         			<p> Send Repair Request</p>
+         		</div>					
+         	</div>	
+         	<div class="propertyDetailDiv">
+         		<div class="PropertyHeadDetail">
+         			<h4><i class="fa fa-building buildingIcon" aria-hidden="true"></i>  Property Details</h4>
+         		</div>
+         		<div class="PropertyHeadDetailText">
+         			<h5>Tanishq icon</h5>
+         			<p>Feb-01-2019 to Feb-08-2020</p>
+         			<p>Status: Current</p>
+         		</div>					
+         	</div>	
+         	<div class="propertyDetailDiv">
+         		<div class="PropertyHeadDetail">
+         			<h4><i class="fa fa-inr" aria-hidden="true"></i>  Rent Status</h4>
+         		</div>
+         		<div class="PropertyHeadDetailText">
+         			<h5> Tanishq icon</h5>
+         			<p>Unpaid Rent :  0.00 </p>
+         			<p>₹ 15,000.00 every 1 month(s) </p>
+         			<p> Rent Due : 5 </p>
+         		</div>					
+         	</div>	
+         	
+         	<div class="propertyDetailDiv">
+         		<div class="PropertyHeadDetail">
+         			<h4><i class="fa fa-user-circle-o" aria-hidden="true"></i>  Landlord Details</h4>
+         		</div>
+         		<div class="PropertyHeadDetailText">
+         			<h5> abhishek kasbe</h5>
+         			<p>the.axontech123@gmail.com</p>
+         			<p>Phone : 72765 20906</p>
+         		</div>					
+         	</div>
+         	<div class="propertyDetailDiv">
+         		<div class="PropertyHeadDetail">
+         			<h4><i class="fa fa-file-text" aria-hidden="true"></i>  Documents</h4>
+         		</div>
+         		<div class="PropertyHeadDetailText">
+         			<h5>No Document available.</h5>
+         			
+         		</div>					
+         	</div>	
+         </div>
+         <div class="payrentRight">
+         	<div class="row">
+         		edit lease start --
+         		<div class=" col-md-12" >
+         		  <div class=" leaseSection">
+         			<div class="headerLease">
+         				<div class="headerLeaseInner1">
+         					<h4>Due in 49 days</h4>
+         					<h5>01 Apr 2019</h5>
+         				</div>
+         				
+         			</div>
+         			<div class="paymentSec">
+         				<div class="paymentCommon borderR">
+         					<div class="paymentCommonLeft">
+         						<div class="payText borderR">
+         							<h4>RENT REMAINING DUE</h4>
+         							<p>Rent Due £15,000.00</p>
+         						</div>
+         						<div class="payText">
+         							<h4>START DATE</h4>
+         							<p>Friday, February 8, 2019</p>
+         						</div>
+         					</div>
+         					<div class="PaymentHisBtnDiv">
+         						<button class="btn EditProperty"> View Payment History	</button>
+         					</div>
+         				</div>
+         				<div class="paymentCommon">
+         					<div class="paymentCommonLeft">
+         						<div class="payText borderR">
+         							<h4>RENT REMAINING DUE</h4>
+         							<p>Rent Due £15,000.00</p>
+         						</div>
+         						<div class="payText">
+         							<h4>START DATE</h4>
+         							<p>Friday, February 8, 2019</p>
+         						</div>
+         					</div>
+         					<div class="PaymentHisBtnDiv">
+         						<button class="btn EditProperty"> Pay Rent	</button>
+         					</div>
+         				</div>
+         			</div>
+         		  </div>
+         	  </div> -->
+      <!-- edit lease close -->
+      <!-- Add tenant start  -->
+      <!-- <div class=" col-md-12" >
+         <div class=" leaseSection ">
+         	<div class="tenantHeader ">
+         		<div class="pull-left">
+         			<h3> Tenant</h3>
+         		</div>
+         		
+         	</div>
+         	<div class="padd30 row">
+         		<div class=" col-md-3">
+         			<div class="tenantSingle">
+         				<div class="profleDiv">
+         					<div class="profileDetail">
+         						<h3>Abhijit Sawant</h3>
+         						<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+         						<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+         						<button class="btn EditProperty"> View / Edit	</button>
+         					</div>
+         				</div>
+         			</div>
+         		</div>
+         		<div class=" col-md-3">
+         			<div class="tenantSingle">
+         				<div class="profleDiv">
+         					<div class="profileDetail">
+         						<h3>Ranjit Zolkar</h3>
+         						<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+         						<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+         						<button class="btn EditProperty"> View / Edit	</button>
+         					</div>
+         				</div>
+         			</div>
+         		</div>
+         		<div class=" col-md-3">
+         			<div class="tenantSingle">
+         				<div class="profleDiv">
+         					
+         					<div class="profileDetail">
+         						<h3>Rajani Rao</h3>
+         						<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+         						<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+         						<button class="btn EditProperty"> View / Edit	</button>
+         					</div>
+         				</div>
+         			</div>
+         		</div>
+         		<div class=" col-md-3">
+         			<div class="tenantSingle">
+         				<div class="profleDiv">
+         					<div class="profileDetail">
+         						<h3>Abhijit Sawant</h3>
+         						<h4><i class="fa fa-mobile mobileIcon" aria-hidden="true"></i> 5825474585</h4>
+         						<h4> <i class="fa fa-envelope-o eamilIcon" aria-hidden="true"></i> ranjit10@gmail.com</h4>
+         						<button class="btn EditProperty"> View / Edit	</button>
+         					</div>
+         				</div>
+         			</div>
+         		</div>
+         	</div>
+         </div>
+         </div> -->
+      <!-- Add tenant close -- -->
+      <!-- </div>
+         </div>
+         </div> -->
+      <!-- <div class="loginMainDiv">
+         <div class="loginInner">
+           <div class="card">
+             <div class="card-header card-header-info">
+               <h4 class="card-title pull-left">Rent Due</h4>
+         
+               <p class="card-category">Complete your profile</p> --
+             </div>
+             <div class="card-body">
+         <div class="full-width text-right">
+         <button class="btn btn-info" data-toggle="modal" data-target="#myModal">Add Bill</button>
+         </div>
+         <div class="full-width paymentDetail">
+         
+         <div class="card-body">
+         <div class="table-responsive text-center">
+         <table class="table">
+         <thead class=" text-info">
+         <tr>
+         <th> Month</th>
+         <th> Amount</th>
+         
+         </tr>
+         </thead>
+         <tbody>
+         <tr>
+         <td>Nov - 2013</td>
+         <td>2000 </td>
+         </tr>
+         <tr>
+         <td>Dec - 2013</td>
+         <td>2000 </td>
+         </tr>
+         <tr>
+         <th> Bill</th>
+         <th> 40000</th>
+         
+         </tr>
+         
+         </tbody>
+         </table>
+         </div>
+         <div class="fullwidth text-center">
+         <button class="btn btn-info">Pay</button>
+         </div>
+         
+         
+         </div>
+         
+         </div>
+              </div>
+           </div>
+          </div>
+         </div>  -->
+      <footer class="footer">
+         <div class="container-fluid">
+         </div>
+      </footer>
+   </div>
+   <!-- min end section -->        
+</div>

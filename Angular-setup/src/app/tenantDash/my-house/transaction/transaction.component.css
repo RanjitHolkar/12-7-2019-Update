@@ -1,0 +1,1004 @@
+/* payment Section Lease start*/
+.leaseSection{
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px #0606063d;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.headerLease {
+    padding: 30px;
+    background-color: #1d8af8;
+    width: 100%;
+    float: left;
+}
+.headerLeaseInner2 {
+    float: right;
+}
+.headerLeaseInner2 .EditProperty {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    margin: 15px 0 0;
+    text-transform: capitalize;
+    font-size: 14px;
+    box-shadow: none;
+}
+.paymentSec {
+    width: 100%;
+    float: left;
+    display: flex;
+}
+.headerLeaseInner1 h4 {
+    color: #fff;
+    font-size: 24px;
+}
+.headerLeaseInner1 h5 {
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+.headerLeaseInner1 {
+    float: left;
+}
+
+
+.payText p {
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+}
+.payText h4 {
+    font-size: 18px;
+    color: #666;
+}
+.payText {
+    width: 100%;
+    text-align: center;
+}
+.paymentCommonLeft {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.paymentCommon {
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+}
+/* .tenantSingle{
+    border: 1px solid lightgrey;
+    padding: 15px 25px;
+	border-radius:10px;
+	    margin-bottom: 25px;
+} */
+.profleDiv {
+    display: flex;
+    margin: 10px 0;
+}
+.tenetProfile {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.profleDiv h3 {
+	color: #3aadee;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.mobileIcon {
+    font-size: 25px;
+    color: #0d9deb;
+}
+.eamilIcon {
+    font-size: 18px;
+    color: #0d9deb;
+}
+.profileDetail h4 {
+    font-size: 16px;
+    color: #000;
+}
+.padd30{
+    padding: 30px;
+}
+.tenantHeader {
+    border-bottom: 1px solid #ddd;
+	padding:20px 30px;
+	width: 100%;
+    float: left;
+}
+.tenantHeader h3 {
+    font-size: 24px;
+    margin: 5px 0;
+    color: #06a2ec;
+}
+.tenantHeader .EditProperty{
+	margin:0;
+}
+.borderR {
+    border-right: 1px solid #ddd;
+}
+.multiUnit {
+	display: flex;
+    position: relative;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 5px;
+    background-color: #16161645;
+	transition:0.5s;
+	
+}
+.multiUnit.multiUnitActive {
+	background-color: #000000bf;
+    box-shadow: -7px 7px 10px grey;
+}
+.multiUnit:hover {
+	background-color: #000000bf;
+    box-shadow: -7px 7px 10px grey;
+}
+.multiUnit h4 {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+
+.multiUnit p {
+    position: absolute;
+    bottom: 0px;
+    left: 12px;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.EditProperty{
+    background-color: transparent;
+    color: #009aea;
+    border: 1px solid #009aea;
+    margin: 15px 0 0;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+.requestDiv {
+    background-color: #514d4d;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+	cursor: pointer;
+}
+.requestDiv  p {
+    color: #fff;
+    font-size: 14px;
+    margin: 5px 0;
+}
+.requestDiv  h4 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 5px 0;
+}
+.requestDiv:hover{
+    background-color: #888080;
+}
+.payrentRight {
+    width: calc(100% - 250px);
+    float: left;
+    padding-left: 20px;
+}
+.payrentLeft {
+    width: 250px;
+    float: left;
+}
+.requestIcon {
+    filter: invert(100%);
+}
+.propertyDetailDiv {
+	box-shadow: 0 5px 10px #477aaecc;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: #1d8af817;
+}
+.PropertyHeadDetail {
+    padding: 10px 15px;
+    border-bottom: 1px solid #4d4b4b42;
+}
+.PropertyHeadDetailText{
+	padding: 10px 15px;
+}
+.PropertyHeadDetail h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+.PropertyHeadDetailText h5{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.PropertyHeadDetailText p {
+    font-size: 13px;
+    margin: 0;
+}
+/* payment Section Lease start*/
+/* view request page start */
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.addReqHead {
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    width: 100%;
+    float: left;
+    border-radius: 5px;
+    background-color: #1d8af8;
+}
+.addReqHead h3{
+    float: left;
+    margin: 8px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+.addReqDIv {
+    float: right;
+}
+.addReqHead .EditProperty{
+    margin: 0;
+	color: #fff;
+    border: 1px solid #fff;
+}
+.requestTable {
+    width: 100%;
+    float: left;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px 20px;
+}
+.AddRequestMainInner {
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.AddRequestMainInner .table thead tr th {
+    font-size: 15px;
+    font-weight: bold;
+}
+.AddRequestMainInner td{
+	font-size: 15px;
+}
+.modalHead {
+    background-color: #1d8af8;
+}
+.modalHead h4{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+.modalBody .bmd-label-floating {
+    color: #000 !important;
+}
+.close{
+	color: #fff;
+}
+.modalBody .form-control:read-only {
+    background-image: linear-gradient(to top, #9f18b4 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+}
+.errors{
+    color:red;
+}
+/* view request page close */
+/* my house section css strat*/
+.navbar {
+    padding: 5px 0;
+    margin-bottom: 0;
+}
+.whiteBg {
+    background-color: #fff;
+}
+a.nav-link.active, a.nav-link:hover {
+    color: #1f87f8 !important;
+    border-bottom: 2px solid #296cf6;
+}
+a.nav-link {
+    font-size: 16px;
+    font-weight: bold;
+	cursor:pointer;
+}
+.borB{
+    border-bottom: 2px solid #ddd;
+}
+.secHead {
+    color: #1f8af8;
+    font-weight: bold;
+    font-size: 16px;
+}
+.dueTodayDiv {
+    width: 60%;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+}
+.padd0{
+	padding:0px;
+}
+.disF{
+    display: flex;
+}
+.leaseSingle {
+    width: 100%;
+    float: left;
+}
+.leaseSingle h4 {
+    width: 50%;
+    float: left;
+    color: #000;
+    font-size: 16px;
+    margin: 5px 0;
+}
+.leaseSingle p {
+    width: 50%;
+    float: left;
+    color: #666;
+    font-size: 16px;
+    margin: 5px 0;
+}
+.leaseDiv {
+    width: 40%;
+    padding: 20px;
+}
+.amountdiv {
+    width: 100%;
+    float: left;
+}
+.amountdiv h2 {
+    color: #f8b200;
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+.mar0 {
+    margin: 0 !important;
+}
+.tenantName h4 {
+    font-size: 35px;
+    color: #000;
+}
+.tenantName p {
+    font-size: 22px;
+    color: #333;
+    font-weight: bold;
+}
+.tenantName {
+    margin: 0 0 35px;
+}
+.contactSub label {
+    width: 100%;
+    font-size: 18px;
+    color: #000;
+}
+.contactSub textarea {
+    width: 100%;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.messageList .titleText {
+	width: unset;
+    color: #1d8af8;
+    font-weight: bold;
+    font-size: 16px;
+    float: left;
+	padding:0;
+	margin-bottom:30px;
+    border-bottom: 1px solid #ddd;
+}
+.titleText span {
+    color: #999;
+}
+.messageList h4 {
+	width: 100%;
+    float: left;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 30px;
+    color: #000;
+    margin: 0;
+	position:relative;
+	background-color: #f9f9f9;
+}
+.read:after{
+	position: absolute;
+    top: 20px;
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    left: 10px;
+    border: 3px solid #1f8bf8;	
+}
+.Unread:after{
+	position: absolute;
+    top: 20px;
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    left: 10px;
+    border: 3px solid #999;	
+}
+.messageList h4:hover{
+    background-color: #fff;
+}
+/* table css */
+td span{
+    color: #f8b200;
+    font-weight: bold;
+    margin: 0 0px 0 25px;
+}
+.table thead tr th {
+    font-size: 16px;
+    font-weight: bold;
+}
+td a{
+    cursor: pointer;
+    color: #1f8af8;
+    font-weight: bold;
+    margin: 0 10px 0 0;
+    font-size: 15px;
+}
+.orangeText {
+    color: #f8b200;
+    font-weight: bold;
+    font-size: 16px;
+}
+.blueText{
+	color: #1f8af8;
+    font-weight: bold;
+    font-size: 16px;
+}
+.table h4{
+    font-size: 16px;	
+	 margin: 0px 0;
+}
+
+/*Lease Details Card CSS*/
+
+.column {
+  float: left;
+  width: 20%;
+    padding: 0 6px;
+}
+
+
+/* Clear floats after the columns */
+.leaseRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.mainCard{
+box-shadow: none;
+}
+.leaseCard {
+    box-shadow: 0 0px 8px 0 rgba(87, 87, 87, 0.29);
+  padding: 16px;
+  text-align: center;
+  background-color: #eee;
+}
+.leaseCard h3{
+    font-size: 14px;
+    font-weight: bold;
+}
+.leaseCard p{
+font-size: 14px;
+color: #000;
+}
+
+/*Lease Details Card Close*/
+
+/* toggle switch css */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(34px);
+  -ms-transform: translateX(34px);
+  transform: translateX(34px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.outerNoRecord{
+    border: 1px solid #1764d4;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Add Tenant Document css :START*/
+.document-body {
+    box-shadow: 5px 5px 35px #cccccc;
+}
+.documents-details .input-text {
+    padding: 0 20px;
+    position: relative;
+}
+.form-content .input-text {
+    max-height: 70px!important;
+    min-height: 70px;
+}
+.input-text label {
+    color: #666666;
+}
+.docType .form-control {
+    background: no-repeat center bottom, center calc(100% - 1px);
+    background-size: 0 100%, 100% 100%;
+    height: 36px !important;
+    border: 1px solid #ff8c1e !important;
+    font-size: 14px;
+    padding: 0 12px;
+}
+.docType .dropdown {
+    color: #a1a1a1;
+    position: absolute;
+    bottom: 16px;
+    text-align: right;
+    right: 63px;
+}
+.btn-add {
+    position: absolute;
+    right: 21px;
+    bottom: 6px;
+    color: white;
+    font-size: 20px;
+    text-shadow: none;
+    background-color: #ff8c1e;
+    padding: 5px 9px;
+}
+input.choose-flie {
+    opacity: 0;
+    z-index: 999;
+    position: relative;
+    width: 100%;
+    max-height: 36px;
+}
+button.browse_btn {
+    opacity: 1;
+    z-index: 0;
+    position: relative;
+    bottom: 55px;
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    text-align: left;
+    color: #ff8c1e;
+    background-color: transparent;
+    border: 1px solid #ff8c1e !important;
+}
+.input-text button, .input-btn button {
+    margin-top: 25px;
+    max-height: 36px;
+}
+/* Add Tenant Document css :END*/
+
+/* popup css */
+	.commentReply .modal-header {
+    background-color: #0175fe;
+}
+.commentReply {
+    width: 100%;
+}
+.commentReply .modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+}
+.receiptDetail {
+    padding:30px 40px 0px;
+    width: 100%;
+    float: left;
+}
+.commentReply .modal-content{
+    max-width: unset;
+    height: auto;
+}
+.commentReply .modal-title {
+    color: #fff;
+    font-weight: 500;
+    font-size: 20px;
+}
+.commentReply .modal-footer {
+    justify-content: center;
+}
+.commentReply .close {
+    color: #ffffff;
+    opacity: 1;
+}
+.commonBtnP {
+    color: #fff;
+    background-color: #1f87f8;
+    border: 1px solid #1f87f8;
+    font-size: 15px;
+    padding: 0 15px;
+    height: 40px;
+    margin: 0 5px;
+}
+.commonBtnC{
+	color: #1f87f8;
+    background-color: #fff;
+    border: 1px solid #1f87f8;
+    font-size: 15px;
+    padding: 0 15px;
+    height: 40px;
+    margin: 0 5px;
+}
+.receiptDetailInner {
+    border: 1px solid #0275fe;
+    width: 100%;
+    float: left;
+    margin: 15px 0;
+	position:relative;
+}
+h4.recHead {
+    font-size: 20px;
+    margin: 0 !important;
+    background-color: #0275fe;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.listReceipt {
+	padding: 25px 40px 0;
+    width: 100%;
+    float: left;
+}
+.listReceipt p {
+    margin: 0;
+    width: 50%;
+    float: left;
+    font-size: 16px;
+    color: #000;
+}
+.fullwidth.DFlex h3 {
+    font-size: 20px;
+}
+.fullwidth.DFlex div{
+    width: 100%;
+}
+.fullwidth.DFlex p {
+    font-size: 16px;
+    color: #000;
+}
+.fullwidth.DFlex {
+    display: flex;
+    width: 100%;
+    margin: 0px 0;
+   	padding: 5px 40px 0;
+}
+.noMar p{
+	margin:0;
+}
+.description{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #000;
+    padding: 0 0 20px;
+}
+.paidDiv {
+    position: absolute;
+    right: 10px;
+    height: 60px;
+    width: 60px;
+    border: 2px dashed red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 48px;
+    transform: rotate(40deg);
+}
+.paidDiv h4 {
+    color: red;
+    margin: 0;
+    font-size: 18px;
+}
+/* popup css */
+.singleCommentDivMain .comment {
+    padding: 0;
+    max-width: calc(100% - 80px);
+    float: left;
+    background-color: unset;
+    margin-bottom: 0px;
+    border-top: 0px solid #1d86f7;
+}
+.singleCommentDivMain .commentReply {
+    padding: 0;
+    max-width: calc(100% - 80px);
+    float: right;
+    background-color: unset;
+    margin-bottom: 0px;
+    border-top: 0px solid #1d86f7;
+}
+.commentTextDiv p {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+.commentInner {
+    border-top: 1px solid #1d86f7;
+    background-color: #2181f714;
+    padding: 5px;
+    width: auto;
+    float: left;
+    margin-bottom: 10px;
+}
+.commentReply .commentInner {
+    border-top: 1px solid #1fbcd4;
+    background-color: #1fbcd417;
+    padding: 5px;
+    width: auto;
+    float: right;
+    margin-bottom: 10px;
+}
+.fullwidth{
+	width:100%;
+	float:left;
+}
+.singleCommentDivMain {
+    width: 100%;
+    float: left;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.modalPadd{
+    padding: 20px 40px;
+}
+.paddL80{
+	padding-left: 80px;
+}
+.modalHead .modal-title3 {
+    position: absolute;
+    right: 44px;
+    top: 11px;
+    display: flex;
+	align-items: center;
+}
+ .modal-title3 img{
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 10px;
+}
+.modal-title3 h4{
+	font-size:16px;
+	margin: 0 !important;
+}
+.modalHead .modal-title2 {
+    position: absolute;
+    bottom: -5px;
+    font-size: 18px !important;
+}
+.modalHead .modal-title {
+    position: absolute;
+    top: 5px;
+}
+.modalHead h4{
+    margin: 0px 0 10px;
+}
+.modalHead{
+    position:relative;
+	min-height: 65px;
+}
+
+.MpesaModal .modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+	    z-index: 9;
+}
+.MpesaModal .close {
+    color: #000;
+}
+.pesaLogo {
+    width: 110px;
+    margin: 15px 0;
+}
+.MpesaModal li {
+    color: #000;
+    font-size: 16px;
+	    font-weight: bold;
+}
+.MpesaModal li  span {
+    color: #ff0000;
+    font-weight: bold;
+}
+.pesaInput {
+    padding: 0 25px;
+}
+.pesaInput input {
+    border: 1px solid #ddd;
+    padding: 0px 15px;
+    font-size: 15px;
+    height: 40px;
+}
+.payBtn {
+    color: #fff;
+    background-color: #1d792a;
+    border: 1px solid #1d792a;
+    height: 40px;
+}
+.pesaBg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    filter: brightness(230%);
+}
+
+
+.billingPeriodMain label.control-label {
+    width: 130px;
+    float: left;
+    margin: 10px 0;
+    padding: 0;
+    top: unset;
+    color: #000;
+	    position: unset;
+}
+.commonTetxtFeild{
+	width: calc(100% - 130px);
+    float: left;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	    position: relative;
+}
+.billingPeriodMain .form-control {
+    border: 1px solid #ddd;
+    background-image: unset !important;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.DoneBtn {
+    background-color: #2195f3;
+    font-weight: bold;
+}
+.billingPeriodMain .modal-title {
+    margin-bottom: 0;
+    line-height: 1;
+    color: #fff;
+    font-weight: bold;
+    font-size: 23px;
+}
+.billingPeriodMain .close {
+    color: #fff;
+    opacity: 1;
+}
+.billingPeriodMain .form-group{
+	width:100%;
+	float:left;
+	margin: 0 0 20px;
+}
+.billingPeriodMain .width50 {
+    width: 45%;
+}
+.errors {
+    position: absolute;
+    bottom: -22px;
+    font-size: 14px;
+    
+}
+.confirmation{
+    color: #1d792a;
+    font-weight: bold;
+    margin: 10px 25px;
+    font-size: 18px;
+}
+.confirmation.error{
+    color: #fb0e00;
+}
