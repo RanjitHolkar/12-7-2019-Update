@@ -35,7 +35,7 @@
     "datatables.net-dt": "^1.10.19",
     "firebase": "^5.9.4",
     "html2canvas": "^1.0.0-alpha.12",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jspdf": "^1.5.2",
     "jwt-decode": "^2.2.0",
     "ng2-toastr": "^4.1.2",
